@@ -1,0 +1,46 @@
+{
+    "definitions": {
+        "personItem": {
+            "type": "object",
+            "description": "人员详情",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "人员ID"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "人员名字"
+                },
+                "roleId": {
+                    "type": "number",
+                    "description": "角色ID"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "角色"
+                },
+                "phone": {
+                    "type": "string",
+                    "description": "电话"
+                },
+                "remark": {
+                    "type": "string",
+                    "description": "人员备注"
+                },
+                "createTime": {
+                    "type": "date",
+                    "description": "创建时间"
+                },
+                "createUserName": {
+                    "type": "string",
+                    "description": "创建人名字"
+                },
+                "status": {
+                    "type": "number",
+                    "description": "人员状态 -999删除、-1禁用、50启用"
+                }
+            }
+        }
+    }
+}

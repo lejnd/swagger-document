@@ -1,0 +1,73 @@
+{
+    "definitions": {
+        "agentItem": {
+            "type": "object",
+            "description": "单个代办员",
+            "properties": {
+                "region": {
+                    "$ref": "#/definitions/Region"
+                },
+                "agentId": {
+                    "type": "number",
+                    "description": "代办员工ID"
+                },
+                "station": {
+                    "type": "string",
+                    "description": "服务站名称"
+                },
+                "stationCode": {
+                    "type": "string",
+                    "description": "站点编号"
+                },
+                "stationAddress": {
+                    "type": "string",
+                    "description": "服务站地址"
+                },
+                "workModel": {
+                    "type": "string",
+                    "description": "合作模式，如：代办员"
+                },
+                "agentName": {
+                    "type": "string",
+                    "description": "代办员姓名"
+                },
+                "agentPhone": {
+                    "type": "string",
+                    "description": "代办员电话"
+                },
+                "entryTime": {
+                    "type": "string",
+                    "description": "入职日期"
+                },
+                "dismissTime": {
+                    "type": "string",
+                    "description": "离职日期"
+                },
+                "idCard": {
+                    "type": "string",
+                    "description": "身份证号"
+                },
+                "bankCard": {
+                    "type": "string",
+                    "description": "银行卡号"
+                },
+                "bankNo": {
+                    "type": "string",
+                    "description": "银行行号"
+                },
+                "bankName": {
+                    "type": "string",
+                    "description": "银行名称"
+                },
+                "agentState": {
+                    "type": "number",
+                    "description": "员工状态，0离职，1在职"
+                },
+                "status": {
+                    "type": "number",
+                    "description": "启用状态：-1禁用、50启用"
+                }
+            }
+        }
+    }
+}

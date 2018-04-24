@@ -1,0 +1,305 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/person/search": {
+            "post": {
+                "summary": "人员列表查询接口",
+                "tags": ["Personnel"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "#/definitions/Paging"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "description": "人员名字"
+                                        },
+                                        "roleId": {
+                                            "type": "string",
+                                            "description": "角色id"
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "description": "人员状态 -999删除、-1禁用、50启用"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paging": {
+                                            "$ref": "#/definitions/ResponsePaging"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/personItem"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/person": {
+            "post": {
+                "tags": ["Personnel"],
+                "summary":"添加人员接口",
+                "description": "添加人员接口",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "description": "人员名字"
+                                },
+                                "roleId": {
+                                    "type": "number",
+                                    "description": "角色id"
+                                },
+                                "phone": {
+                                    "type": "string",
+                                    "description": "电话"
+                                },
+                                "remark": {
+                                    "type": "string",
+                                    "description": "人员备注"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回添加结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/person/disable-enable": {
+            "post": {
+                "tags": ["Personnel"],
+                "summary":"修改人员状态接口",
+                "description": "修改人员状态接口",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "参数",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "number",
+                                    "description": "人员id"
+                                },
+                                "status": {
+                                    "type": "number",
+                                    "description": "人员状态 -999删除、-1禁用、50启用"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回修改结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/person/{personId}": {
+            "put": {
+                "tags": ["Personnel"],
+                "summary":"修改人员信息",
+                "description": "修改人员信息",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "path",
+                        "name": "personId",
+                        "required": true,
+                        "type": "integer",
+                        "description": "人员Id"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "修改信息",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "description": "人员名字"
+                                },
+                                "roleId": {
+                                    "type": "number",
+                                    "description": "角色id"
+                                },
+                                "phone": {
+                                    "type": "string",
+                                    "description": "电话"
+                                },
+                                "remark": {
+                                    "type": "string",
+                                    "description": "人员备注"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回修改结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/role": {
+            "get": {
+                "tags": ["Personnel"],
+                "summary":"获取角色列表",
+                "description": "获取角色列表",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回查询结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "description": "角色列表",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "roleId": {
+                                                "type": "number",
+                                                "description": "角色ID"
+                                            },
+                                            "role": {
+                                                "type": "string",
+                                                "description": "角色名称"
+                                            },
+                                            "status": {
+                                                "type": "number",
+                                                "description": "角色状态 -999删除、-1禁用、50启用"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

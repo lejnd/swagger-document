@@ -1,0 +1,43 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "common/upload/img": {
+            "post": {
+                "summary": "上传图片接口",
+                "tags": ["Common"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "imgUrl": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,808 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/api/app/exclusiveSales/search": {
+          "post": {
+            "tags": [
+              "ExclusiveSales"
+            ],
+            "summary": "查询包销商品信息",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    },
+                    "paging": {
+                      "type": "object",
+                      "properties": {
+                        "pageSize": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "20"
+                        },
+                        "pageIndex": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "1"
+                        }
+                      }
+                    },
+                    "condition": {
+                      "type": "object",
+                      "properties": {
+                        "search": {
+                          "type": "string",
+                          "default": "查询条件，可能为电话号码，也可能为商品名称"
+                        },
+                        "exclusiveSalesId": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "报销单主表ID"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "paging": {
+                            "type": "object",
+                            "properties": {
+                              "total": {
+                                "type": "integer",
+                                "format": "int32",
+                                "default": 0
+                              },
+                              "currentPage": {
+                                "type": "integer",
+                                "format": "int32",
+                                "default": 0
+                              },
+                              "pageSize": {
+                                "type": "integer",
+                                "format": "int32",
+                                "default": 0
+                              },
+                              "pageCount": {
+                                "type": "integer",
+                                "format": "int32",
+                                "default": 0
+                              },
+                              "pageIndex": {
+                                "type": "integer",
+                                "format": "int32",
+                                "default": 0
+                              }
+                            }
+                        },
+                        "itemList": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "status": {
+                                "type": "integer",
+                                "format": "int32",
+                                "default": 0
+                              },
+                              "farmerId": {
+                                "type": "integer",
+                                "format": "int32",
+                                "default": 0
+                              },
+                              "farmerName": {
+                                "type": "string",
+                                "default": "电话号码"
+                              },
+                              "farmerPhone": {
+                                "type": "string",
+                                "default": "电话号码"
+                              },
+                              "goods": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "exclusiveSaleSubId": {
+                                      "type": "integer",
+                                      "format": "int64",
+                                      "default": "包销明细单 ID"
+                                    },
+                                    "buyTime": {
+                                      "type": "dateTime",
+                                      "default": "收购时间"
+                                    },
+                                    "goodsId": {
+                                      "type": "integer",
+                                      "format": "int32",
+                                      "default": "商品ID"
+                                    },
+                                    "goodsName": {
+                                      "type": "string",
+                                      "default": "土豆"
+                                    },
+                                    "unit": {
+                                      "type": "string",
+                                      "default": "单位"
+                                    },
+                                    "exclusiveQuantity": {
+                                      "type": "integer",
+                                      "format": "int64",
+                                      "default": "签约数量"
+                                    }
+                                  }
+                                }
+                              },
+                              "picList": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "default": "imgUrl"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "security": [
+            ]
+          }
+        },
+
+        "/api/app/exclusiveSales/removeSub": {
+          "post": {
+            "tags": [
+              "ExclusiveSales"
+            ],
+            "summary": "删除包销单商品",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    },
+                    "ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "integer",
+                        "format": "int64",
+                        "default": "明细ID"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "security": [
+            ]
+          }
+        },
+
+        "/api/app/exclusiveSales/add": {
+          "post": {
+            "tags": [
+              "ExclusiveSales"
+            ],
+            "summary": "添加包销信息",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    },
+                    "condition": {
+                      "type": "object",
+                      "properties": {
+                        "farmerId": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": 0
+                        },
+                        "exclusiveSalesTime": {
+                          "type": "dateTime",
+                          "default": "包销协议签订时间"
+                        },
+                        "buyTime": {
+                          "type": "dateTime",
+                          "default": "收购时间"
+                        },
+                        "goodsId": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "商品ID"
+                        },
+                        "exclusiveQuantity": {
+                          "type": "integer",
+                          "format": "int64",
+                          "default": "签约数量"
+                        },
+                        "planItemId": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "农产品计划明细ID"
+                        },
+                        "exclusiveSalesId": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "报销单主表ID"
+                        },
+                        "landowner": {
+                          "type": "integer",
+                          "default": "大户：1，否：0"
+                        },
+                        "imgList": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "default": "上传协议照片"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    },
+                    "exclusiveSalesId": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": "报销单主表ID"
+                    }
+                  }
+                }
+              }
+            },
+            "security": [
+            ]
+          }
+        },
+
+        "/api/app/exclusiveSales/cancel": {
+          "post": {
+            "tags": [
+              "ExclusiveSales"
+            ],
+            "summary": "作废包销单",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    },
+                    "data":{
+                      "type":"object",
+                      "properties":{
+                        "id": {
+                          "type": "integer",
+                          "format": "int64",
+                          "default": "包销主单ID"
+                        },
+                        "reason": {
+                          "type": "string",
+                          "default": "作废原因"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "security": [
+            ]
+          }
+        },
+
+        "/api/app/exclusiveSales/{id}": {
+          "post": {
+            "tags": [
+              "ExclusiveSales"
+            ],
+            "summary": "获取包销单详情",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": "exclusiveId"
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "format": "int64",
+                          "default": "ID"
+                        },
+                        "farmerId": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": 0
+                        },
+                        "exclusiveSalesTime": {
+                          "type": "dateTime",
+                          "default": "包销协议签订时间"
+                        },
+                        "buyTime": {
+                          "type": "dateTime",
+                          "default": "收购时间"
+                        },
+                        "goodsId": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "商品ID"
+                        },
+                        "exclusiveQuantity": {
+                          "type": "integer",
+                          "format": "int64",
+                          "default": "签约数量"
+                        },
+                        "planItemId": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "农产品计划明细ID"
+                        },
+                        "exclusiveSalesId": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "报销单主表ID"
+                        },
+                        "landowner": {
+                          "type": "integer",
+                          "default": "大户：1，否：0"
+                        },
+                        "imgList": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "default": "上传协议照片"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "security": [
+            ]
+          }
+        },
+          "/api/app/exclusiveSales/list": {
+            "post": {
+              "tags": [
+                "ExclusiveSales"
+              ],
+              "summary": "查询预售订单列表",
+              "description": "",
+              "parameters": [
+                {
+                  "in": "body",
+                  "name": "body",
+                  "description": "请求参数",
+                  "required": true,
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "phone":{
+                          "type":"string",
+                          "description": "电话号码"
+                      },
+                      "userId":{
+                          "type":"number",
+                          "description": "用户ID"
+                      },
+                      "token":{
+                          "type":"string",
+                          "description": "用户token"
+                      },
+                      "version":{
+                          "type":"string",
+                          "description": "版本号"
+                      },
+                      "isReactNative":{
+                          "type":"string",
+                          "description": "true"
+                      },
+                      "paging": {
+                        "type": "object",
+                        "properties": {
+                          "pageSize": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": "20"
+                          },
+                          "pageIndex": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": "1"
+                          }
+                        }
+                      },
+                      "condition": {
+                        "type": "object",
+                        "properties": {
+                          "search": {
+                            "type": "string",
+                            "default": "查询条件，可能为电话号码，也可能为商品名称"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "Api返回",
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "integer",
+                        "format": "int32",
+                        "default": 0
+                      },
+                      "msg": {
+                        "type": "string",
+                        "default": "ok"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "paging": {
+                            "type": "object",
+                            "properties": {
+                              "total": {
+                                "type": "integer",
+                                "format": "int32",
+                                "default": 0
+                              },
+                              "currentPage": {
+                                "type": "integer",
+                                "format": "int32",
+                                "default": 0
+                              },
+                              "pageSize": {
+                                "type": "integer",
+                                "format": "int32",
+                                "default": 0
+                              },
+                              "pageCount": {
+                                "type": "integer",
+                                "format": "int32",
+                                "default": 0
+                              },
+                              "pageIndex": {
+                                "type": "integer",
+                                "format": "int32",
+                                "default": 0
+                              }
+                            }
+                          },
+                          "itemList": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "orderList": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "Id": {
+                                        "type": "integer",
+                                        "format": "int32",
+                                        "default": 0
+                                      },
+                                      "createTime": {
+                                        "type": "dateTime",
+                                        "default": "创建时间"
+                                      },
+                                      "farmerId": {
+                                        "type": "integer",
+                                        "format": "int32",
+                                        "default": 0
+                                      },
+                                      "farmerName": {
+                                        "type": "string",
+                                        "default": "顾客姓名"
+                                      },
+                                      "farmerPhone": {
+                                        "type": "string",
+                                        "default": "顾客电话"
+                                      },
+                                      "goods": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "object",
+                                          "properties": {
+                                              "exclusiveSaleId": {
+                                                "type": "integer",
+                                                "default": "商品ID"
+                                              },
+                                              "goodsName": {
+                                                "type": "string",
+                                                "default": "商品名称"
+                                              },
+                                              "breedUnit": {
+                                                "type": "string",
+                                                "default": "单位"
+                                              },
+                                              "buyTime": {
+                                                "type": "string",
+                                                "default": "收购时间"
+                                              },
+                                              "createTime": {
+                                                "type": "string",
+                                                "default": "创建时间"
+                                              },
+                                              "exclusiveQuantity": {
+                                                "type": "string",
+                                                "default": "收购数量"
+                                              },
+                                              "exclusiveSaleId": {
+                                                "type": "integer",
+                                                "default": "订单号"
+                                              },
+                                              "id": {
+                                                "type": "integer",
+                                                "default": 0
+                                              }
+                                          }
+                                        }
+                                      },
+                                      "picList": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "string",
+                                          "default": "imgUrl"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "security": [
+              ]
+            }
+          }
+    }
+}

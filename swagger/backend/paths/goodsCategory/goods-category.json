@@ -1,0 +1,231 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/goods/category/search": {
+            "post": {
+                "summary": "商品类别列表查询接口",
+                "tags": ["Goods"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "description": "商品类别名称"
+                                },
+                                "type": {
+                                    "type": "number",
+                                    "description": "0:全部 1:上行 2:下行"
+                                },
+                                "status": {
+                                    "type": "string",
+                                    "description": "商品类别状态 1、启用；-1、禁用 0:表示所有状态"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/goodsCategoryItem"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/goods/category": {
+            "post": {
+                "tags": ["Goods"],
+                "summary":"添加一个商品类别接口",
+                "description": "添加一个商品类别接口",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "添加参数",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "number",
+                                    "description": "将此类别添加到此id类别下面，无id表示顶级类别"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "description": "商品类别名称"
+                                },
+                                "remark": {
+                                    "type": "string",
+                                    "description": "商品类别备注"
+                                },
+                                "type": {
+                                    "type": "number",
+                                    "description": "1:上行 2:下行"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回添加结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/goods/category/{id}": {
+            "put": {
+                "tags": ["Goods"],
+                "summary":"修改商品类别",
+                "description": "修改商品类别",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "path",
+                        "name": "categoryId",
+                        "required": true,
+                        "type": "integer",
+                        "description": "商品类别Id"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "修改参数",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "description": "商品类别名称"
+                                },
+                                "remark": {
+                                    "type": "string",
+                                    "description": "商品类别备注"
+                                },
+                                "status": {
+                                    "type": "string",
+                                    "description": "商品类别状态 1、启用；-1、禁用"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回修改结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": ["Goods"],
+                "summary":"获取商品类别详情",
+                "description": "获取商品类别详情",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "path",
+                        "name": "categoryId",
+                        "required": true,
+                        "type": "integer",
+                        "description": "商品类别Id"
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回修改结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties":{
+                                        "name": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "description": "父级类别名字"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

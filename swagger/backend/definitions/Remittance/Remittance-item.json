@@ -1,0 +1,38 @@
+{
+  "definitions": {
+    "RemittanceItem": {
+      "type": "object",
+      "description": "代汇款流水列表",
+      "properties": {
+        "orderNumber": {
+          "type": "string",
+          "description": "订单号"
+        },
+        "role": {
+          "type": "string",
+          "description": "角色"
+        },
+        "name": {
+          "type": "string",
+          "description": "名字"
+        },
+        "phone": {
+          "type": "string",
+          "description": "联系电话"
+        },
+        "amount": {
+          "type": "string",
+          "description": "汇款金额"
+        },
+        "status": {
+          "type": "string",
+          "description": "状态"
+        },
+        "createTime": {
+          "type": "string",
+          "description": "创建时间"
+        }
+      }
+    }
+  }
+}

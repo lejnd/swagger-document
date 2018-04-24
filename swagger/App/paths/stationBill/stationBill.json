@@ -1,0 +1,253 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/api/app/leaderList": {
+            "post": {
+                "tags": ["stationBill"],
+                "summary":"获取各级负责人列表",
+                "description": "获取各级负责人列表",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "参数",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "phone":{
+                                    "type":"string",
+                                    "description": "电话号码"
+                                },
+                                "userId":{
+                                    "type":"number",
+                                    "description": "用户ID"
+                                },
+                                "token":{
+                                    "type":"string",
+                                    "description": "用户token"
+                                },
+                                "version":{
+                                    "type":"string",
+                                    "description": "版本号"
+                                },
+                                "isReactNative":{
+                                    "type":"string",
+                                    "description": "true"
+                                },
+                                "id": {
+                                    "type": "number",
+                                    "description": "城市经理/业务员/服务站id"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回查询结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type":"object",
+                                    "properties":{
+                                        "type":{
+                                          "type":"number",
+                                          "description":"0大区经理,1城市经理，2是业务员"
+                                        },
+                                        "name":{
+                                          "type":"string",
+                                          "description":"当前各级别人的姓名"
+                                        },
+                                        "phone":{
+                                          "type":"string",
+                                          "description":"当前各级别人的电话"
+                                        },
+                                        "position":{
+                                          "type":"string",
+                                          "description":"当前各级别人的职位"
+                                        },
+                                        "itemList":{
+                                            "type": "array",
+                                            "items":{
+                                                "type": "object",
+                                                "description": "城市经理/业务员/服务站",
+                                                "properties":{
+                                                    "id": {
+                                                        "type": "number",
+                                                        "description": "城市经理/业务员ID"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "description": "城市经理或业务员名称"
+                                                    },
+                                                    "phone": {
+                                                        "type": "string",
+                                                        "description": "城市经理或业务员电话"
+                                                    },
+                                                    "stationId": {
+                                                        "type": "number",
+                                                        "description": "服务站ID"
+                                                    },
+                                                    "stationName": {
+                                                        "type": "string",
+                                                        "description": "服务站名称"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/app/stationPaymentInfo": {
+            "post": {
+                "tags": ["stationBill"],
+                "summary": "服务站回款信息",
+                "description": "服务站待回款信息,以天为单位,每天需回款的信息",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "参数",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "phone":{
+                                    "type":"string",
+                                    "description": "电话号码"
+                                },
+                                "userId":{
+                                    "type":"number",
+                                    "description": "用户ID"
+                                },
+                                "token":{
+                                    "type":"string",
+                                    "description": "用户token"
+                                },
+                                "version":{
+                                    "type":"string",
+                                    "description": "版本号"
+                                },
+                                "isReactNative":{
+                                    "type":"string",
+                                    "description": "true"
+                                },
+                                "id": {
+                                    "type": "number",
+                                    "description": "服务站id"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回查询结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data":{
+                                    "type":"object",
+                                    "properties":{
+                                        "stationName":{
+                                            "type": "string",
+                                            "description": "服务站名称"
+                                        },
+                                        "agentName":{
+                                            "type": "string",
+                                            "description": "代办员姓名"
+                                        },
+                                        "agentPhone":{
+                                            "type": "number",
+                                            "description": "代办员手机号"
+                                        },
+                                        "electricityBills":{
+                                            "type": "number",
+                                            "description": "电费"
+                                        },
+                                        "phoneBill":{
+                                            "type": "number",
+                                            "description": "话费"
+                                        },
+                                        "itemList":{
+                                            "type": "array",
+                                            "items":{
+                                                "type": "object",
+                                                "description": "城市经理或业务员信息",
+                                                "properties":{
+                                                    "dateTime":{
+                                                        "type": "number",
+                                                        "description": "日期(时间戳)"
+                                                    },
+                                                    "cardRecharge":{
+                                                        "type": "object",
+                                                        "description": "卡充值账单金额和状态",
+                                                        "properties":{
+                                                            "amount":{
+                                                                "type": "number",
+                                                                "description": "卡充值账单金额"
+                                                            },
+                                                            "status": {
+                                                                "type": "string",
+                                                                "description": "卡充值账单状态"
+                                                            }
+                                                        }
+                                                    },
+                                                    "saleBills":{
+                                                        "type": "object",
+                                                        "description": "销售账单金额和状态",
+                                                        "properties":{
+                                                            "amount":{
+                                                                "type": "number",
+                                                                "description": "销售账单金额"
+                                                            },
+                                                            "status": {
+                                                                "type": "string",
+                                                                "description": "销售账单状态"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

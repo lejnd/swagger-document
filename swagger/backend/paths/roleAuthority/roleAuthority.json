@@ -1,0 +1,164 @@
+{
+  "swagger": "2.0",
+  "paths": {
+    "/roles/search": {
+      "post": {
+        "summary": "角色列表查询",
+        "tags": [
+          "roleAuthority"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/definitions/Token"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "分页和查询条件",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "paging": {
+                  "$ref": "#/definitions/Paging"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "查询成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "description": "成功信息"
+                },
+                "code": {
+                  "type": "string",
+                  "description": "成功编码 0",
+                  "required": true
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "paging": {
+                      "$ref": "#/definitions/ResponsePaging"
+                    },
+                    "itemList": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/roleAuthority"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "role/Authority/{roleId}": {
+      "get": {
+        "summary": "权限列表查询",
+        "tags": [
+          "roleAuthority"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/definitions/Token"
+          },
+          {
+            "in": "path",
+            "name": "roleId",
+            "required": true,
+            "type": "integer",
+            "description": "角色id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "查询成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "description": "成功信息"
+                },
+                "code": {
+                  "type": "string",
+                  "description": "成功编码 0",
+                  "required": true
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/AuthorityItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/role/edit": {
+      "post": {
+        "summary": "角色权限分配",
+        "tags": [
+          "roleAuthority"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/definitions/Token"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "roleId": {
+                  "type": "string",
+                  "description": "角色id"
+                },
+                "authority": {
+                  "type": "array",
+                  "description": "权限id数组",
+                  "items":[]
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "修改成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "description": "成功信息"
+                },
+                "code": {
+                  "type": "string",
+                  "description": "成功编码 0",
+                  "required": true
+                },
+                "data": {
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

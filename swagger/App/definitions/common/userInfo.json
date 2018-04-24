@@ -1,0 +1,31 @@
+{
+    "definitions": {
+        "UserInfo": {
+            "name": "userInfo",
+            "type": "string",
+            "description": "已登录凭据",
+            "properties": {
+                "phone":{
+                    "type":"string",
+                    "description": "电话号码"
+                },
+                "userId":{
+                    "type":"number",
+                    "description": "用户ID"
+                },
+                "token":{
+                    "type":"string",
+                    "description": "用户token"
+                },
+                "version":{
+                    "type":"string",
+                    "description": "版本号"
+                },
+                "isReactNative":{
+                    "type":"string",
+                    "description": "true"
+                }
+            }          
+        }
+    }
+}

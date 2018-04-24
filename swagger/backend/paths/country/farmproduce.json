@@ -1,0 +1,132 @@
+{
+  "swagger": "2.0",
+  "paths": {
+    "/farmProduce/list": {
+      "post": {
+        "summary": "一村一档",
+        "tags": [ "Country" ],
+        "parameters": [
+          {
+            "$ref": "#/definitions/Token"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "农产品详情",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "paging": {
+                  "$ref": "#/definitions/Paging"
+                },
+                "condition": {
+                  "type": "object",
+                  "description": "查询条件",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "description": "一村一档主键",
+                      "default": ""
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "查询成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "description": "成功信息"
+                },
+                "code": {
+                  "type": "string",
+                  "description": "成功编码 0",
+                  "required": true
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "paging": {
+                      "$ref": "#/definitions/ResponsePaging"
+                    },
+                    "itemList": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/farmProduceItem"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+
+    "/farmProduce/export": {
+      "post": {
+        "tags": [ "Country" ],
+        "summary": "一村一档导出",
+        "parameters": [
+          {
+            "$ref": "#/definitions/Token"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "条件",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "default": "一村一档主键"
+                }
+              }
+            }
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "返回结果",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "description": "成功信息"
+                },
+                "code": {
+                  "type": "string",
+                  "description": "成功编码 0",
+                  "required": true
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "exportUrl": {
+                      "type": "string",
+                      "description": "导出链接"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  }
+}

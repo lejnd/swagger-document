@@ -1,0 +1,54 @@
+{
+  "definitions": {
+    "supplyItem": {
+      "type": "object",
+      "description": "补货单列表项",
+      "properties": {
+        "id": {
+          "type": "number",
+          "description": "单据编号"
+        },
+        "cityName": {
+          "type": "string",
+          "description": "市"
+        },
+        "districtName": {
+          "type": "string",
+          "description": "区/县"
+        },
+        "townName": {
+          "type": "string",
+          "description": "镇"
+        },
+        "villageName": {
+          "type": "string",
+          "description": "村"
+        },
+        "stationName": {
+          "type": "string",
+          "description": "服务站名称"
+        },
+        "stationCode": {
+          "type": "string",
+          "description": "站点编号"
+        },
+        "productCount": {
+          "type": "Integer",
+          "description": "补货量"
+        },
+        "sendDateTime": {
+          "type": "string",
+          "description": "发货时间"
+        },
+        "status": {
+          "type": "string",
+          "description": "子单状态（0：待发货1：已发货 。。。）"
+        },
+        "createTime": {
+          "type": "string",
+          "description": "提报时间"
+        }
+      }
+    }
+  }
+}

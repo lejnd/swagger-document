@@ -1,0 +1,376 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/banner/search": {
+            "post": {
+                "summary": "Banner查询接口王阿红",
+                "tags": ["Banner"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "#/definitions/Paging"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "title": {
+                                            "type": "string",
+                                            "description": "标题"
+                                        },
+                                        "status": {
+                                            "type": "number",
+                                            "description": "状态 0、禁用；1、启用"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paging": {
+                                            "$ref": "#/definitions/ResponsePaging"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/bannerItem"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/banner/disable-enable": {
+            "post": {
+                "tags": ["Banner"],
+                "summary":"禁用/启用",
+                "description": "根据请求修改Banner状态",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "子公司ID",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "status": {
+                                    "type": "number",
+                                    "description": "0、禁用；1、启用"
+                                },
+                                "id": {
+                                    "type": "number",
+                                    "description": "BannerID"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回修改结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/banner/add": {
+            "post": {
+                "tags": ["Banner"],
+                "summary":"添加Banner",
+                "description": "添加Banner",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "子公司ID",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "title": {
+                                    "type": "string",
+                                    "description": "标题"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "描述，可选"
+                                },
+                                "sortNum": {
+                                    "type": "number",
+                                    "description": "排序"
+                                },
+                                "startTime": {
+                                    "type": "string",
+                                    "description": "开始时间"
+                                },
+                                "endTime": {
+                                    "type": "string",
+                                    "description": "结束时间"
+                                },
+                                "imgUrl": {
+                                    "type": "string",
+                                    "description": "图片url"
+                                },
+                                "pageType": {
+                                    "type": "number",
+                                    "description": "内页类型，0 无内页，1 自编内容，2 地址跳转"
+                                },
+                                "selfContent": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "description": "图片地址"
+                                    },
+                                    "description": "内页类型选择自编内容时的参数，内页类型为1时必填"
+                                },
+                                "link": {
+                                    "type": "string",
+                                    "description": "内页类型选择地址跳转时的参数，内页类型为2时必填"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回添加结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/banner/{id}": {
+            "get": {
+                "tags": ["Banner"],
+                "summary":"获取Banner详情",
+                "description": "获取Banner详情",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回获取结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "description": "BannerID"
+                                        },
+                                        "title": {
+                                            "type": "string",
+                                            "description": "标题"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "description": "描述，可选"
+                                        },
+                                        "sortNum": {
+                                            "type": "number",
+                                            "description": "排序"
+                                        },
+                                        "startTime": {
+                                            "type": "string",
+                                            "description": "开始时间"
+                                        },
+                                        "endTime": {
+                                            "type": "string",
+                                            "description": "结束时间"
+                                        },
+                                        "imgUrl": {
+                                            "type": "string",
+                                            "description": "图片url"
+                                        },
+                                        "pageType": {
+                                            "type": "number",
+                                            "description": "内页类型，0 无内页，1 自编内容，2 地址跳转"
+                                        },
+                                        "selfContent": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "description": "图片地址"
+                                            },
+                                            "description": "内页类型选择自编内容时的参数"
+                                        },
+                                        "link": {
+                                            "type": "string",
+                                            "description": "内页类型选择地址跳转时的参数"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/banner/edit": {
+            "put": {
+                "tags": ["Banner"],
+                "summary":"修改Banner",
+                "description": "修改Banner",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "子公司ID",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "description": "BannerID"
+                                },
+                                "title": {
+                                    "type": "string",
+                                    "description": "标题"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "描述，可选"
+                                },
+                                "sortNum": {
+                                    "type": "number",
+                                    "description": "排序"
+                                },
+                                "startTime": {
+                                    "type": "string",
+                                    "description": "开始时间"
+                                },
+                                "endTime": {
+                                    "type": "string",
+                                    "description": "结束时间"
+                                },
+                                "imgUrl": {
+                                    "type": "string",
+                                    "description": "图片url"
+                                },
+                                "pageType": {
+                                    "type": "number",
+                                    "description": "内页类型，0 无内页，1 自编内容，2 地址跳转"
+                                },
+                                "selfContent": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "description": "图片地址"
+                                    },
+                                    "description": "内页类型选择自编内容时的参数，内页类型为1时必填"
+                                },
+                                "link": {
+                                    "type": "string",
+                                    "description": "内页类型选择地址跳转时的参数，内页类型为2时必填"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回修改结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}

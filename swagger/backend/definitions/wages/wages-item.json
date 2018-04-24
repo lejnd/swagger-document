@@ -1,0 +1,50 @@
+{
+    "definitions": {
+        "wagesItem": {
+            "type": "object",
+            "description": "单月工资",
+            "properties": {
+                "wagesId": {
+                    "type": "number",
+                    "description": "工资ID"
+                },
+                "checkMonth": {
+                    "type": "string",
+                    "description": "结算月份"
+                },
+                "wagesType": {
+                    "type": "string",
+                    "description": "费用类型"
+                },
+                "planQuantity": {
+                    "type": "number",
+                    "description": "应发放人数"
+                },
+                "actualQuantity": {
+                    "type": "number",
+                    "description": "实际发放人数"
+                },
+                "totalWages": {
+                    "type": "number",
+                    "description": "工资总额"
+                },
+                "averageWages": {
+                    "type": "number",
+                    "description": "平均工资"
+                },
+                "reason": {
+                    "type": "string",
+                    "description": "审批失败原因，仅限于状态为审批失败时"
+                },
+                "approvalState": {
+                    "type": "number",
+                    "description": "工资审批状态，0未提交审批，1待审批，2审批通过，3审批失败"
+                },
+                "updateTime": {
+                    "type": "string",
+                    "description": "审批状态更新时间"
+                }
+            }
+        }
+    }
+}

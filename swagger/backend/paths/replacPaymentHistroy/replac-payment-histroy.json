@@ -1,0 +1,178 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/api/app/ReplacPaymentHistroy": {
+            "post": {
+                "tags": ["ReplacPaymentHistroy"],
+                "summary":"代回款记录接口",
+                "description": "代回款记录接口",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "#/definitions/Paging"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "description": "查询全部不传参数(0回款中或已创建),2为回款成功,-1为回款失败"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回查询结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type":"object",
+                                    "properties":{
+                                        "itemList":{
+                                            "type": "array",
+                                            "items":{
+                                                "type": "object",
+                                                "description": "城市经理或业务员信息",
+                                                "properties":{
+                                                  "id":{
+                                                      "type": "number",
+                                                      "description": "该条记录ID"
+                                                  },
+                                                    "dateTime":{
+                                                        "type": "number",
+                                                        "description": "回款日期(时间戳)"
+                                                    },
+                                                    "replacpayment":{
+                                                        "type": "number",
+                                                        "description": "代回款金额"
+                                                    },
+                                                    "status":{
+                                                        "type": "number",
+                                                        "description": "回款状态,(0回款中或已创建,只在全部中展示),2为回款成功,-1为回款失败"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/app/ReplacPaymentDetail": {
+            "post": {
+                "tags": ["ReplacPaymentHistroy"],
+                "summary":"代回款记录详情接口",
+                "description": "代回款记录详情接口",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "参数",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "number",
+                                    "description": "父级id"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回查询结果列表",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type":"object",
+                                    "properties":{
+                                        "sumAmount":{
+                                            "type": "number",
+                                            "description": "代回款总金额"
+                                        },
+                                        "status":{
+                                            "type": "number",
+                                            "description": "交易状态,0是成功,1是失败"
+                                        },
+                                        "type":{
+                                            "type": "string",
+                                            "description": "是,否"
+                                        },
+                                        "waterNumber":{
+                                            "type": "string",
+                                            "description": "流水单号"
+                                        },
+                                        "payTime":{
+                                            "type": "number",
+                                            "description": "交易时间(时间戳)"
+                                        },
+                                        "itemList":{
+                                            "type": "array",
+                                            "items":{
+                                                "type": "object",
+                                                "description": "代回款服务站列表",
+                                                "properties":{
+                                                    "stationName":{
+                                                        "type": "string",
+                                                        "description": "服务站名称"
+                                                    },
+                                                    "amount":{
+                                                        "type": "number",
+                                                        "description": "服务站代回款金额"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

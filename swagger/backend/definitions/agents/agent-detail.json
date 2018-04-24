@@ -1,0 +1,98 @@
+{
+    "definitions": {
+        "agentDetail": {
+            "type": "object",
+            "description": "单个代办员",
+            "properties": {
+                "agentId": {
+                    "type": "number",
+                    "description": "代办员工ID"
+                },
+                "region": {
+                    "$ref": "#/definitions/Region"
+                },
+                "station": {
+                    "type": "string",
+                    "description": "服务站名称"
+                },
+                "stationCode": {
+                    "type": "string",
+                    "description": "站点编号"
+                },
+                "stationAddress": {
+                    "type": "string",
+                    "description": "服务站地址"
+                },
+                "agentName": {
+                    "type": "string",
+                    "description": "代办员姓名"
+                },
+                "agentPhone": {
+                    "type": "string",
+                    "description": "代办员电话"
+                },
+                "agreementImgs": {
+                    "type": "array",
+                    "description": "代办员协议图片URL数组",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "workModel": {
+                    "type": "string",
+                    "description": "合作模式，如：代办员"
+                },
+                "entryTime": {
+                    "type": "string",
+                    "description": "入职日期"
+                },
+                "dismissTime": {
+                    "type": "string",
+                    "description": "离职日期"
+                },
+                "idCard": {
+                    "type": "string",
+                    "description": "身份证号"
+                },
+                "idCardImgs": {
+                    "type": "array",
+                    "description": "代办员身份证照片URL数组",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "bankCard": {
+                    "type": "string",
+                    "description": "银行卡号"
+                },
+                "bankNo": {
+                    "type": "string",
+                    "description": "银行行号"
+                },
+                "bankName": {
+                    "type": "string",
+                    "description": "银行名称"
+                },
+                "bankCardImgs": {
+                    "type": "array",
+                    "description": "银行卡照片URL数组",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "agentState": {
+                    "type": "number",
+                    "description": "代办员状态，0离职，1在职"
+                },
+                "remark": {
+                    "type": "string",
+                    "description": "备注"
+                },
+                "dismissReason": {
+                    "type": "string",
+                    "description": "离职原因"
+                }
+            }
+        }
+    }
+}

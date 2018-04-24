@@ -1,0 +1,44 @@
+{
+    "definitions": {
+        "goodsCategoryItem": {
+            "type": "object",
+            "description": "商品类别详情",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "商品类别ID"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "商品类别名称"
+                },
+                "remark": {
+                    "type": "string",
+                    "description": "商品类别备注"
+                },
+                "level": {
+                    "type": "number",
+                    "description": "层级"
+                },
+                "createTime": {
+                    "type": "date",
+                    "description": "创建时间"
+                },
+                "createUserName": {
+                    "type": "string",
+                    "description": "创建人名字"
+                },
+                "status": {
+                    "type": "number",
+                    "description": "商品类别状态 1、启用；-1、禁用"
+                },
+                "children": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/goodsCategoryItem"
+                    }
+                }
+            }
+        }
+    }
+}

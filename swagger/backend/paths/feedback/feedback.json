@@ -1,0 +1,295 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/common/outerform-search": {
+            "post": {
+                "summary": "意见反馈查询接口",
+                "tags": ["Feedback"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "#/definitions/Paging"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "description": "标题"
+                                        },
+                                        "status": {
+                                            "type": "number",
+                                            "description": "状态 0、禁用；1、启用"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paging": {
+                                            "$ref": "#/definitions/ResponsePaging"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/feedbackItem"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/common/outerform-disable-enable": {
+            "post": {
+                "tags": ["Feedback"],
+                "summary":"意见反馈禁用/启用接口",
+                "description": "根据请求修改意见反馈状态",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "子公司ID",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "status": {
+                                    "type": "number",
+                                    "description": "0、禁用；1、启用"
+                                },
+                                "id": {
+                                    "type": "number",
+                                    "description": "意见反馈ID"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回修改结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/common/outerform-add": {
+            "post": {
+                "tags": ["Feedback"],
+                "summary":"意见反馈增加接口",
+                "description": "添加意见反馈",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "子公司ID",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "description": "标题"
+                                },
+                                "url": {
+                                    "type": "string",
+                                    "description": "链接地址"
+                                },
+                                "sortNum": {
+                                    "type": "number",
+                                    "description": "排序"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回添加结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/common/outerform/{id}": {
+            "get": {
+                "tags": ["Feedback"],
+                "summary":"意见反馈获取详情接口",
+                "description": "获取意见反馈详情",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回获取结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "description": "意见反馈id"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "description": "标题"
+                                        },
+                                        "url": {
+                                            "type": "string",
+                                            "description": "链接地址"
+                                        },
+                                        "sortNum": {
+                                            "type": "number",
+                                            "description": "排序"
+                                        },
+                                        "status": {
+                                            "type": "number",
+                                            "description": "状态 0、禁用；1、启用"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/common/outerform-edit": {
+            "post": {
+                "tags": ["Feedback"],
+                "summary":"意见反馈编辑接口",
+                "description": "修改意见反馈",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "子公司ID",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "description": "意见反馈ID"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "description": "标题"
+                                },
+                                "url": {
+                                    "type": "string",
+                                    "description": "链接地址"
+                                },
+                                "sortNum": {
+                                    "type": "number",
+                                    "description": "排序"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回修改结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

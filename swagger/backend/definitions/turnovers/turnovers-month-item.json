@@ -1,0 +1,69 @@
+{
+    "definitions": {
+        "turnoversMonthItem": {
+            "type": "object",
+            "description": "代办员月营业额",
+            "properties": {
+                "region": {
+                    "$ref": "#/definitions/Region"
+                },
+                "turnoverId": {
+                    "type": "number",
+                    "description": "代办员月营业额ID"
+                },
+                "agentId": {
+                    "type": "number",
+                    "description": "代办员工ID"
+                },
+                "station": {
+                    "type": "string",
+                    "description": "服务站名称"
+                },
+                "stationCode": {
+                    "type": "string",
+                    "description": "站点编号"
+                },
+                "stationAddress": {
+                    "type": "string",
+                    "description": "服务站地址"
+                },
+                "workModel": {
+                    "type": "string",
+                    "description": "合作模式，如：代办员"
+                },
+                "agentName": {
+                    "type": "string",
+                    "description": "代办员姓名"
+                },
+                "agentPhone": {
+                    "type": "string",
+                    "description": "代办员电话"
+                },
+                "idCard": {
+                    "type": "string",
+                    "description": "身份证号"
+                },
+                "bankCard": {
+                    "type": "string",
+                    "description": "银行卡号"
+                },
+                "bankNo": {
+                    "type": "string",
+                    "description": "银行行号"
+                },
+                "bankName": {
+                    "type": "string",
+                    "description": "银行名称"
+                },
+                "eachMonthTurnover": {
+                    "type": "number",
+                    "description": "月营业额"
+                },
+                "goalTurnover": {
+                    "type": "number",
+                    "description": "目标营业额"
+                }
+            }
+        }
+    }
+}

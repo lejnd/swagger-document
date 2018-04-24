@@ -1,0 +1,34 @@
+{
+    "definitions": {
+        "waitCollection": {
+            "type": "object",
+            "description": "城市经理或业务员信息",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "城市经理或业务员ID"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "城市经理或业务员名称"
+                },
+                "phone": {
+                    "type": "string",
+                    "description": "城市经理或业务员电话"
+                },
+                "stationId": {
+                    "type": "number",
+                    "description": "服务站ID"
+                },
+                "stationName": {
+                    "type": "string",
+                    "description": "服务站名称"
+                },
+                "amount": {
+                    "type": "number",
+                    "description": "各级待催收款金额"
+                }
+            }
+        }
+    }
+}

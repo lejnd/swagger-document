@@ -1,0 +1,38 @@
+{
+    "definitions": {
+        "roleAuthority": {
+            "type": "object",
+            "description": "角色列表",
+            "properties": {
+                "role_name": {
+                    "type": "string",
+                    "description": "角色名称"
+                },
+                "create_user_id": {
+                    "type": "string",
+                    "description": "创建人"
+                },
+                "create_time": {
+                    "type": "string",
+                    "description": "创建时间"
+                },
+                "modify_user_id": {
+                    "type": "string",
+                    "description": "修改人"
+                },
+                "modify_time": {
+                    "type": "string",
+                    "description": "修改时间"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "状态"
+                },
+                "remark": {
+                    "type": "string",
+                    "description": "备注"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,42 @@
+{
+    "definitions": {
+        "companyItem": {
+            "type": "object",
+            "description": "子公司信息",
+            "properties": {
+                "companyId": {
+                    "type": "number",
+                    "description": "子公司ID"
+                },
+                "companyName": {
+                    "type": "string",
+                    "description": "子公司名称"
+                },
+                "companyCode": {
+                    "type": "string",
+                    "description": "子公司商户号"
+                },
+                "appId": {
+                    "type": "string",
+                    "description": "APPID"
+                },
+                "secretKey": {
+                    "type": "string",
+                    "description": "密钥"
+                },
+                "status": {
+                    "type": "number",
+                    "description": "状态"
+                },
+                "updateTime": {
+                    "type": "string",
+                    "description": "更新时间"
+                },
+                "createTime": {
+                    "type": "string",
+                    "description": "创建时间"
+                }
+            }
+        }
+    }
+}

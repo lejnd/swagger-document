@@ -1,0 +1,374 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/goods/search": {
+            "post": {
+                "summary": "商品列表查询接口",
+                "tags": ["Goods"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "#/definitions/Paging"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "description": "商品名称"
+                                        },
+                                        "type": {
+                                            "type": "number",
+                                            "description": "商品类别id 0:表示所有类别"
+                                        },
+                                        "status": {
+                                            "type": "number",
+                                            "description": "商品状态 1:启用 -1:禁用 0:表示所有状态"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paging": {
+                                            "$ref": "#/definitions/ResponsePaging"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/goodsItem"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/goods": {
+            "post": {
+                "tags": ["Goods"],
+                "summary":"添加一个商品接口",
+                "description": "添加一个商品接口",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "添加参数",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "description": "商品名称"
+                                },
+                                "unitId": {
+                                    "type": "number",
+                                    "description": "商品单位id"
+                                },
+                              "breedUnitId": {
+                                "type": "number",
+                                "description": "种植/养殖单位(id)"
+                              },
+                                "typeId": {
+                                    "type": "number",
+                                    "description": "商品类别id"
+                                },
+                                "remark": {
+                                    "type": "string",
+                                    "description": "商品备注"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回添加结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/goods/{id}": {
+            "get": {
+                "tags": ["Goods"],
+                "summary":"获取商品详细信息接口",
+                "description": "获取商品详细信息接口",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "path",
+                        "name": "goodsId",
+                        "required": true,
+                        "type": "integer",
+                        "description": "商品Id"
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回查询结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "description": "商品id"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "description": "商品名称"
+                                        },
+                                        "unitId": {
+                                            "type": "number",
+                                            "description": "商品单位id"
+                                        },
+                                      "feedUnitId": {
+                                        "type": "number",
+                                        "description": "种植/养殖单位id"
+                                      },
+                                        "typeId": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "number",
+                                                "description": "商品类别id及其父id"
+                                            },
+                                            "description": "商品类别id数组"
+                                        },
+                                        "remark": {
+                                            "type": "string",
+                                            "description": "商品备注"
+                                        },
+                                        "status": {
+                                            "type": "number",
+                                            "description": "商品状态 1:启用 -1:禁用 值为空，表示所有状态"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/goods/edit/{id}": {
+            "put": {
+                "tags": ["Goods"],
+                "summary":"修改商品",
+                "description": "修改商品",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "path",
+                        "name": "goodsId",
+                        "required": true,
+                        "type": "integer",
+                        "description": "商品Id"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "参数",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "description": "商品名称"
+                                },
+                                "unitId": {
+                                    "type": "number",
+                                    "description": "商品单位id"
+                                },
+                              "feedUnitId": {
+                                "type": "number",
+                                "description": "种植单位id"
+                              },
+                                "typeId": {
+                                    "type": "number",
+                                    "description": "商品类别id"
+                                },
+                                "remark": {
+                                    "type": "string",
+                                    "description": "商品备注"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回修改结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/goods/unit": {
+            "get": {
+                "tags": ["Goods"],
+                "summary":"获取商品所有单位接口",
+                "description": "获取商品所有单位接口",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回查询结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/goodsUnitItem"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/goods/disable-enable": {
+            "post": {
+                "tags": ["Goods"],
+                "summary":"修改商品状态接口",
+                "description": "修改商品状态接口",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "参数",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "number",
+                                    "description": "商品id"
+                                },
+                                "status": {
+                                    "type": "number",
+                                    "description": "商品状态 1:启用 -1:禁用"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回修改结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

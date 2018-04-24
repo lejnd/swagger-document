@@ -1,0 +1,74 @@
+{
+    "definitions": {
+        "wagesPartner": {
+            "type": "object",
+            "description": "单月工资",
+            "properties": {
+                "stadtionId": {
+                    "type": "number",
+                    "description": "服务站编号"
+                },
+                "stadtionName": {
+                    "type": "string",
+                    "description": "服务站名称"
+                },
+                "stadtionAddress": {
+                    "type": "string",
+                    "description": "服务站地址"
+                },
+                "agentsName": {
+                    "type": "string",
+                    "description": "代办员姓名"
+                },
+                "agentsTel": {
+                    "type": "number",
+                    "description": "代办员电话"
+                },
+                "agentsCertificate": {
+                    "type": "number",
+                    "description": "代办员身份号码"
+                },
+                "type": {
+                    "type": "number",
+                    "description": "合作模式 1合伙人 2代办员"
+                },
+                "accessionTime": {
+                    "type": "number",
+                    "description": "入职日期时间戳"
+                },
+                "dimissionTime": {
+                    "type": "number",
+                    "description": "离职日期时间戳"
+                },
+                "workingDays": {
+                    "type": "number",
+                    "description": "在职天数"
+                },
+                "accountsTime": {
+                    "type": "number",
+                    "description": "结算的月份 时间戳"
+                },
+                "partnerRatio": {
+                    "type": "number",
+                    "description": "代办员代办费（合伙人）考核系数"
+                },
+                "completeTurnover": {
+                    "type": "number",
+                    "description": "实际营业额"
+                },
+                "partnerOutcome": {
+                    "type": "number",
+                    "description": "应发代办费（合伙人）"
+                },
+                "rank": {
+                    "type": "number",
+                    "description": "合伙人等级"
+                },
+                "baseStandardPartner": {
+                    "type": "number",
+                    "description": "代办费标准（合伙人）"
+                }
+            }
+        }
+    }
+}

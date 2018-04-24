@@ -1,0 +1,26 @@
+{
+    "definitions": {
+        "transactionRecordsItem": {
+            "type": "object",
+            "description": "交易记录",
+            "properties": {
+                "recordsId": {
+                    "type": "number",
+                    "description": "交易记录ID"
+                },
+                "amount": {
+                    "type": "number",
+                    "description": "订单金额"
+                },
+                "type": {
+                    "type": "number",
+                    "description": "订单类型, 1交话费，2交电费，3回款"
+                },
+                "transactionTime": {
+                    "type": "string",
+                    "description": "交易时间"
+                }
+            }
+        }
+    }
+}

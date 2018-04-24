@@ -1,0 +1,46 @@
+{
+    "definitions": {
+        "bannerItem": {
+            "type": "object",
+            "description": "Banner列表",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "BannerID"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "活动标题"
+                },
+                "module": {
+                    "type": "string",
+                    "description": "模块"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "图片地址"
+                },
+                "mode": {
+                    "type": "string",
+                    "description": "页面类型"
+                },
+                "ordinal": {
+                    "type": "number",
+                    "description": "排序"
+                },
+                "status": {
+                    "type": "number",
+                    "description": "状态"
+                },
+                "start_time": {
+                    "type": "string",
+                    "description": "开始时间"
+                },
+                "end_time": {
+                    "type": "string",
+                    "description": "结束时间"
+                }
+            }
+        }
+    }
+}

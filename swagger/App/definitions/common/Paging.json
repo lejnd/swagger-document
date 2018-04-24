@@ -1,0 +1,19 @@
+{
+    "definitions": {
+        "Paging": {
+            "name": "paging",
+            "description": "分页请求",
+            "type": "object",
+            "properties": {
+                "pageSize": {
+                    "type": "number",
+                    "description": "每页显示数据的条数"
+                },
+                "pageIndex": {
+                    "type": "number",
+                    "description": "当前页码，从1开始"
+                }
+            }
+        }
+    }
+}

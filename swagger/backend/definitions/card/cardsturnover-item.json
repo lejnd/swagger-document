@@ -1,0 +1,61 @@
+{
+    "definitions": {
+        "cardsTurnoverItem": {
+            "type": "object",
+            "description": "卡业务回款流水",
+            "properties": {
+                "region": {
+                    "$ref": "#/definitions/Region"
+                },
+                "flowId": {
+                    "type": "number",
+                    "description": "订单号"
+                },
+                "agentId": {
+                    "type": "number",
+                    "description": "代办员工ID"
+                },
+                "station": {
+                    "type": "string",
+                    "description": "服务站名称"
+                },
+                "stationCode": {
+                    "type": "string",
+                    "description": "站点编号"
+                },
+                "stationAddress": {
+                    "type": "string",
+                    "description": "服务站地址"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "合作模式"
+                },
+                "agentName": {
+                    "type": "string",
+                    "description": "姓名"
+                },
+                "agentPhone": {
+                    "type": "string",
+                    "description": "联系电话"
+                },
+                "agentsCertificate": {
+                    "type": "string",
+                    "description": "身份证号"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "状态"
+                },
+                "paymentAmount": {
+                    "type": "number",
+                    "description": "金额"
+                },
+                "paymentTime": {
+                    "type": "string",
+                    "description": "时间"
+                }
+            }
+        }
+    }
+}

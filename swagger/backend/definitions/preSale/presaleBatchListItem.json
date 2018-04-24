@@ -1,0 +1,26 @@
+{
+    "definitions": {
+        "presaleBatchListItem": {
+            "type": "object",
+            "description": "预售订单详情的子订单列表",
+            "properties": {
+                "needGoodsTime": {
+                    "type": "string",
+                    "description": "要货时间"
+                },
+                "needGoodsNumber": {
+                    "type": "number",
+                    "description": "要货数量"
+                },
+                "batchOrder": {
+                    "type": "number",
+                    "description": "批次顺序"
+                },
+                "status": {
+                    "type": "number",
+                    "description": "预售订单状态 1、待配送；3、已配送；"
+                }
+            }
+        }
+    }
+}

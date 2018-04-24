@@ -1,0 +1,70 @@
+{
+    "definitions": {
+        "preSaleBatchOfId": {
+            "type": "object",
+            "description": "获取预售订单详情接口",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "预售订单ID"
+                },
+                "farmerName": {
+                    "type": "string",
+                    "description": "农户名字"
+                },
+                "farmerPhone": {
+                    "type": "string",
+                    "description": "农户电话"
+                },
+                "stationName": {
+                    "type": "string",
+                    "description": "服务站名称"
+                },
+                "stationCode": {
+                    "type": "string",
+                    "description": "站点编号"
+                },
+                "chargeAmount": {
+                    "type": "string",
+                    "description": "充值金额"
+                },
+                "goodsName": {
+                    "type": "string",
+                    "description": "商品名称"
+                },
+                "needGoodsTotal": {
+                    "type": "number",
+                    "description": "要货总量"
+                },
+                "isLarge": {
+                    "type": "boolean",
+                    "description": "是否大户"
+                },
+                "status": {
+                    "type": "number",
+                    "description": "预售订单状态 1、待配送；2、部分到货；3、已配送；4、已取消"
+                },
+                "createUserName": {
+                    "type": "string",
+                    "description": "创建人名字"
+                },
+                "createTime": {
+                    "type": "string",
+                    "description": "创建时间"
+                },
+                "batchList": {
+                    "type": "array",
+                    "description": "预售订单子订单列表",
+                    "items": {
+                        "$ref": "#/definitions/presaleBatchListItem"
+                    }
+                },
+                "picList": {
+                    "type": "array",
+                    "description": "图片ID列表",
+                    "items": []
+                }
+            }
+        }
+    }
+}

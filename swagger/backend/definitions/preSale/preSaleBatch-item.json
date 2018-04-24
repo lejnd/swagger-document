@@ -1,0 +1,77 @@
+{
+    "definitions": {
+        "preSaleBatchItem": {
+            "type": "object",
+            "description": "预售子订单列表",
+            "properties": {
+                "region": {
+                    "$ref": "#/definitions/Region"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "预售订单ID"
+                },
+                "orderNumber": {
+                    "type": "string",
+                    "description": "订单编号"
+                },
+                "farmerName": {
+                    "type": "string",
+                    "description": "农户名字"
+                },
+                "farmerPhone": {
+                    "type": "string",
+                    "description": "农户电话"
+                },
+                "stationName": {
+                    "type": "string",
+                    "description": "服务站名称"
+                },
+                "stationCode": {
+                    "type": "string",
+                    "description": "站点编号"
+                },
+                "chargeAmount": {
+                    "type": "string",
+                    "description": "充值金额"
+                },
+                "goodsName": {
+                    "type": "string",
+                    "description": "商品名称"
+                },
+                "needGoodsTotal": {
+                    "type": "number",
+                    "description": "要货总量"
+                },
+                "unit": {
+                    "type": "string",
+                    "description": "商品单位"
+                },
+                "isLarge": {
+                    "type": "boolean",
+                    "description": "是否大户"
+                },
+                "status": {
+                    "type": "number",
+                    "description": "预售子订单状态 1、待发货；3、已发货；5、已签收"
+                },
+                "createUserName": {
+                    "type": "string",
+                    "description": "创建人名字"
+                },
+                "createTime": {
+                    "type": "string",
+                    "description": "创建时间"
+                },
+              "batch": {
+                "type": "string",
+                "description": "批次"
+              },
+              "batchAmount": {
+                "type": "string",
+                "description": "批次金额"
+              }
+            }
+        }
+    }
+}

@@ -1,0 +1,106 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/app/transaction/search": {
+            "post": {
+                "summary": "交易记录查询接口",
+                "tags": ["App"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "#/definitions/Paging"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "description": "交易记录查询类型， 1全部交易流水， 2缴费记录， 3汇款记录"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paging": {
+                                            "$ref": "#/definitions/ResponsePaging"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/transactionRecordsItem"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/app/transaction/{orderNumber}": {
+            "get": {
+                "summary": "获取订单详情",
+                "tags": ["App"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "订单详情",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/billItem"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

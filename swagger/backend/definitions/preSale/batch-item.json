@@ -1,0 +1,18 @@
+{
+    "definitions": {
+        "batchItem": {
+            "type": "object",
+            "description": "预售订单子订单列表",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "批次订单ID"
+                },
+                "arrivalTime": {
+                    "type": "string",
+                    "description": "到货时间"
+                }
+            }
+        }
+    }
+}

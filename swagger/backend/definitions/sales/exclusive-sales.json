@@ -1,0 +1,102 @@
+{
+    "definitions": {
+        "salesItem": {
+            "type": "object",
+            "description": "包销信息列表",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "SaleID"
+                },
+                "protocolNo": {
+                    "type": "string",
+                    "description": "包销协议编号"
+                },
+                "region": {
+                  "$ref": "#/definitions/Region",
+                  "description": "地区"
+                },
+                "cityCode": {
+                    "type": "string",
+                    "description": "市／州编号"
+                },
+                "cityName": {
+                    "type": "string",
+                    "description": "市／州名"
+                },
+                "districtCode": {
+                    "type": "string",
+                    "description": "区／县 Id "
+                },
+                "districtName": {
+                    "type": "string",
+                    "description": "区／县"
+                },
+                "townCode": {
+                    "type": "string",
+                    "description": "乡／镇编号"
+                },
+                "townName": {
+                    "type": "string",
+                    "description": "乡／镇名"
+                },
+                "villageCode": {
+                    "type": "string",
+                    "description": "村编号"
+                },
+                "villageName": {
+                    "type": "string",
+                    "description": "村名"
+                },
+                "station": {
+                    "type": "string",
+                    "description": "服务站名称"
+                },
+                "stationCode": {
+                    "type": "string",
+                    "description": "站点编号"
+                },
+                "farmerName": {
+                    "type": "string",
+                    "description": "农户姓名"
+                },
+                "phone": {
+                    "type": "string",
+                    "description": "电话"
+                },
+                "goodsName": {
+                    "type": "string",
+                    "description": "商品名称"
+                },
+                "isRich": {
+                    "type": "number",
+                    "description": "是否大户？ 0否， 1是"
+                },
+                "preBuyAmount": {
+                    "type": "string",
+                    "description": "收购数量"
+                },
+                "saleTime": {
+                    "type": "string",
+                    "description": "收购时间"
+                },
+                "signDate": {
+                    "type": "string",
+                    "description": "签约时间"
+                },
+                "createUserName": {
+                    "type": "string",
+                    "description": "创建人"
+                },
+                "createUserTime": {
+                    "type": "string",
+                    "description": "创建时间"
+                },
+                "saleState": {
+                    "type": "number",
+                    "description": "收购状态，-1待收购，1已收购"
+                }
+            }
+        }
+    }
+}

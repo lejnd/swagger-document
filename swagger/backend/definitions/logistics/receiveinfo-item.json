@@ -1,0 +1,18 @@
+{
+    "definitions": {
+        "receiveInfoItem": {
+            "type": "object",
+            "description": "收货人信息详情",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "收货人名字"
+                },
+                "phone": {
+                    "type": "string",
+                    "description": "收货人联系电话"
+                }
+            }
+        }
+    }
+}

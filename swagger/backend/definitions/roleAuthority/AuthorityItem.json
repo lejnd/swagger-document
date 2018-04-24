@@ -1,0 +1,22 @@
+{
+    "definitions": {
+        "AuthorityItem": {
+            "type": "object",
+            "description": "权限列表",
+            "properties": {
+                "authId": {
+                  "type": "string",
+                  "description": "权限id"
+                },
+                "auth_name": {
+                    "type": "string",
+                    "description": "权限名称"
+                },
+                "have": {
+                  "type": "string",
+                  "description": "是够具有该权限"
+                }
+            }
+        }
+    }
+}

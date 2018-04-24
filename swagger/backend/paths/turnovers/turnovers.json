@@ -1,0 +1,834 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/Remittance/export": {
+            "post": {
+                "summary": "代回款列表导出接口",
+                "tags": ["Turnovers"],
+                "parameters": [{
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "导出条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "condition": {
+                                    "type": "object",
+                                    "description": "导出条件",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "description": "姓名"
+                                        },
+                                        "phone": {
+                                            "type": "string",
+                                            "description": "联系电话"
+                                        },
+                                        "orderNumber": {
+                                            "type": "string",
+                                            "description": "订单号"
+                                        },
+                                        "startTime": {
+                                            "type": "string",
+                                            "description": "创建时间从"
+                                        },
+                                        "endTime": {
+                                            "type": "string",
+                                            "description": "创建时间至"
+                                        },
+                                        "createTimeTo": {
+                                            "type": "string",
+                                            "description": "状态 汇款成功(1)、会款失败(-1)、创建订单(2) 全部状态(null)"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "导出成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "exportUrl": {
+                                            "type": "string",
+                                            "description": "导出链接"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/Remittance/search": {
+            "post": {
+                "summary": "代回款列表查询接口",
+                "tags": ["Turnovers"],
+                "parameters": [{
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "#/definitions/Paging"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "description": "姓名"
+                                        },
+                                        "phone": {
+                                            "type": "string",
+                                            "description": "联系电话"
+                                        },
+                                        "orderNumber": {
+                                            "type": "string",
+                                            "description": "订单号"
+                                        },
+                                        "startTime": {
+                                            "type": "string",
+                                            "description": "创建时间从"
+                                        },
+                                        "endTime": {
+                                            "type": "string",
+                                            "description": "创建时间至"
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "description": "状态 汇款成功(1)、会款失败(-1)、创建订单(2) 全部状态(null)"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paging": {
+                                            "$ref": "#/definitions/ResponsePaging"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/RemittanceItem"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/turnovers/flow/search": {
+            "post": {
+                "summary": "营业额流水查询接口",
+                "tags": ["Turnovers"],
+                "parameters": [{
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "#/definitions/Paging"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "region": {
+                                            "type": "object",
+                                            "properties": {
+                                                "cityCode": {
+                                                    "type": "string",
+                                                    "description": "市州code"
+                                                },
+                                                "districtCode": {
+                                                    "type": "string",
+                                                    "description": "区县code"
+                                                },
+                                                "townCode": {
+                                                    "type": "string",
+                                                    "description": "乡镇code"
+                                                }
+                                            }
+                                        },
+                                        "station": {
+                                            "type": "string",
+                                            "description": "服务站名称"
+                                        },
+                                        "agentName": {
+                                            "type": "string",
+                                            "description": "代办员姓名"
+                                        },
+                                        "idCard": {
+                                            "type": "string",
+                                            "description": "身份证号"
+                                        },
+                                        "phoneNumber": {
+                                            "type": "string",
+                                            "description": "联系电话"
+                                        },
+                                        "paymentTimeStart": {
+                                            "type": "string",
+                                            "description": "转账时间开始"
+                                        },
+                                        "paymentTimeEnd": {
+                                            "type": "string",
+                                            "description": "转账时间结束"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paging": {
+                                            "$ref": "#/definitions/ResponsePaging"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/turnoversFlowItem"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/turnovers/search/month": {
+            "post": {
+                "summary": "代办员月营销额查询接口",
+                "tags": ["Turnovers"],
+                "parameters": [{
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "#/definitions/Paging"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "region": {
+                                            "type": "object",
+                                            "properties": {
+                                                "cityCode": {
+                                                    "type": "string",
+                                                    "description": "市州code"
+                                                },
+                                                "districtCode": {
+                                                    "type": "string",
+                                                    "description": "区县code"
+                                                },
+                                                "townCode": {
+                                                    "type": "string",
+                                                    "description": "乡镇code"
+                                                }
+                                            }
+                                        },
+                                        "station": {
+                                            "type": "string",
+                                            "description": "服务站名称"
+                                        },
+                                        "agentName": {
+                                            "type": "string",
+                                            "description": "代办员姓名"
+                                        },
+                                        "idCard": {
+                                            "type": "string",
+                                            "description": "身份证号"
+                                        },
+                                        "phoneNumber": {
+                                            "type": "string",
+                                            "description": "联系电话"
+                                        },
+                                        "checkMonth": {
+                                            "type": "string",
+                                            "description": "结算月份"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paging": {
+                                            "$ref": "#/definitions/ResponsePaging"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/turnoversMonthItem"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/turnovers/search/day": {
+            "post": {
+                "summary": "代办员日营销额查询接口",
+                "tags": ["Turnovers"],
+                "parameters": [{
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "#/definitions/Paging"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "region": {
+                                            "type": "object",
+                                            "properties": {
+                                                "cityCode": {
+                                                    "type": "string",
+                                                    "description": "市州code"
+                                                },
+                                                "districtCode": {
+                                                    "type": "string",
+                                                    "description": "区县code"
+                                                },
+                                                "townCode": {
+                                                    "type": "string",
+                                                    "description": "乡镇code"
+                                                }
+                                            }
+                                        },
+                                        "station": {
+                                            "type": "string",
+                                            "description": "服务站名称"
+                                        },
+                                        "agentName": {
+                                            "type": "string",
+                                            "description": "代办员姓名"
+                                        },
+                                        "idCard": {
+                                            "type": "string",
+                                            "description": "身份证号"
+                                        },
+                                        "phoneNumber": {
+                                            "type": "string",
+                                            "description": "联系电话"
+                                        },
+                                        "checkDay": {
+                                            "type": "string",
+                                            "description": "结算日期"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paging": {
+                                            "$ref": "#/definitions/ResponsePaging"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/turnoversDayItem"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/turnovers/export": {
+            "get": {
+                "summary": "明细导出接口（直接下载Excel文件 包含条件下所有回款明细）",
+                "tags": ["Turnovers"],
+                "parameters": [{
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "cityCode": {
+                                    "type": "string",
+                                    "description": "市州code"
+                                },
+                                "districtCode": {
+                                    "type": "string",
+                                    "description": "区县code"
+                                },
+                                "townCode": {
+                                    "type": "string",
+                                    "description": "乡镇code"
+                                },
+                                "stationName": {
+                                    "type": "string",
+                                    "description": "服务站名称"
+                                },
+                                "agentsName": {
+                                    "type": "string",
+                                    "description": "代办员姓名"
+                                },
+                                "idCard": {
+                                    "type": "string",
+                                    "description": "身份证号"
+                                },
+                                "phoneNumber": {
+                                    "type": "string",
+                                    "description": "联系电话"
+                                },
+                                "paymentTimeStart": {
+                                    "type": "string",
+                                    "description": "查询开始时间"
+                                },
+                                "paymentTimeEnd": {
+                                    "type": "string",
+                                    "description": "查询结束时间"
+                                },
+                                "type": {
+                                    "type": "number",
+                                    "description": "查询类型：1回款流水，2日回款，3月回款"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功"
+                    }
+                }
+            }
+        },
+        "/company/search": {
+            "post": {
+                "summary": "子公司查询接口",
+                "tags": ["Turnovers"],
+                "parameters": [{
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "#/definitions/Paging"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "companyName": {
+                                            "type": "string",
+                                            "description": "子公司名称"
+                                        },
+                                        "companyCode": {
+                                            "type": "string",
+                                            "description": "子公司商户号"
+                                        },
+                                        "startTime": {
+                                            "type": "string",
+                                            "description": "创建开始时间"
+                                        },
+                                        "endTime": {
+                                            "type": "string",
+                                            "description": "创建结束时间"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paging": {
+                                            "$ref": "#/definitions/ResponsePaging"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/companyItem"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/company/search-export": {
+            "post": {
+                "summary": "导出子公司信息接口",
+                "tags": ["Turnovers"],
+                "parameters": [{
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "companyName": {
+                                            "type": "string",
+                                            "description": "子公司名称"
+                                        },
+                                        "companyCode": {
+                                            "type": "string",
+                                            "description": "子公司商户号"
+                                        },
+                                        "startTime": {
+                                            "type": "string",
+                                            "description": "创建开始时间"
+                                        },
+                                        "endTime": {
+                                            "type": "string",
+                                            "description": "创建结束时间"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "string",
+                                    "description": "Key值"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/company/list": {
+            "get": {
+                "tags": ["Turnovers"],
+                "summary": "获取所有子公司数据",
+                "parameters": [{
+                    "$ref": "#/definitions/Token"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "树形结构区域数据",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/CompanyTree"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/company/disable-enable": {
+            "post": {
+                "tags": ["Turnovers"],
+                "summary": "禁用/启用",
+                "description": "根据请求修改子公司状态",
+                "parameters": [{
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "子公司ID",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "ableType": {
+                                    "type": "number",
+                                    "description": "1、禁用；2、启用"
+                                },
+                                "companyIds": {
+                                    "type": "number",
+                                    "description": "子公司ID"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "返回修改结果",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/company/add-edit": {
+            "post": {
+                "tags": ["Turnovers"],
+                "summary": "添加/编辑子公司信息",
+                "description": "根据请求添加或修改子公司信息",
+                "parameters": [{
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "子公司信息",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "type": {
+                                    "type": "number",
+                                    "description": "1、添加；2、修改"
+                                },
+                                "companyId": {
+                                    "type": "number",
+                                    "description": "子公司Id"
+                                },
+                                "companyName": {
+                                    "type": "string",
+                                    "description": "子公司名称"
+                                },
+                                "companyCode": {
+                                    "type": "string",
+                                    "description": "子公司商户号"
+                                },
+                                "appId": {
+                                    "type": "string",
+                                    "description": "APPID"
+                                },
+                                "secretKey": {
+                                    "type": "string",
+                                    "description": "密钥"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "返回修改结果",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

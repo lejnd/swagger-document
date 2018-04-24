@@ -1,0 +1,710 @@
+{
+    "swagger": "2.0",
+    "paths": {
+      "/api/app/product/search": {
+          "post": {
+            "tags": [
+              "SupplyPlan"
+            ],
+            "summary": "我要补货-查询商品",
+            "description": "返回data为一个数组",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "phone":{
+                          "type":"string",
+                          "description": "电话号码"
+                      },
+                      "userId":{
+                          "type":"number",
+                          "description": "用户ID"
+                      },
+                      "token":{
+                          "type":"string",
+                          "description": "用户token"
+                      },
+                      "version":{
+                          "type":"string",
+                          "description": "版本号"
+                      },
+                      "isReactNative":{
+                          "type":"string",
+                          "description": "true"
+                      },
+                    "upc": {
+                      "type": "string",
+                      "default": "条码后6位（必填）"
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "sysId": {
+                            "type": "string",
+                            "default": "商品ID"
+                          },
+                          "productCode": {
+                            "type": "string",
+                            "default": "商品编号"
+                          },
+                          "upc": {
+                            "type": "string",
+                            "default": "条码"
+                          },
+                          "name": {
+                            "type": "string",
+                            "default": "名称"
+                          },
+                          "price": {
+                            "type": "number",
+                            "default": "价格"
+                          },
+                          "unit": {
+                            "type": "string",
+                            "default": "单位"
+                          },
+                          "spec": {
+                            "type": "string",
+                            "default": "规格"
+                          },
+                          "goodsBase": {
+                            "type": "integer",
+                            "default": "补货基数>=0,大于零时要求补货量为goodsBase的整数倍"
+                          },
+                          "canReplenishment": {
+                            "type": "integer",
+                            "default": "是否可以补货"
+                          },
+                          "package": {
+                            "type": "string",
+                            "default": "包装量"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "/api/app/supplyPlan/add": {
+          "post": {
+            "tags": [
+              "SupplyPlan"
+            ],
+            "summary": "保存补货单",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "phone":{
+                          "type":"string",
+                          "description": "电话号码"
+                      },
+                      "userId":{
+                          "type":"number",
+                          "description": "用户ID"
+                      },
+                      "token":{
+                          "type":"string",
+                          "description": "用户token"
+                      },
+                      "version":{
+                          "type":"string",
+                          "description": "版本号"
+                      },
+                      "isReactNative":{
+                          "type":"string",
+                          "description": "true"
+                      },
+                              "name": {
+                                "type": "string",
+                                "default": "名称"
+                              },
+                              "productCode": {
+                                "type": "integer",
+                                "default": "商品编号"
+                              },
+                              "upc": {
+                                "type": "string",
+                                "default": "条码"
+                              },
+                              "spec": {
+                                "type": "string",
+                                "default": "规格"
+                              },
+                              "package": {
+                                "type": "integer",
+                                "default": "包装量"
+                              },
+                              "unit": {
+                                "type": "string",
+                                "default": "单位"
+                              },
+                              "price": {
+                                "type": "number",
+                                "default": "当地售价"
+                              },
+                              "sysId": {
+                                "type": "string",
+                                "default": "商品主键"
+                              },
+                              "amount": {
+                                "type": "integer",
+                                "default": "补货量"
+                              },
+                              "rest": {
+                                "type": "integer",
+                                "default": "当前余量"
+                              }
+                        }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    },
+                    "data": {
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+
+        "/api/app/supplyPlan/delete": {
+          "post": {
+            "tags": [
+              "SupplyPlan"
+            ],
+            "summary": "删除补货单",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "phone":{
+                          "type":"string",
+                          "description": "电话号码"
+                      },
+                      "userId":{
+                          "type":"number",
+                          "description": "用户ID"
+                      },
+                      "token":{
+                          "type":"string",
+                          "description": "用户token"
+                      },
+                      "version":{
+                          "type":"string",
+                          "description": "版本号"
+                      },
+                      "isReactNative":{
+                          "type":"string",
+                          "description": "true"
+                      },
+                   "id": {
+                          "type": "integer",
+                          "format": "int64",
+                          "default": "补货单ID"
+                        }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+
+
+        "/api/app/supplyPlan/search": {
+          "post": {
+            "tags": [
+              "SupplyPlan"
+            ],
+            "summary": "查询补货单列表",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    },
+                    "paging": {
+                      "type": "object",
+                      "properties": {
+                        "pageSize": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "20"
+                        },
+                        "pageIndex": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "1"
+                        }
+                      }
+                    },
+            "condition": {
+                      "type": "object",
+                      "properties": {
+                        "upc": {
+                          "type": "string",
+                          "format": "string",
+                          "default": ""
+                        },
+                        "status": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "0:未提交1：已提交"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "paging": {
+                          "type": "object",
+                          "properties": {
+                            "total": {
+                              "type": "integer",
+                              "format": "int32",
+                              "default": "0"
+                            },
+                            "currentPage": {
+                              "type": "integer",
+                              "format": "int32",
+                              "default": "1"
+                            },
+                            "pageSize": {
+                              "type": "integer",
+                              "format": "int32",
+                              "default": "20"
+                            },
+                            "pageIndex": {
+                              "type": "integer",
+                              "format": "int32",
+                              "default": "1"
+                            },
+                            "pageCount": {
+                              "type": "integer",
+                              "format": "int32",
+                              "default": "1"
+                            }
+                          }
+                        },
+                        "itemList": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer",
+                              "format": "int64",
+                              "default": "补货单ID"
+                            },
+                            "name": {
+                              "type": "string",
+                              "default": "商品名称"
+                            },
+                            "upc": {
+                              "type": "string",
+                              "default": "条码（需回传）"
+                            },
+                            "spec": {
+                              "type": "string",
+                              "default": "规格"
+                            },
+                            "package": {
+                              "type": "integer",
+                              "default": "包装量"
+                            },
+                            "unit": {
+                              "type": "string",
+                              "default": "单位"
+                            },
+                            "amount": {
+                              "type": "integer",
+                              "default": "补货量"
+                            },
+                            "outAmount": {
+                              "type": "integer",
+                              "default": "出库量"
+                            },
+                            "rest": {
+                              "type": "integer",
+                              "default": "当前余量"
+                            },
+                            "productCode": {
+                              "type": "integer",
+                              "default": "商品编码"
+                            },
+                            "status": {
+                              "type": "integer",
+                              "format": "int32",
+                              "default": "状态{0:未提交1:已提交}"
+                            },
+                            "price": {
+                              "type": "string",
+                              "default": "商品价格（ECC）"
+                            },
+                            "createTime": {
+                              "type": "string",
+                              "default": "申请时间"
+                            },
+                 "wantArrivalDate": {
+                              "type": "string",
+                              "default": "希望到货日期"
+                            }
+                          }
+                        }
+                      }
+                    }
+
+                  }
+                }
+              }
+            }
+          }
+        },
+
+        "/api/app/supplyPlan/detail": {
+          "post": {
+            "tags": [
+              "SupplyPlan"
+            ],
+            "summary": "获取补货单详情",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    },
+                    "data":{
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "format": "int64",
+                          "default": "补货明细单ID"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "format": "int64",
+                          "default": "supplyPlanId"
+                        },
+                        "name": {
+                          "type": "string",
+                          "default": "商品名称"
+                        },
+                        "upc": {
+                          "type": "string",
+                          "default": "条码（需回传）"
+                        },
+                        "spec": {
+                          "type": "string",
+                          "default": "规格"
+                        },
+                        "package": {
+                          "type": "integer",
+                          "default": "包装量"
+                        },
+                        "unit": {
+                          "type": "string",
+                          "default": "单位"
+                        },
+                        "amount": {
+                          "type": "integer",
+                          "default": "补货量"
+                        },
+                        "outAmount": {
+                          "type": "integer",
+                          "default": "出库量"
+                        },
+                        "rest": {
+                          "type": "integer",
+                          "default": "当前余量"
+                        },
+                        "productCode": {
+                          "type": "integer",
+                          "default": "商品编号（需回传）"
+                        },
+                        "status": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "状态{0:未提交1:已提交}"
+                        },
+                        "reason": {
+                          "price": "number",
+                          "default": "商品价格（ECC）"
+                        },
+                        "createTime": {
+                          "type": "string",
+                          "default": "申请时间"
+                        },
+                        "wantArrivalDate": {
+                          "type": "string",
+                          "default": "希望到货日期"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "security": [
+            ]
+          }
+        },
+
+
+        "/api/app/supplyPlan/submit": {
+          "post": {
+            "tags": [
+              "SupplyPlan"
+            ],
+            "summary": "提交补货单",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "phone":{
+                          "type":"string",
+                          "description": "电话号码"
+                      },
+                      "userId":{
+                          "type":"number",
+                          "description": "用户ID"
+                      },
+                      "token":{
+                          "type":"string",
+                          "description": "用户token"
+                      },
+                      "version":{
+                          "type":"string",
+                          "description": "版本号"
+                      },
+                      "isReactNative":{
+                          "type":"string",
+                          "description": "true"
+                      },
+                    "id": {
+                          "type": "integer",
+                          "format": "int64",
+                          "default": "ID"
+                     },
+                    "repairGoodsIds": {
+                          "type": "array",
+                          "items":{
+                              "type":"integer",
+                              "format": "int64",
+                              "default": "4731792453001216"
+                              }
+                    },
+                    "wantArrivalDate": {
+                          "type": "datetime",
+                          "format": "datetime",
+                          "description": "期望到货时间"
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "security": [
+            ]
+          }
+        }
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "definitions": {
+        "farmProduceItem": {
+            "type": "object",
+            "description": "一村一档农产品列表项",
+            "properties": {     
+                "productName": {
+                    "type": "string",
+                    "description": "商品名称"
+                },          
+                "unit": {
+                    "type": "string",
+                    "description": "单位"
+                },          
+                "quantity": {
+                    "type": "number",
+                    "description": "种植/养殖量"
+                }      
+            }
+        }
+    }
+}

@@ -1,0 +1,581 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/api/app/newRequire/add": {
+          "post": {
+            "tags": [
+              "NewRequire"
+            ],
+            "summary": "保存新货申请单",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "default": "商品名称"
+                        },
+                        "upc": {
+                          "type": "string",
+                          "default": "条码"
+                        },
+                        "spec": {
+                          "type": "string",
+                          "default": "商品规格"
+                        },
+                        "unit": {
+                          "type": "string",
+                          "default": "商品单位"
+                        },
+                        "price": {
+                          "type": "number",
+                          "default": "当地零售价（元）"
+                        },
+                        "quantity": {
+                          "type": "integer",
+                          "default": "需求数量"
+                        },
+                        "reason": {
+                          "type": "string",
+                          "default": "申请理由"
+                        },
+                        "piclist": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "default": "imgurl"
+                          }
+                        }
+                      }
+                    }
+                  }
+
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "security": [
+            ]
+          }
+        },
+
+        "/api/app/newRequire/cancel": {
+          "post": {
+            "tags": [
+              "NewRequire"
+            ],
+            "summary": "作废新货申请单",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    },
+                    "data":{
+                      "type":"object",
+                      "properties":{
+                        "id": {
+                          "type": "integer",
+                          "format": "int64",
+                          "default": "新货申请单ID"
+                        },
+                        "reason": {
+                          "type": "string",
+                          "default": "作废原因"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "security": [
+            ]
+          }
+        },
+
+        "/api/app/newRequire/search": {
+          "post": {
+            "tags": [
+              "NewRequire"
+            ],
+            "summary": "新货申请单列表",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    },
+                    "paging": {
+                      "type": "object",
+                      "properties": {
+                        "pageSize": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "20"
+                        },
+                        "pageIndex": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "1"
+                        }
+                      }
+                    },
+                    "condition": {
+                      "type": "object",
+                      "properties": {
+
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "paging": {
+                          "type": "object",
+                          "properties": {
+                            "total": {
+                              "type": "integer",
+                              "format": "int32",
+                              "default": "0"
+                            },
+                            "currentPage": {
+                              "type": "integer",
+                              "format": "int32",
+                              "default": "1"
+                            },
+                            "pageSize": {
+                              "type": "integer",
+                              "format": "int32",
+                              "default": "20"
+                            },
+                            "pageIndex": {
+                              "type": "integer",
+                              "format": "int32",
+                              "default": "1"
+                            },
+                            "pageCount": {
+                              "type": "integer",
+                              "format": "int32",
+                              "default": "1"
+                            }
+                          }
+                        },
+                        "itemList": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "default": "新货申请单ID"
+                              },
+                              "name": {
+                                "type": "string",
+                                "default": "商品名称"
+                              },
+                              "upc": {
+                                "type": "string",
+                                "default": "条码"
+                              },
+                              "spec": {
+                                "type": "string",
+                                "default": "商品规格"
+                              },
+                              "unit": {
+                                "type": "string",
+                                "default": "商品单位"
+                              },
+                              "price": {
+                                "type": "numeric",
+                                "default": "当地零售价（元）"
+                              },
+                              "quantity": {
+                                "type": "integer",
+                                "default": "需求数量"
+                              },
+                              "reason": {
+                                "type": "integer",
+                                "default": "申请理由"
+                              },
+                              "piclist": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "default": "imgurl"
+                                }
+                              },
+                              "createTime": {
+                                "type": "string",
+                                "default": "申请时间"
+                              },
+                              "status": {
+                                "type": "integer",
+                                "default": "状态（-1：已作废；0：已提报）"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "security": [
+            ]
+          }
+        },
+
+
+        "/api/app/newRequire/detail": {
+          "post": {
+            "tags": [
+              "NewRequire"
+            ],
+            "summary": "新货申请单详情",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    },
+                    "data":{
+                      "type":"object",
+                      "properties":{
+                        "id": {
+                          "type": "integer",
+                          "format": "int64",
+                          "default": "新货申请单ID"
+                        }
+                        }
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "default": "新货申请单ID"
+                        },
+                        "name": {
+                          "type": "string",
+                          "default": "商品名称"
+                        },
+                        "upc": {
+                          "type": "string",
+                          "default": "条码"
+                        },
+                        "spec": {
+                          "type": "string",
+                          "default": "商品规格"
+                        },
+                        "unit": {
+                          "type": "string",
+                          "default": "商品单位"
+                        },
+                        "price": {
+                          "type": "numeric",
+                          "default": "当地零售价（元）"
+                        },
+                        "quantity": {
+                          "type": "integer",
+                          "default": "需求数量"
+                        },
+                        "reason": {
+                          "type": "string",
+                          "default": "申请理由"
+                        },
+                        "piclist": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "default": "imgurl"
+                          }
+                        },
+                        "status": {
+                          "type": "integer",
+                          "default": "状态"
+                        },
+                        "createTime": {
+                          "type": "string",
+                          "default": "申请时间"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "security": [
+            ]
+          }
+        },
+
+        "/api/app/newRequire/hasProduct": {
+          "post": {
+            "tags": [
+              "NewRequire"
+            ],
+            "summary": "新货申请单-用upc条码查询是否存在可补货商品",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    },
+                    "data":{
+                      "type":"object",
+                      "properties":{
+                        "upc": {
+                          "type": "string",
+                          "default": "UPC条码"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "hasProduct": {
+                          "type": "boolean",
+                          "default": "可否补货"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "security": [
+            ]
+          }
+        }
+    }
+}

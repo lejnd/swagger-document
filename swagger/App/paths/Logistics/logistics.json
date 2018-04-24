@@ -1,0 +1,653 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/api/app/logistics/search": {
+          "post": {
+            "tags": [
+            "Logistics"
+            ],
+            "summary": "查询物流信息列表",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    },
+                    "paging": {
+                      "type": "object",
+                      "properties": {
+                        "pageSize": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "20"
+                        },
+                        "pageIndex": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "1"
+                        }
+                      }
+                    },
+                    "condition": {
+                      "type": "object",
+                      "properties": {
+                        "serviceName": {
+                          "type": "string",
+                          "default": "服务站名称，发货人使用，模糊查询"
+                        },
+                        "staffType": {
+                          "type": "integer",
+                          "default": "0:代办员,1:发货员"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "paging": {
+                          "type": "object",
+                          "properties": {
+                            "total": {
+                              "type": "integer",
+                              "format": "int32",
+                              "default": 0
+                            },
+                            "currentPage": {
+                              "type": "integer",
+                              "format": "int32",
+                              "default": 0
+                            },
+                            "pageSize": {
+                              "type": "integer",
+                              "format": "int32",
+                              "default": 0
+                            },
+                            "pageCount": {
+                              "type": "integer",
+                              "format": "int32",
+                              "default": 0
+                            },
+                            "pageIndex": {
+                              "type": "integer",
+                              "format": "int32",
+                              "default": 0
+                            }
+                          }
+                        },
+                        "itemList": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "stationName": {
+                                "type": "string",
+                                "default": "收货服务站"
+                              },
+                              "deliveryId": {
+                                "type": "integer",
+                                "format": "int32",
+                                "default": "发货单ID"
+                              },
+                              "logisticsId": {
+                                "type": "string",
+                                "default": "物流单号"
+                              },
+                              "logisticsName": {
+                                "type": "string",
+                                "default": "物流商"
+                              },
+                              "creatTime": {
+                                "type": "dateTime",
+                                "default": "创建发货时间"
+                              },
+                              "status": {
+                                "type": "integer",
+                                "default": "状态（-1：已作废；1：待收货；2：已收货；）"
+                              },
+                              "receiverList": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "receiverPhone": {
+                                      "type": "integer",
+                                      "format": "int32",
+                                      "default": "收货人电话"
+                                    },
+                                    "receiverName": {
+                                      "type": "string",
+                                      "default": "收货人名称"
+                                    }
+                                  }
+                                }
+                              },
+                              "goodsList": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "goodsId": {
+                                      "type": "integer",
+                                      "format": "int32",
+                                      "default": "商品ID"
+                                    },
+                                    "goodsName": {
+                                      "type": "string",
+                                      "default": "土豆"
+                                    },
+                                    "unit": {
+                                      "type": "string",
+                                      "default": "单位"
+                                    },
+                                    "goodsQuantity": {
+                                      "type": "integer",
+                                      "format": "int64",
+                                      "default": "商品数量"
+                                    }
+                                  }
+                                }
+                              },
+                              "picList": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "default": "imgUrl"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "security": [
+            ]
+          }
+        },
+
+        "/api/app/logistics/add": {
+          "post": {
+            "tags": [
+            "Logistics"
+            ],
+            "summary": "添加物流信息",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    },
+                    "cityCode": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": "市/州Code"
+                    },
+                    "districtCode": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": "县Code"
+                    },
+                    "townCode": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": "乡Code"
+                    },
+                    "villageCode": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": "镇Code"
+                    },
+                    "stationCode": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": "服务站Code"
+                    },
+                    "logisticsBusiness": {
+                      "type": "string",
+                      "default": "物流商"
+                    },
+                    "logisticsId": {
+                      "type": "string",
+                      "default": "物流单号"
+                    },
+                    "receiverList": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "receiverPhone": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": "收货人电话"
+                          },
+                          "receiverName": {
+                            "type": "string",
+                            "default": "收货人名称"
+                          }
+                        }
+                      }
+                    },
+                    "goodsList": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "goodsId": {
+                            "type": "string",
+                            "default": "商品Id"
+                          },
+                          "goodsQuantity": {
+                            "type": "number",
+                            "default": "发货数量"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    }
+                  }
+                }
+              }
+            },
+            "security": [
+            ]
+          }
+        },
+
+        "/api/app/logistics/{Id}": {
+          "post": {
+            "tags": [
+            "Logistics"
+            ],
+            "summary": "获取发货单信息详情",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "default": "物流单ID"
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "format": "int64",
+                          "default": "发货单ID"
+                        },
+                        "cityCode": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "市/州Code"
+                        },
+                        "districtCode": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "县Code"
+                        },
+                        "townCode": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "乡Code"
+                        },
+                        "villageCode": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "镇Code"
+                        },
+                        "stationCode": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "服务站Code"
+                        },
+                        "logisticsBusiness": {
+                          "type": "string",
+                          "default": "物流商"
+                        },
+                        "logisticsId": {
+                          "type": "string",
+                          "default": "物流单号"
+                        },
+                        "receiverList": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "receiverPhone": {
+                                "type": "integer",
+                                "format": "int32",
+                                "default": "收货人电话"
+                              },
+                              "receiverName": {
+                                "type": "string",
+                                "default": "收货人名称"
+                              }
+                            }
+                          }
+                        },
+                        "goodsList": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "goodsId": {
+                                "type": "string",
+                                "default": "商品Id"
+                              },
+                              "goodsQuantity": {
+                                "type": "number",
+                                "default": "发货数量"
+                              }
+                            }
+                          }
+                        },
+                        "imgList": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "default": "imgurl"
+                          }
+                        }
+
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "security": [
+            ]
+          }
+        },
+
+
+        "/api/app/logistics/status": {
+          "post": {
+            "tags": [
+            "Logistics"
+            ],
+            "summary": "确认收货",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    },
+                    "deliveryId": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": "发货单Id"
+                    },
+                    "imgList": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "default": "收货订单图片"
+                      }
+                    }
+
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    }
+                  }
+                }
+              }
+            },
+            "security": [
+            ]
+          }
+        },
+
+        "/api/app/logistics/cancel": {
+          "post": {
+            "tags": [
+            "Logistics"
+            ],
+            "summary": "作废收货单",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    },
+                    "data":{
+                      "type":"object",
+                      "properties":{
+                        "id": {
+                          "type": "integer",
+                          "format": "int64",
+                          "default": "物流主单ID"
+                        },
+                        "reason": {
+                          "type": "string",
+                          "default": "作废原因"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    }
+                  }
+                }
+              }
+            },
+            "security": [
+            ]
+          }
+        }
+    }
+}

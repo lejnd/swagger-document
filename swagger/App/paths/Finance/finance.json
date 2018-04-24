@@ -1,0 +1,684 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/api/app/finance/queryPowerFee": {
+          "post": {
+            "tags": [
+              "Finance"
+            ],
+            "summary": "查询电费",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    },
+                    "billkey": {
+                      "type": "integer",
+                      "default": "001123"
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "limitation": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "当前额度"
+                        },
+                        "contractNo": {
+                          "type": "string",
+                          "default": "合同号"
+                        },
+                        "billKey": {
+                          "type": "string",
+                          "default": "账单的户号"
+                        },
+                        "companyId": {
+                          "type": "string",
+                          "default": "缴费单号"
+                        },
+                        "paymentDate": {
+                          "type": "string",
+                          "default": "账期"
+                        },
+                        "delayFine": {
+                          "type": "integer",
+                          "default": "滞纳金(元)"
+                        },
+                        "customerName": {
+                          "type": "string",
+                          "default": "用户名"
+                        },
+                        "payAmount": {
+                          "type": "integer",
+                          "default": "欠费(元)"
+                        },
+                        "balance": {
+                          "type": "integer",
+                          "default": "余额(元)"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "security": [
+
+            ]
+          }
+        },
+        "/api/app/finance/PayPowerFee": {
+          "post": {
+            "tags": [
+              "Finance"
+            ],
+            "summary": "交电费",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    },
+                    "billKey": {
+                      "type": "string",
+                      "default": "账单的户号"
+                    },
+                    "payAmount": {
+                      "type": "integer",
+                      "default": "欠费(元)"
+                    },
+                    "paymentDate": {
+                      "type": "string",
+                      "default": "账期"
+                    },
+                    "delayFine": {
+                      "type": "integer",
+                      "default": "滞纳金(元)"
+                    },
+                    "customerName": {
+                      "type": "string",
+                      "default": "用户名"
+                    },
+                    "contractNo": {
+                      "type": "string",
+                      "default": "合同号"
+                    },
+                    "payPwd": {
+                      "type": "integer",
+                      "default": "******六位支付密码"
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/definitions/DefaultResponse"
+                }
+              }
+            },
+            "security": [
+            ]
+          }
+        },
+        "/api/app/finance/GetPayList": {
+          "post": {
+            "tags": [
+              "Finance"
+            ],
+            "summary": "获取话费列表和限额",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    },
+                    "rechargePhone": {
+                      "type": "string",
+                      "default": "要充值的手机号"
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "limitation": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "当前额度"
+                        },
+                        "list": [ 10, 20, 30, 50, 100, 200, 500 ],
+                        "mobileInfo": {
+                          "type": "object",
+                          "properties": {
+                            "areaCode": {
+                              "type": "string",
+                              "default": "区域代码"
+                            },
+                            "areaName": {
+                              "type": "string",
+                              "default": "区域名称"
+                            },
+                            "busCode": {
+                              "type": "string",
+                              "default": "运营商代码"
+                            },
+                            "busName": {
+                              "type": "string",
+                              "default": "运营商名称"
+                            },
+                            "info": {
+                              "type": "string",
+                              "default": "综合信息"
+                            },
+                            "mobile": {
+                              "type": "string",
+                              "default": "号码"
+                            },
+                            "retCode": {
+                              "type": "string",
+                              "default": "查询状态码"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+          ]
+        },
+        "/api/app/finance/PayPhoneFee": {
+          "post": {
+            "tags": [
+              "Finance"
+            ],
+            "summary": "交话费",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    },
+                    "rechargePhone": {
+                      "type": "string",
+                      "default": "被充值的手机号"
+                    },
+                    "amount": {
+                      "type": "integer",
+                      "default": "金额（元）"
+                    },
+                    "payPwd": {
+                      "type": "integer",
+                      "default": "******六位支付密码"
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "code":{
+                            "type":"number",
+                            "description": ""
+                        },
+                        "msg":{
+                            "type":"string",
+                            "description": "接口返回提示"
+                        },
+                        "data":{
+                            "type":"object",
+                            "description": "",
+                            "properties": {
+
+                            }
+                        }
+                    }
+                }
+              }
+            },
+            "security": [
+            ]
+          }
+        },
+
+
+        "/api/app/finance/GetMustPay": {
+          "post": {
+            "tags": [
+              "Finance"
+            ],
+            "summary": "finance 获取缴费应回款金额 ",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "powerFeeAmount": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "已交电费（应回款）"
+                        },
+                        "phoneFeeAmount": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "已交话费（应回款）"
+                        },
+
+                        "saleAmount": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "商品销售额（本次应回款）"
+                        },
+                        "saleLeftAmount": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "商品销售剩余应回款金额"
+                        },
+
+                        "limitation": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "当前额度"
+                        },
+                        "haiBoSumAmount": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "海博金额应回款总金额"
+                        },
+                        "haiBoAmount": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "海博本次回款金额"
+                        },
+                        "haiBoLeftAmount": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "海博剩余回款金额"
+                        },
+                        "haiBoTip": {
+                          "type": "string",
+                          "default": "本次回款xxx,应回款总额xxx,剩余回款xxx"
+                        },
+                        "limitTip": {
+                          "type": "string",
+                          "default": "温馨提示:单次回款总额最好在10000元内"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+          ]
+        },
+
+
+        "/api/app/finance/PaymentCollection": {
+          "post": {
+            "tags": [
+              "Finance"
+            ],
+            "summary": "回款 ",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    },
+                    "hasPhoneAndPower": {
+                      "type": "boolean",
+                      "default": "true"
+                    },
+                    "hasHaiBo": {
+                      "type": "boolean",
+                      "default": "true"
+                    },
+                    "hasSale": {
+                      "type": "boolean",
+                      "default": "true"
+                    },
+                    "saleAmount": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": "0"
+                    },
+                    "clientType": {
+                      "type": "string",
+                      "default": "客户端类型 ios app00001,android app01001"
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "code":{
+                            "type":"number",
+                            "description": ""
+                        },
+                        "msg":{
+                            "type":"string",
+                            "description": "接口返回提示"
+                        },
+                        "data":{
+                            "type":"object",
+                            "description": "",
+                            "properties": {
+                                "appId":{
+                                    "type":"string",
+                                    "description": "appId"
+                                },
+                                "partnerId":{
+                                    "type":"string",
+                                    "description": "partnerId"
+                                },
+                                "prepayId":{
+                                    "type":"string",
+                                    "description": "prepayId"
+                                },
+                                "package":{
+                                    "type":"string",
+                                    "description": "package"
+                                },
+                                "nonceStr":{
+                                    "type":"string",
+                                    "description": "nonceStr"
+                                },
+                                "timeStamp":{
+                                    "type":"string",
+                                    "description": "timeStamp"
+                                },
+                                "sign":{
+                                    "type":"string",
+                                    "description": "sign"
+                                },
+                                "outTradeNo":{
+                                    "type":"string",
+                                    "description": "outTradeNo"
+                                }
+                            }
+                        }
+                    }
+                }
+              }
+            },
+            "security": [
+            ]
+          }
+        },
+        "/api/app/finance/PaySuccessCallback": {
+          "post": {
+            "tags": [
+              "Finance"
+            ],
+            "summary": "支付成功时回调的接口（支付组调用） ",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "returnJson": {
+                      "type": "string",
+                      "default": "支付组返回数据"
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "code":{
+                          "type":"number",
+                          "description": ""
+                      },
+                      "msg":{
+                          "type":"string",
+                          "description": "接口返回提示"
+                      },
+                      "data":{
+                          "type":"object",
+                          "description": "",
+                          "properties": {
+
+                          }
+                      }
+                  }
+                }
+              }
+            },
+            "security": [
+            ]
+          }
+        }
+    }
+}

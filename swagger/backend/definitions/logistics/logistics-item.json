@@ -1,0 +1,155 @@
+{
+    "definitions": {
+        "logisticsItem": {
+            "type": "object",
+            "description": "物流配送列表",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": " LogisticsID"
+                },
+                "region": {
+                    "type": "object",
+                    "properties": {
+                        "city": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "string",
+                                    "description": "市／州 Id"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "description": "市／州 名"
+                                }
+                            }
+                        },
+                        "district": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "string",
+                                    "description": "区／县 Id"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "description": "区／县 名"
+                                }
+                            }
+                        },
+                        "town": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "string",
+                                    "description": "乡／镇 Id"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "description": "乡／镇 名"
+                                }
+                            }
+                        },
+                        "village": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "string",
+                                    "description": "村Id"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "description": "村名"
+                                }
+                            }
+                        }
+                    }
+                },
+                "workstationName": {
+                    "type": "string",
+                    "description": "服务站名称"
+                },
+                "workstationCode": {
+                    "type": "string",
+                    "description": "站点编号"
+                },
+                "logisticsStore": {
+                    "type": "string",
+                    "description": "物流商"
+                },
+                "logisticsCode": {
+                    "type": "string",
+                    "description": "物流编号"
+                },
+                "receiveName1": {
+                    "type": "string",
+                    "description": "收货人名字1"
+                },
+                "receivePhone1": {
+                    "type": "string",
+                    "description": "收货人联系电话1"
+                },
+                "receiveName2": {
+                    "type": "string",
+                    "description": "收货人名字2"
+                },
+                "receivePhone2": {
+                    "type": "string",
+                    "description": "收货人联系电话2"
+                },
+                "receiveName3": {
+                    "type": "string",
+                    "description": "收货人名字3"
+                },
+                "receivePhone3": {
+                    "type": "string",
+                    "description": "收货人联系电话3"
+                },
+                "status": {
+                    "type": "number",
+                    "description": "配送订单状态（1：未签收 2：已签收）"
+                },
+                "sendTime": {
+                    "type": "string",
+                    "description": "发货时间"
+                },
+                "receiveTime": {
+                    "type": "string",
+                    "description": "收货时间"
+                },
+                "createUserName": {
+                    "type": "string",
+                    "description": "创建人"
+                }
+            }
+        },
+        "receiveInfoItem": {
+            "type": "object",
+            "description": "收货人信息详情",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "收货人名字"
+                },
+                "phone": {
+                    "type": "string",
+                    "description": "收货人联系电话"
+                }
+            }
+        },
+        "goodsInfoItem": {
+            "type": "object",
+            "description": "商品信息详情",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "商品名称"
+                },
+                "sendNumer": {
+                    "type": "number",
+                    "description": "发货量"
+                }
+            }
+        }
+    }
+}

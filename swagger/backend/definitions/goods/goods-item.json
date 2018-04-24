@@ -1,0 +1,46 @@
+{
+    "definitions": {
+        "goodsItem": {
+            "type": "object",
+            "description": "商品详情",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "商品ID"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "商品名称"
+                },
+                "unit": {
+                    "type": "string",
+                    "description": "商品单位"
+                },
+              "breedUnit": {
+                "type": "string",
+                "description": "种植/养殖单位"
+              },
+                "type": {
+                    "type": "string",
+                    "description": "商品类别名称"
+                },
+                "remark": {
+                    "type": "string",
+                    "description": "商品备注"
+                },
+                "createUserName": {
+                    "type": "string",
+                    "description": "创建人名字"
+                },
+                "createTime": {
+                    "type": "string",
+                    "description": "创建时间"
+                },
+                "status": {
+                    "type": "number",
+                    "description": "商品类别状态 1、启用；-1、禁用"
+                }
+            }
+        }
+    }
+}

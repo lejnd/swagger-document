@@ -1,0 +1,34 @@
+{
+    "definitions": {
+        "batchHistoryItem": {
+            "type": "object",
+            "description": "预售订单批次订单历史记录详情",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "批次订单历史记录ID"
+                },
+                "arrivalTime": {
+                    "type": "string",
+                    "description": "到货时间"
+                },
+                "arrivalNumber": {
+                    "type": "number",
+                    "description": "到货数量"
+                },
+                "state": {
+                    "type": "number",
+                    "description": "订单状态 1：代配送 3：已配送"
+                },
+                "modifyUserName": {
+                    "type": "string",
+                    "description": "修改人名字"
+                },
+                "modifyTime": {
+                    "type": "string",
+                    "description": "修改时间"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,266 @@
+{
+  "swagger": "2.0",
+  "paths": {
+    "/Require/Shop/Search": {
+      "post": {
+        "summary": "补货单查询列表接口",
+        "tags": [
+          "Supply"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/definitions/Token"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "分页和查询条件",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "paging": {
+                  "$ref": "#/definitions/Paging"
+                },
+                "condition": {
+                  "type": "object",
+                  "description": "查询条件",
+                  "properties": {
+                    "region": {
+                      "type": "object",
+                      "properties": {
+                        "cityCode": {
+                          "type": "string",
+                          "description": "市州code"
+                        },
+                        "districtCode": {
+                          "type": "string",
+                          "description": "区县code"
+                        },
+                        "townCode": {
+                          "type": "string",
+                          "description": "乡镇code"
+                        },
+                        "villageCode": {
+                          "type": "string",
+                          "description": "村code"
+                        }
+                      }
+                    },
+                    "station": {
+                      "type": "string",
+                      "description": "服务站名称"
+                    },
+                    "stationCode": {
+                      "type": "string",
+                      "description": "服务站编号"
+                    },
+                    "startTime": {
+                      "type": "datetime",
+                      "description": "时间范围-开始"
+                    },
+                    "endTime": {
+                      "type": "datetime",
+                      "description": "时间范围-结束"
+                    },
+                    "status": {
+                      "type": "integer",
+                      "description": "状态(1：已发货 ，0：待发货， null: 所有状态)"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "查询成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "description": "成功信息"
+                },
+                "code": {
+                  "type": "string",
+                  "description": "成功编码 0",
+                  "required": true
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "paging": {
+                      "$ref": "#/definitions/ResponsePaging"
+                    },
+                    "itemList": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/supplyItem"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Require/Goods/Search": {
+      "post": {
+        "tags": [
+          "Supply"
+        ],
+        "summary": "补货单详情",
+        "parameters": [
+          {
+            "$ref": "#/definitions/Token"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "条件",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "paging": {
+                  "$ref": "#/definitions/Paging"
+                },
+                "condition": {
+                  "type": "object",
+                  "description": "查询条件",
+                  "properties": {
+                    "RepairId": {
+                      "type":"string",
+                      "description": "补货单号"
+                    },
+                    "Name": {
+                      "type": "string",
+                      "description": "商品名称"
+                    },
+                    "Upc": {
+                      "type": "string",
+                      "description": "商品编码"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "返回结果",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "description": "成功信息"
+                },
+                "code": {
+                  "type": "string",
+                  "description": "成功编码 0",
+                  "required": true
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/supplyDetail"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Require/Goods/DownLoad": {
+      "post": {
+        "tags": [ "Supply" ],
+        "summary": "补货单导出模板下载",
+        "parameters": [
+          {
+            "$ref": "#/definitions/Token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "返回结果",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "description": "成功信息"
+                },
+                "code": {
+                  "type": "string",
+                  "description": "成功编码 0",
+                  "required": true
+                },
+                "data": {
+                  "type": "string",
+                  "description": "下载key"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/require/Import": {
+      "post": {
+        "tags": [ "Supply" ],
+        "summary": "补货单导入",
+        "parameters": [
+          {
+            "$ref": "#/definitions/Token"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "条件",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "file": {
+                  "type": "file",
+                  "description": "excel文件（支持多传）"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "返回结果",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "sFailedCount": {
+                  "type": "number",
+                  "description": "上传失败个数"
+                },
+                "successfullyCount": {
+                  "type": "number",
+                  "description": "上传成功个数"
+                },
+                "uploadModelList": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/importItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

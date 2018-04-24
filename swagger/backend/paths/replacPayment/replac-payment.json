@@ -1,0 +1,389 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/api/app/replacPayment/list": {
+            "post": {
+                "tags": ["ReplacPayment"],
+                "summary":"代回款服务站列表接口",
+                "description": "代回款服务站列表接口",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "参数",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "search": {
+                                    "type": "string",
+                                    "description": "查询条件(支持模糊查询)"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回查询结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data":{
+                                    "type":"object",
+                                    "properties":{
+                                        "sumAmount":{
+                                          "type": "number",
+                                          "description": "待回款总额"
+                                        },
+                                        "itemList":{
+                                            "type": "array",
+                                            "items":{
+                                                "type": "object",
+                                                "description": "服务站列表",
+                                                "properties":{
+                                                    "stationId": {
+                                                        "type": "number",
+                                                        "description": "服务站ID"
+                                                    },
+                                                    "stationName": {
+                                                        "type": "string",
+                                                        "description": "服务站名称"
+                                                    },
+                                                    "payment":{
+                                                        "type": "number",
+                                                        "description": "服务站待回款金额"
+                                                    },
+                                                    "agentName":{
+                                                      "type": "number",
+                                                      "description": "代办员姓名"
+                                                    },
+                                                    "agentPhone":{
+                                                      "type": "number",
+                                                      "description": "代办员手机号"
+                                                    },
+                                                    "electricityBills":{
+                                                        "type": "number",
+                                                        "description": "电费"
+                                                    },
+                                                    "phoneBill":{
+                                                        "type": "number",
+                                                        "description": "话费"
+                                                    },
+                                                    "itemList":{
+                                                        "type": "array",
+                                                        "items":{
+                                                            "type": "object",
+                                                            "description": "服务站需回款信息",
+                                                            "properties":{
+                                                                "dateTime":{
+                                                                    "type": "number",
+                                                                    "description": "日期(时间戳)"
+                                                                },
+                                                                "sunAmount":{
+                                                                    "type": "number",
+                                                                    "description": "服务站当天需回款总额"
+                                                                },
+                                                                "cardRecharge":{
+                                                                    "type": "array",
+                                                                    "description": "卡充值账单",
+                                                                    "items":{
+                                                                        "type": "object",
+                                                                        "description": "卡账单明细",
+                                                                        "properties":{
+                                                                            "id":{
+                                                                                "type": "number",
+                                                                                "description": "卡账单明细id"
+                                                                            },
+                                                                            "amount":{
+                                                                                "type": "number",
+                                                                                "description": "卡账单明细金额"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "saleBills":{
+                                                                    "type": "array",
+                                                                    "description": "销售额账单",
+                                                                    "items":{
+                                                                        "type": "object",
+                                                                        "description": "销售账单明细",
+                                                                        "properties":{
+                                                                            "id":{
+                                                                                "type": "number",
+                                                                                "description": "销售账单明细id"
+                                                                            },
+                                                                            "amount":{
+                                                                                "type": "number",
+                                                                                "description": "销售账单明细金额"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/app/replacPaymentInfo": {
+            "post": {
+                "tags": [""],
+                "summary":"弃用--代回款服务站信息明细接口",
+                "description": "代回款服务站信息明细接口",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "参数",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "stationId": {
+                                    "type": "number",
+                                    "description": "服务站ID"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回查询结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data":{
+                                    "type":"object",
+                                    "properties":{
+                                        "stationName":{
+                                          "type": "string",
+                                          "description": "服务站名称"
+                                        },
+                                        "agentName":{
+                                          "type": "number",
+                                          "description": "代办员姓名"
+                                        },
+                                        "agentPhone":{
+                                          "type": "number",
+                                          "description": "代办员手机号"
+                                        },
+                                        "electricityBills":{
+                                            "type": "number",
+                                            "description": "电费"
+                                        },
+                                        "phoneBill":{
+                                            "type": "number",
+                                            "description": "话费"
+                                        },
+                                        "itemList":{
+                                            "type": "array",
+                                            "items":{
+                                                "type": "object",
+                                                "description": "服务站需回款信息",
+                                                "properties":{
+                                                    "dateTime":{
+                                                        "type": "number",
+                                                        "description": "日期(时间戳)"
+                                                    },
+                                                    "sunAmount":{
+                                                        "type": "number",
+                                                        "description": "服务站当天需回款总额"
+                                                    },
+                                                    "cardRecharge":{
+                                                        "type": "array",
+                                                        "description": "卡充值账单",
+                                                        "items":{
+                                                            "type": "object",
+                                                            "description": "卡账单明细",
+                                                            "properties":{
+                                                                "id":{
+                                                                    "type": "number",
+                                                                    "description": "卡账单明细id"
+                                                                },
+                                                                "amount":{
+                                                                    "type": "number",
+                                                                    "description": "卡账单明细金额"
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "saleBills":{
+                                                        "type": "array",
+                                                        "description": "销售额账单",
+                                                        "items":{
+                                                            "type": "object",
+                                                            "description": "销售账单明细",
+                                                            "properties":{
+                                                                "id":{
+                                                                    "type": "number",
+                                                                    "description": "销售账单明细id"
+                                                                },
+                                                                "amount":{
+                                                                    "type": "number",
+                                                                    "description": "销售账单明细金额"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/app/replacPayment": {
+            "post": {
+                "tags": ["ReplacPayment"],
+                "summary":"代回款接口",
+                "description": "代回款接口",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "参数",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "description": "回款信息",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "description": "待回款参数",
+                                    "items":{
+                                        "type": "object",
+                                        "description": "服务站需回款信息",
+                                        "properties":{
+                                            "stationId":{
+                                                "type": "number",
+                                                "description": "服务站ID"
+                                            },
+                                            "electricityBills":{
+                                                "type": "number",
+                                                "description": "电费"
+                                            },
+                                            "phoneBill":{
+                                                "type": "number",
+                                                "description": "话费"
+                                            },
+                                            "itemList":{
+                                                "type": "array",
+                                                "description": "服务站回款详细信息列表",
+                                                "items":{
+                                                    "type": "object",
+                                                    "description": "服务站回款详细信息",
+                                                    "properties":{
+                                                        "dateTime":{
+                                                            "type":"number",
+                                                            "description": "要还是哪一天的款(时间戳)"
+                                                        },
+                                                        "cardRecharge":{
+                                                            "type": "array",
+                                                            "description": "卡充值账单",
+                                                            "items":{
+                                                                "type": "object",
+                                                                "description": "卡账单明细",
+                                                                "properties":{
+                                                                    "id":{
+                                                                        "type": "number",
+                                                                        "description": "卡账单明细id"
+                                                                    },
+                                                                    "amount":{
+                                                                        "type": "number",
+                                                                        "description": "卡账单明细金额"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "saleBills":{
+                                                            "type": "array",
+                                                            "description": "销售额账单",
+                                                            "items":{
+                                                                "type": "object",
+                                                                "description": "销售账单明细",
+                                                                "properties":{
+                                                                    "id":{
+                                                                        "type": "number",
+                                                                        "description": "销售账单明细id"
+                                                                    },
+                                                                    "amount":{
+                                                                        "type": "number",
+                                                                        "description": "销售账单明细金额"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回回款结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

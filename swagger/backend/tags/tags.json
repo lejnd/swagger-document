@@ -1,0 +1,97 @@
+{
+    "swagger": "2.0",
+    "tags": [
+        {
+            "name": "BackStageUser",
+            "description": "后台用户相关接口"
+        },
+        {
+            "name": "Agents",
+            "description": "代办员管理相关接口"
+        },
+        {
+            "name": "Wages",
+            "description": "工资管理相关接口"
+        },
+        {
+            "name": "Turnovers",
+            "description": "营业额相关接口"
+        },
+        {
+            "name": "Payments",
+            "description": "缴费流水相关接口"
+        },
+        {
+            "name": "Cards",
+            "description": "卡业务相关接口"
+        },
+        {
+            "name": "App",
+            "description": "App交易查询相关接口"
+        },
+        {
+            "name": "Region",
+            "description": "地区树接口"
+        },
+        {
+            "name": "Banner",
+            "description": "Banner相关接口"
+        },
+        {
+            "name": "Feedback",
+            "description": "意见反馈相关接口"
+        },
+        {
+            "name": "QNA",
+            "description": "常见问题相关接口"
+        },
+        {
+            "name": "Goods",
+            "description": "商品及其类别相关接口"
+        },
+        {
+            "name": "Personnel",
+            "description": "人员管理相关接口"
+        },
+        {
+            "name": "PreSale",
+            "description": "预售相关接口"
+        },
+        {
+            "name": "Farmer",
+            "description": "农户相关接口"
+        },
+        {
+            "name": "FarmerManage",
+            "description": "农户管理相关接口"
+        },
+        {
+            "name": "Common",
+            "description": "公用接口"
+        },
+        {
+          "name": "ExclusiveSales",
+          "description": "包销信息相关接口"
+        },
+        {
+            "name": "Logistics",
+            "description": "物流相关接口"
+        },
+        {
+            "name": "Supply",
+            "description": "补货相关接口"
+        },
+        {
+            "name": "NewRequire",
+            "description": "新品申请相关接口"
+        },
+        {
+            "name": "Country",
+            "description": "一村一档相关接口"
+        },
+        {
+          "name": "roleAuthority",
+          "description": "app角色权限控制相关接口"
+        }      
+    ]
+}

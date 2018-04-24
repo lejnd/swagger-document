@@ -1,0 +1,62 @@
+{
+    "definitions": {
+        "cardBillRechargeItem": {
+            "type": "object",
+            "description": "服务站充值明细",
+            "properties": {
+                "waterNo": {
+                    "type": "number",
+                    "description": "主键"
+                },
+                "station": {
+                    "type": "string",
+                    "description": "服务站名称"
+                },
+                "stationCode": {
+                    "type": "string",
+                    "description": "服务站编号"
+                },
+                "rechargeAmount": {
+                    "type": "number",
+                    "description": "充值本金"
+                },       
+                "payType": {
+                    "type": "number",
+                    "description": "支付方式"
+                },     
+                "accountNo": {
+                    "type": "string",
+                    "description": "充值卡号"
+                },    
+                "transTime": {
+                    "type": "string",
+                    "description": "交易时间"
+                },   
+                "agentName": {
+                    "type": "string",
+                    "description": "代办员姓名"
+                },
+                "agentPhone": {
+                    "type": "string",
+                    "description": "代办员电话"
+                },   
+                "salesmanName": {
+                    "type": "string",
+                    "description": "业务员姓名"
+                },
+                "salesmanPhone": {
+                    "type": "string",
+                    "description": "业务员电话"
+                },   
+                "stationAddress": {
+                    "type": "string",
+                    "description": "服务站地址"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "确认状态"
+                }
+            }
+        }
+    }
+}

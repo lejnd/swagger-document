@@ -1,0 +1,507 @@
+{
+    "swagger": "2.0",
+    "paths": {
+      "/api/app/agent/sendverycode": {
+          "post": {
+            "tags": [
+              "Agent"
+            ],
+            "summary": "发送验证码",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "type":{
+                        "type":"number",
+                        "description": ""
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "code":{
+                            "type":"number",
+                            "description": ""
+                        },
+                        "msg":{
+                            "type":"string",
+                            "description": "接口返回提示"
+                        },
+                        "data":{
+                            "type":"object",
+                            "description": "",
+                            "properties": {
+
+                            }
+                        }
+                    }
+                }
+              }
+            },
+            "security": [
+            ]
+          }
+        },
+        "/api/app/agent/login": {
+          "post": {
+            "tags": [
+              "Agent"
+            ],
+            "summary": "代办员登录",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "phone":{
+                          "type":"string",
+                          "description": "电话号码"
+                      },
+                      "veryCode":{
+                          "type":"string",
+                          "description": ""
+                      },
+                      "isReactNative":{
+                          "type":"string",
+                          "description": "true"
+                      }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "code":{
+                            "type":"number",
+                            "description": ""
+                        },
+                        "msg":{
+                            "type":"string",
+                            "description": "接口返回提示"
+                        },
+                        "data":{
+                            "type":"object",
+                            "description": "",
+                            "properties": {
+
+                            }
+                        }
+                    }
+                }
+              }
+            }
+          }
+        },
+        "/api/app/agent/Logout": {
+          "post": {
+            "tags": [
+              "Agent"
+            ],
+            "summary": "退出登录",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "phone":{
+                          "type":"string",
+                          "description": "电话号码"
+                      },
+                      "userId":{
+                          "type":"number",
+                          "description": "用户ID"
+                      },
+                      "token":{
+                          "type":"string",
+                          "description": "用户token"
+                      },
+                      "version":{
+                          "type":"string",
+                          "description": "版本号"
+                      },
+                      "isReactNative":{
+                          "type":"string",
+                          "description": "true"
+                      }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "code":{
+                            "type":"number",
+                            "description": ""
+                        },
+                        "msg":{
+                            "type":"string",
+                            "description": "接口返回提示"
+                        },
+                        "data":{
+                            "type":"object",
+                            "description": "",
+                            "properties": {
+
+                            }
+                        }
+                    }
+                }
+              }
+            }
+          }
+        },
+        "/api/app/agent/setpaymentpassword": {
+          "post": {
+            "tags": [
+              "Agent"
+            ],
+            "summary": "设置 支付密码",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "phone":{
+                          "type":"string",
+                          "description": "电话号码"
+                      },
+                      "userId":{
+                          "type":"number",
+                          "description": "用户ID"
+                      },
+                      "token":{
+                          "type":"string",
+                          "description": "用户token"
+                      },
+                      "version":{
+                          "type":"string",
+                          "description": "版本号"
+                      },
+                      "isReactNative":{
+                          "type":"string",
+                          "description": "true"
+                      },
+                    "password": {
+                      "type": "integer",
+                      "default": "123456"
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "code":{
+                            "type":"number",
+                            "description": ""
+                        },
+                        "msg":{
+                            "type":"string",
+                            "description": "接口返回提示"
+                        },
+                        "data":{
+                            "type":"object",
+                            "description": "",
+                            "properties": {
+
+                            }
+                        }
+                    }
+                }
+              }
+            }
+          }
+        },
+        "/api/app/agent/UpdatePaymentPassword": {
+          "post": {
+            "tags": [
+              "Agent"
+            ],
+            "summary": "修改支付密码",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "phone":{
+                          "type":"string",
+                          "description": "电话号码"
+                      },
+                      "userId":{
+                          "type":"number",
+                          "description": "用户ID"
+                      },
+                      "token":{
+                          "type":"string",
+                          "description": "用户token"
+                      },
+                      "version":{
+                          "type":"string",
+                          "description": "版本号"
+                      },
+                      "isReactNative":{
+                          "type":"string",
+                          "description": "true"
+                      },
+                    "oldPassword": {
+                      "type": "integer",
+                      "default": "123456"
+                    },
+                    "newPassword": {
+                      "type": "integer",
+                      "default": "123456"
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "code":{
+                            "type":"number",
+                            "description": ""
+                        },
+                        "msg":{
+                            "type":"string",
+                            "description": "接口返回提示"
+                        },
+                        "data":{
+                            "type":"object",
+                            "description": "",
+                            "properties": {
+
+                            }
+                        }
+                    }
+                }
+              }
+            }
+          }
+        },
+
+        "/api/app/agent/GetPersonalInfo": {
+          "post": {
+            "tags": [
+              "Agent"
+            ],
+            "summary": "（“我的”页面）获取用户信息",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "phone":{
+                          "type":"string",
+                          "description": "电话号码"
+                      },
+                      "userId":{
+                          "type":"number",
+                          "description": "用户ID"
+                      },
+                      "token":{
+                          "type":"string",
+                          "description": "用户token"
+                      },
+                      "version":{
+                          "type":"string",
+                          "description": "版本号"
+                      },
+                      "isReactNative":{
+                          "type":"string",
+                          "description": "true"
+                      }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "limitSum": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "配额"
+                        },
+                        "limitation": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "可用额度"
+                        },
+                        "name": {
+                          "type": "string",
+                          "default": "姓名"
+                        },
+                        "phone": {
+                          "type": "string",
+                          "default": "手机号码"
+                        },
+                        "workstation": {
+                          "type": "string",
+                          "default": "服务站名称"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+
+        "/api/app/agent/CheckUserInfo": {
+          "post": {
+            "tags": [
+              "Agent"
+            ],
+            "summary": "（忘记密码页面） 验证用户信息",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "phone":{
+                          "type":"string",
+                          "description": "电话号码"
+                      },
+                      "userId":{
+                          "type":"number",
+                          "description": "用户ID"
+                      },
+                      "token":{
+                          "type":"string",
+                          "description": "用户token"
+                      },
+                      "version":{
+                          "type":"string",
+                          "description": "版本号"
+                      },
+                      "isReactNative":{
+                          "type":"string",
+                          "description": "true"
+                      },
+                    "name": {
+                      "type": "string",
+                      "default": "XXX"
+                    },
+                    "idNumber": {
+                      "type": "string",
+                      "default": "XXX...XXX"
+                    },
+                    "VeryCode": {
+                      "type": "string",
+                      "default": "XXXXXX"
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "code":{
+                            "type":"number",
+                            "description": ""
+                        },
+                        "msg":{
+                            "type":"string",
+                            "description": "接口返回提示"
+                        },
+                        "data":{
+                            "type":"object",
+                            "description": "",
+                            "properties": {
+
+                            }
+                        }
+                    }
+                }
+              }
+            }
+          }
+        }
+    }
+}

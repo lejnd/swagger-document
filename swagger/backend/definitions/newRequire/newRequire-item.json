@@ -1,0 +1,53 @@
+{
+    "definitions": {
+        "newRequireItem": {
+            "type": "object",
+            "description": "新品申请单列表项",
+            "properties": {
+                "orderNo": {
+                    "type": "number",
+                    "description": "申请单号"
+                },               
+                "cityName": {
+                    "type": "string",
+                    "description": "市"
+                },          
+                "districtName": {
+                    "type": "string",
+                    "description": "区/县"
+                },          
+                "townName": {
+                    "type": "string",
+                    "description": "镇"
+                },       
+                "villageName": {
+                    "type": "string",
+                    "description": "村"
+                },                              
+                "station": {
+                    "type": "string",
+                    "description": "服务站名称"
+                },
+                "stationCode": {
+                    "type": "string",
+                    "description": "站点编号"
+                },   
+				"name":{ "type":"string","default":"商品名称" },
+				"upc":{ "type":"string","default":"条码" },
+				"spec":{ "type":"string","default":"规格" },
+				"unit":{ "type":"string","default":"单位" },
+				"price":{ "type":"numeric","default":"当地零售价（元）" },
+				"quantity":{ "type":"integer","default":"需求数量" },
+				"status":{ "type":"integer","default":"状态（-1：已作废；0：已提报）" },
+				"reason":{ "type":"integer","default":"申请理由" }, 
+				"createTime":{ "type":"string","default":"创建时间" },
+				"createUserName":{ "type":"string","default":"创建人姓名" },
+                "phone": { "type":"string","default":"创建人电话" },
+				"picList":{
+					"type":"array",					            		
+					"items":{ "type":"string" ,"default":"imgurl" }
+				} 
+            }
+        }
+    }
+}

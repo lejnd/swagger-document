@@ -1,0 +1,22 @@
+{
+    "definitions": {
+        "goodsUnitItem": {
+            "type": "object",
+            "description": "商品单位详情",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "商品单位ID"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "商品单位名称"
+                },
+                "remark": {
+                    "type": "string",
+                    "description": "商品单位备注"
+                }
+            }
+        }
+    }
+}

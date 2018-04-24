@@ -1,0 +1,30 @@
+{
+  "definitions": {
+    "importItem": {
+      "type": "object",
+      "description": "补货单列表项",
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "description": "文件名称"
+        },
+        "errorLog": {
+          "type": "string",
+          "description": "错误日志"
+        },
+        "state": {
+          "type": "number",
+          "description": "状态（0 = failed 1 = success）"
+        },
+        "stationCode": {
+          "type": "string",
+          "description": "服务站code"
+        },
+        "stationName": {
+          "type": "string",
+          "description": "服务站name"
+        }
+      }
+    }
+  }
+}

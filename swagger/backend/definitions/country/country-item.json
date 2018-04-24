@@ -1,0 +1,59 @@
+{
+    "definitions": {
+        "countryItem": {
+            "type": "object",
+            "description": "一村一档列表",
+            "properties": {        
+                "id": {
+                    "type": "number",
+                    "description": "一村一档键ID"
+                },         
+                "cityName": {
+                    "type": "string",
+                    "description": "州/市"
+                },          
+                "districtName": {
+                    "type": "string",
+                    "description": "区/县"
+                },          
+                "townName": {
+                    "type": "string",
+                    "description": "乡/镇"
+                },       
+                "villageName": {
+                    "type": "string",
+                    "description": "村"
+                },                              
+                "areaNum": {
+                    "type": "number",
+                    "description": "面积"
+                },
+                "personNum": {
+                    "type": "integer",
+                    "description": "人口数"
+                }, 
+                "subCountryNum": {
+                    "type": "integer",
+                    "description": "下属自然村数量"
+                },  
+                "houseNum": {
+                    "type": "string",
+                    "description": "总户数"
+                },     
+				"plantQuantity":{ "type":"number","default":"种植量" },
+				"cultureQuantity":{ "type":"string","default":"养殖量" },
+				"area_1001":{ "type":"string","default":"1000亩户" },
+				"area_501_1000":{ "type":"string","default":"500-1000亩户" },
+				"area_101_500":{ "type":"numeric","default":"100-500亩户" },
+				"area_51_100":{ "type":"integer","default":"50-100亩户" },
+				"area_21_50":{ "type":"integer","default":"20-50亩户" },
+				"area_0_20":{ "type":"integer","default":"20亩以下户" }, 
+				"remark":{ "type":"string","default":"备注" }, 
+				"createTime":{ "type":"string","default":"创建时间" },
+				"createUserName":{ "type":"string","default":"创建人姓名" },
+				"phone":{ "type":"string","default":"创建人电话" },
+				"state":{ "type":"inteter","default":"状态（预留）" }
+            }
+        }
+    }
+}

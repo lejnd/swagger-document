@@ -1,0 +1,952 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/cardbill/recharge/search": {
+            "post": {
+                "summary": "服务站充值明细查询接口",
+                "tags": ["Cards"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "#/definitions/Paging"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "region": {
+                                            "type": "object",
+                                            "properties": {
+                                                "cityCode": {
+                                                    "type": "string",
+                                                    "description": "市州code"
+                                                },
+                                                "districtCode": {
+                                                    "type": "string",
+                                                    "description": "区县code"
+                                                },
+                                                "townCode": {
+                                                    "type": "string",
+                                                    "description": "乡镇code"
+                                                },
+                                                "villageCode": {
+                                                    "type": "string",
+                                                    "description": "村code"
+                                                }
+                                            }
+                                        },
+                                        "station": {
+                                            "type": "string",
+                                            "description": "服务站名称"
+                                        },
+                                        "stationCode": {
+                                            "type": "string",
+                                            "description": "站点编号"
+                                        },
+                                        "agentName": {
+                                            "type": "string",
+                                            "description": "代办员姓名"
+                                        },
+                                        "agentsPhone": {
+                                            "type": "string",
+                                            "description": "代办员电话"
+                                        },
+                                        "salesmanName": {
+                                            "type": "string",
+                                            "description": "业务员姓名"
+                                        },
+                                        "salesmanPhone": {
+                                            "type": "string",
+                                            "description": "业务员电话"
+                                        },
+                                        "transTimeStart": {
+                                            "type": "string",
+                                            "description": "交易时间开始"
+                                        },
+                                        "transTimeEnd": {
+                                            "type": "string",
+                                            "description": "交易时间结束"
+                                        },
+                                        "PayType": {
+                                            "type": "string",
+                                            "description": "充值方式 null 全部 00 现金（默认） 01 银行卡"
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "description": "null,全部 0,待收款 1,已收款"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paging": {
+                                            "$ref": "#/definitions/ResponsePaging"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/cardBillRechargeItem"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cardbill/bill/search": {
+            "post": {
+                "summary": "营业账单查询接口",
+                "tags": ["Cards"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "#/definitions/Paging"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "region": {
+                                            "type": "object",
+                                            "properties": {
+                                                "cityCode": {
+                                                    "type": "string",
+                                                    "description": "市州code"
+                                                },
+                                                "districtCode": {
+                                                    "type": "string",
+                                                    "description": "区县code"
+                                                },
+                                                "townCode": {
+                                                    "type": "string",
+                                                    "description": "乡镇code"
+                                                },
+                                                "villageCode": {
+                                                    "type": "string",
+                                                    "description": "村code"
+                                                }
+                                            }
+                                        },
+                                        "station": {
+                                            "type": "string",
+                                            "description": "服务站名称"
+                                        },
+                                        "stationCode": {
+                                            "type": "string",
+                                            "description": "站点编号"
+                                        },
+                                        "agentName": {
+                                            "type": "string",
+                                            "description": "代办员姓名"
+                                        },
+                                        "agentsPhone": {
+                                            "type": "string",
+                                            "description": "代办员电话"
+                                        },
+                                        "salesmanName": {
+                                            "type": "string",
+                                            "description": "业务员姓名"
+                                        },
+                                        "salesmanPhone": {
+                                            "type": "string",
+                                            "description": "业务员电话"
+                                        },
+                                        "billTimeStart": {
+                                            "type": "string",
+                                            "description": "账期时间开始"
+                                        },
+                                        "billTimeEnd": {
+                                            "type": "string",
+                                            "description": "账期时间结束"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paging": {
+                                            "$ref": "#/definitions/ResponsePaging"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/cardBillItem"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cards/turnovers/search": {
+            "post": {
+                "summary": "卡业务回款流水查询接口",
+                "tags": ["Cards"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "#/definitions/Paging"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "region": {
+                                            "type": "object",
+                                            "properties": {
+                                                "cityCode": {
+                                                    "type": "string",
+                                                    "description": "市州code"
+                                                },
+                                                "districtCode": {
+                                                    "type": "string",
+                                                    "description": "区县code"
+                                                },
+                                                "townCode": {
+                                                    "type": "string",
+                                                    "description": "乡镇code"
+                                                },
+                                                "villageCode": {
+                                                    "type": "string",
+                                                    "description": "村code"
+                                                }
+                                            }
+                                        },
+                                        "station": {
+                                            "type": "string",
+                                            "description": "服务站名称"
+                                        },
+                                        "stationCode": {
+                                            "type": "string",
+                                            "description": "站点编号"
+                                        },
+                                        "agentName": {
+                                            "type": "string",
+                                            "description": "姓名"
+                                        },
+                                        "agentsCertificate": {
+                                            "type": "string",
+                                            "description": "身份证号"
+                                        },
+                                        "phoneNumber": {
+                                            "type": "string",
+                                            "description": "联系电话"
+                                        },
+                                        "paymentTimeStart": {
+                                            "type": "string",
+                                            "description": "转账时间开始"
+                                        },
+                                        "paymentTimeEnd": {
+                                            "type": "string",
+                                            "description": "转账时间结束"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paging": {
+                                            "$ref": "#/definitions/ResponsePaging"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/cardsTurnoverItem"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cards/reconciliation/search": {
+            "post": {
+                "summary": "卡对账查询接口",
+                "tags": ["Cards"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "#/definitions/Paging"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "region": {
+                                            "type": "object",
+                                            "properties": {
+                                                "cityCode": {
+                                                    "type": "string",
+                                                    "description": "市州code"
+                                                },
+                                                "districtCode": {
+                                                    "type": "string",
+                                                    "description": "区县code"
+                                                },
+                                                "townCode": {
+                                                    "type": "string",
+                                                    "description": "乡镇code"
+                                                },
+                                                "villageCode": {
+                                                    "type": "string",
+                                                    "description": "村code"
+                                                }
+                                            }
+                                        },
+                                        "station": {
+                                            "type": "string",
+                                            "description": "服务站名称"
+                                        },
+                                        "stationCode": {
+                                            "type": "string",
+                                            "description": "站点编号"
+                                        },
+                                        "agentName": {
+                                            "type": "string",
+                                            "description": "代办员姓名"
+                                        },
+                                        "agentsCertificate": {
+                                            "type": "string",
+                                            "description": "身份证号"
+                                        },
+                                        "phoneNumber": {
+                                            "type": "string",
+                                            "description": "联系电话"
+                                        },
+                                        "paymentTimeStart": {
+                                            "type": "string",
+                                            "description": "转账时间开始"
+                                        },
+                                        "paymentTimeEnd": {
+                                            "type": "string",
+                                            "description": "转账时间结束"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paging": {
+                                            "$ref": "#/definitions/ResponsePaging"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/cardsReconciliationItem"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cardBill/recharge/search-export": {
+            "post": {
+                "summary": "服务站充值明细导出接口",
+                "tags": ["Cards"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "服务站充值明细导出",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "region": {
+                        			"type": "object",
+                        			"properties": {
+                        				"cityCode": {
+                        					"type": "string",
+                        					"description": "市州code"
+                        				},
+                        				"districtCode": {
+                        					"type": "string",
+                        					"description": "区县code"
+                        				},
+                        				"townCode": {
+                        					"type": "string",
+                        					"description": "乡镇code"
+                        				},
+                        				"villageCode": {
+                        					"type": "string",
+                        					"description": "村code"
+                        				}
+                        			}
+                        		},
+                                "station": {
+                        			"type": "string",
+                        			"description": "服务站名称"
+                        		},
+                        		"stationCode": {
+                        			"type": "string",
+                        			"description": "站点编号"
+                        		},
+                        		"agentName": {
+                        			"type": "string",
+                        			"description": "代办员姓名"
+                        		},
+                        		"agentsPhone": {
+                        			"type": "string",
+                        			"description": "代办员电话"
+                        		},
+                        		"salesmanName": {
+                        			"type": "string",
+                        			"description": "业务员姓名"
+                        		},
+                        		"salesmanPhone": {
+                        			"type": "string",
+                        			"description": "业务员电话"
+                        		},
+                        		"transTimeStart": {
+                        			"type": "string",
+                        			"description": "交易时间开始"
+                        		},
+                        		"transTimeEnd": {
+                        			"type": "string",
+                        			"description": "交易时间结束"
+                        		},
+                        		"PayType": {
+                        			"type": "string",
+                        			"description": "充值方式 null 全部 00 现金（默认） 01 银行卡"
+                        		},
+                                "status": {
+                                    "type": "string",
+                                    "description": "null,全部 0,待收款 1,已收款"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "导出返回数据",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "string",
+                                    "description": "导出的url"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cardbill/recharge/search-amount": {
+            "post": {
+                "summary": "服务站充值明细查询收款金额接口",
+                "tags": ["Cards"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "服务站充值明细查询收款金额",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "region": {
+                        			"type": "object",
+                        			"properties": {
+                        				"cityCode": {
+                        					"type": "string",
+                        					"description": "市州code"
+                        				},
+                        				"districtCode": {
+                        					"type": "string",
+                        					"description": "区县code"
+                        				},
+                        				"townCode": {
+                        					"type": "string",
+                        					"description": "乡镇code"
+                        				},
+                        				"villageCode": {
+                        					"type": "string",
+                        					"description": "村code"
+                        				}
+                        			}
+                        		},
+                                "station": {
+                        			"type": "string",
+                        			"description": "服务站名称"
+                        		},
+                        		"stationCode": {
+                        			"type": "string",
+                        			"description": "站点编号"
+                        		},
+                        		"agentName": {
+                        			"type": "string",
+                        			"description": "代办员姓名"
+                        		},
+                        		"agentsPhone": {
+                        			"type": "string",
+                        			"description": "代办员电话"
+                        		},
+                        		"salesmanName": {
+                        			"type": "string",
+                        			"description": "业务员姓名"
+                        		},
+                        		"salesmanPhone": {
+                        			"type": "string",
+                        			"description": "业务员电话"
+                        		},
+                        		"transTimeStart": {
+                        			"type": "string",
+                        			"description": "交易时间开始"
+                        		},
+                        		"transTimeEnd": {
+                        			"type": "string",
+                        			"description": "交易时间结束"
+                        		},
+                        		"PayType": {
+                        			"type": "string",
+                        			"description": "充值方式 null 全部 00 现金（默认） 01 银行卡"
+                        		},
+                                "status": {
+                                    "type": "string",
+                                    "description": "null,全部 0,待收款 1,已收款"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "导出返回数据",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "confirmAmount": {
+                                            "type": "number",
+                                            "description": "已确认金额"
+                                        },
+                                        "unConfirmAmount ": {
+                                            "type": "number",
+                                            "description": "待确认金额"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cardBill/bill/search-export": {
+            "post": {
+                "summary": "营业账单导出接口",
+                "tags": ["Cards"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "营业账单导出",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "region": {
+                        			"type": "object",
+                        			"properties": {
+                        				"cityCode": {
+                        					"type": "string",
+                        					"description": "市州code"
+                        				},
+                        				"districtCode": {
+                        					"type": "string",
+                        					"description": "区县code"
+                        				},
+                        				"townCode": {
+                        					"type": "string",
+                        					"description": "乡镇code"
+                        				},
+                        				"villageCode": {
+                        					"type": "string",
+                        					"description": "村code"
+                        				}
+                        			}
+                        		},
+                                "station": {
+                    				"type": "string",
+                    				"description": "服务站名称"
+                    			},
+                    			"stationCode": {
+                    				"type": "string",
+                    				"description": "站点编号"
+                    			},
+                    			"agentName": {
+                    				"type": "string",
+                    				"description": "代办员姓名"
+                    			},
+                    			"agentsPhone": {
+                    				"type": "string",
+                    				"description": "代办员电话"
+                    			},
+                    			"salesmanName": {
+                    				"type": "string",
+                    				"description": "业务员姓名"
+                    			},
+                    			"salesmanPhone": {
+                    				"type": "string",
+                    				"description": "业务员电话"
+                    			},
+                    			"billTimeStart": {
+                    				"type": "string",
+                    				"description": "账期时间开始"
+                    			},
+                    			"billTimeEnd": {
+                    				"type": "string",
+                    				"description": "账期时间结束"
+                    			}
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "导出返回数据",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "string",
+                                    "description": "导出的url"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "cardbill/bill/search-amount": {
+            "post": {
+                "summary": "营业账单查询收款金额接口",
+                "tags": ["Cards"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "营业账单查询收款金额",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "region": {
+                        			"type": "object",
+                        			"properties": {
+                        				"cityCode": {
+                        					"type": "string",
+                        					"description": "市州code"
+                        				},
+                        				"districtCode": {
+                        					"type": "string",
+                        					"description": "区县code"
+                        				},
+                        				"townCode": {
+                        					"type": "string",
+                        					"description": "乡镇code"
+                        				},
+                        				"villageCode": {
+                        					"type": "string",
+                        					"description": "村code"
+                        				}
+                        			}
+                        		},
+                                "station": {
+                    				"type": "string",
+                    				"description": "服务站名称"
+                    			},
+                    			"stationCode": {
+                    				"type": "string",
+                    				"description": "站点编号"
+                    			},
+                    			"agentName": {
+                    				"type": "string",
+                    				"description": "代办员姓名"
+                    			},
+                    			"agentsPhone": {
+                    				"type": "string",
+                    				"description": "代办员电话"
+                    			},
+                    			"salesmanName": {
+                    				"type": "string",
+                    				"description": "业务员姓名"
+                    			},
+                    			"salesmanPhone": {
+                    				"type": "string",
+                    				"description": "业务员电话"
+                    			},
+                    			"billTimeStart": {
+                    				"type": "string",
+                    				"description": "账期时间开始"
+                    			},
+                    			"billTimeEnd": {
+                    				"type": "string",
+                    				"description": "账期时间结束"
+                    			}
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "导出返回数据",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "confirmAmount": {
+                                            "type": "number",
+                                            "description": "已确认金额"
+                                        },
+                                        "unConfirmAmount ": {
+                                            "type": "number",
+                                            "description": "待确认金额"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cardBill/recharge/confirm": {
+            "post": {
+                "summary": "服务站充值确认收款接口",
+                "tags": ["Cards"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "服务站充值确认收款",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                    			"nos": {
+                    				"type": "array",
+                    				"description": "id数组",
+                                    "items": {
+                                        "type": "string",
+                                        "description": "id"
+                                    }
+                    			}
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "导出返回数据",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "boolean",
+                                    "description": "是否成功"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

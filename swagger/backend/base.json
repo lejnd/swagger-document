@@ -1,0 +1,15 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "内部管理-代发工资系统 API接口文档 后台",
+        "description": "一些返回参数的注释请点开实例左边的模型查看",
+        "contact": {
+            "name": "Jinx",
+            "url": "http://10.66.2.13/Baymax/baseDocument.git",
+            "email": "liujin@gznb.com"
+        },
+        "version": "1.0.0"
+    },
+    "host": "",
+    "basePath": ""
+}

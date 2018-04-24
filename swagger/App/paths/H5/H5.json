@@ -1,0 +1,681 @@
+{
+    "swagger": "2.0",
+    "paths": {
+      "/app/transaction/GetHaiboJSList": {
+          "post": {
+            "tags": [
+              "H5"
+            ],
+            "summary": "查询某代办员的海博卡结算列表",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    },
+                    "paging": {
+                      "type": "object",
+                      "properties": {
+                        "pageSize": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "20"
+                        },
+                        "pageIndex": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "1"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "paging": {
+                          "type": "object",
+                          "properties": {
+                            "total": {
+                              "type": "integer",
+                              "format": "int32",
+                              "default": "0"
+                            },
+                            "currentPage": {
+                              "type": "integer",
+                              "format": "int32",
+                              "default": "1"
+                            },
+                            "pageSize": {
+                              "type": "integer",
+                              "format": "int32",
+                              "default": "20"
+                            },
+                            "pageIndex": {
+                              "type": "integer",
+                              "format": "int32",
+                              "default": "1"
+                            },
+                            "pageCount": {
+                              "type": "integer",
+                              "format": "int32",
+                              "default": "1"
+                            }
+                          },
+                          "itemList": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "tradeDate": {
+                                  "type": "string",
+                                  "default": "结算日期"
+                                },
+                                "total": {
+                                  "type": "integer",
+                                  "format": "int32",
+                                  "default": "总金额"
+                                },
+                                "pay": {
+                                  "type": "integer",
+                                  "format": "int32",
+                                  "default": "已回款金额"
+                                },
+                                "surplus": {
+                                  "type": "integer",
+                                  "format": "int32",
+                                  "default": "剩余应回金额"
+                                },
+                                "status": {
+                                  "type": "string",
+                                  "default": "状态"
+                                },
+                                "jsId": {
+                                  "type": "integer",
+                                  "format": "int64",
+                                  "default": "结算ID"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "security": [
+            ]
+          }
+        },
+
+        "/app/transaction/GetHaiboTotalDetail": {
+          "post": {
+            "tags": [
+              "H5"
+            ],
+            "summary": "获取某代办员海博卡明细表中的充值和有效售卡信息",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "staffName": {
+                          "type": "string",
+                          "default": "代办员"
+                        },
+                        "workstationName": {
+                          "type": "string",
+                          "default": "工作站"
+                        },
+                        "cardNum": {
+                          "type": "string",
+                          "default": "售卡数量"
+                        },
+                        "rechargeAmount": {
+                          "type": "string",
+                          "default": "充值总金额"
+                        },
+                        "inActive": {
+                          "type": "string",
+                          "default": "是否参加活动"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "security": [
+            ]
+          }
+        },
+
+
+        "/app/transaction/GetHaiboSaleCardRank": {
+          "post": {
+            "tags": [
+              "H5"
+            ],
+            "summary": "海博卡有效开卡排名TOP10",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "CardNum": {
+                            "type": "string",
+                            "default": "有效开卡数量"
+                          },
+                          "WorkstationName": {
+                            "type": "string",
+                            "default": "工作站"
+                          },
+                          "StaffName": {
+                            "type": "string",
+                            "default": "代办员"
+                          },
+                          "Rank": {
+                            "type": "string",
+                            "default": "名次"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "security": [
+            ]
+          }
+        },
+
+
+        "/app/transaction/GetHaiboSaleRechargeRank": {
+          "post": {
+            "tags": [
+              "H5"
+            ],
+            "summary": "海博卡充值排名排名TOP10",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "RechargeAmount": {
+                            "type": "string",
+                            "default": "充值金额"
+                          },
+                          "WorkstationName": {
+                            "type": "string",
+                            "default": "工作站"
+                          },
+                          "StaffName": {
+                            "type": "string",
+                            "default": "代办员"
+                          },
+                          "Rank": {
+                            "type": "string",
+                            "default": "名次"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "security": [
+            ]
+          }
+        },
+
+
+        "/app/transaction/Search": {
+          "post": {
+            "tags": [
+              "H5"
+            ],
+            "summary": "查询账单列表",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    },
+                    "paging": {
+                      "type": "object",
+                      "properties": {
+                        "pageSize": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "20"
+                        },
+                        "pageIndex": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "1"
+                        }
+                      }
+                    },
+                    "condition": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "integer",
+                          "format": "int32",
+                          "default": "0"
+                        }
+                      }
+                    }
+
+
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "paging": {
+                          "type": "object",
+                          "properties": {
+                            "total": {
+                              "type": "integer",
+                              "format": "int32",
+                              "default": 0
+                            },
+                            "currentPage": {
+                              "type": "integer",
+                              "format": "int32",
+                              "default": 0
+                            },
+                            "pageSize": {
+                              "type": "integer",
+                              "format": "int32",
+                              "default": 0
+                            },
+                            "pageCount": {
+                              "type": "integer",
+                              "format": "int32",
+                              "default": 0
+                            },
+                            "pageIndex": {
+                              "type": "integer",
+                              "format": "int32",
+                              "default": 0
+                            }
+                          }
+                        },
+                        "itemList": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "recordsId": {
+                                "type": "integer",
+                                "format": "int64",
+                                "default": 0
+                              },
+                              "amount": {
+                                "type": "float",
+                                "default": 0.0
+                              },
+                              "billDetailType": {
+                                "type": "integer",
+                                "format": "int32",
+                                "default": 0
+                              },
+                              "transactionTime": {
+                                "type": "string",
+                                "default": "交易时间"
+                              },
+                              "status": {
+                                "type": "string",
+                                "default": "status"
+                              },
+                              "sortTime": {
+                                "type": "dateTime",
+                                "default": "dateTime"
+                              }
+                            }
+                          }
+
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "security": [
+            ]
+          }
+        },
+
+        "/app/transaction/BillDetail": {
+          "post": {
+            "tags": [
+              "H5"
+            ],
+            "summary": "查询账单详细",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "integer",
+                      "format": "int64",
+                      "default": 0
+                    },
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "default": 0
+                    },
+                    "phone":{
+                        "type":"string",
+                        "description": "电话号码"
+                    },
+                    "userId":{
+                        "type":"number",
+                        "description": "用户ID"
+                    },
+                    "token":{
+                        "type":"string",
+                        "description": "用户token"
+                    },
+                    "version":{
+                        "type":"string",
+                        "description": "版本号"
+                    },
+                    "isReactNative":{
+                        "type":"string",
+                        "description": "true"
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "type": "float",
+                          "default": "订单金额"
+                        },
+                        "status": {
+                          "type": "string",
+                          "default": "订单状态"
+                        },
+                        "paymentAccount": {
+                          "type": "string",
+                          "default": "缴费账号"
+                        },
+                        "orderNumber": {
+                          "type": "string",
+                          "default": "订单号"
+                        },
+                        "paymentTime": {
+                          "type": "string",
+                          "default": "交易时间"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "security": [
+            ]
+          }
+        }
+    }
+}

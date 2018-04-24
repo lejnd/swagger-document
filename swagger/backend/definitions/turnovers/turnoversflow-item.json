@@ -1,0 +1,199 @@
+{
+    "definitions": {
+        "turnoversFlowItem": {
+            "type": "object",
+            "description": "营业额流水",
+            "properties": {
+                "region": {
+                    "$ref": "#/definitions/Region"
+                },
+                "flowId": {
+                    "type": "number",
+                    "description": "营业额流水ID"
+                },
+                "agentId": {
+                    "type": "number",
+                    "description": "代办员工ID"
+                },
+                "station": {
+                    "type": "string",
+                    "description": "服务站名称"
+                },
+                "stationCode": {
+                    "type": "string",
+                    "description": "站点编号"
+                },
+                "stationAddress": {
+                    "type": "string",
+                    "description": "服务站地址"
+                },
+                "workModel": {
+                    "type": "string",
+                    "description": "合作模式，如：代办员"
+                },
+                "agentName": {
+                    "type": "string",
+                    "description": "代办员姓名"
+                },
+                "agentPhone": {
+                    "type": "string",
+                    "description": "代办员电话"
+                },
+                "idCard": {
+                    "type": "string",
+                    "description": "身份证号"
+                },
+                "bankCard": {
+                    "type": "string",
+                    "description": "银行卡号"
+                },
+                "bankNo": {
+                    "type": "string",
+                    "description": "银行行号"
+                },
+                "bankName": {
+                    "type": "string",
+                    "description": "银行名称"
+                },
+                "paymentTime": {
+                    "type": "string",
+                    "description": "转账时间"
+                },
+                "paymentAmount": {
+                    "type": "number",
+                    "description": "转账金额"
+                },
+                "turnoverUser": {
+                    "type": "number",
+                    "description": "回款人"
+                },
+                "turnoverAmount": {
+                    "type": "number",
+                    "description": "回款金额"
+                }
+            }
+        },
+        "overageChangeItem": {
+            "type": "object",
+            "description": "余额变更查询子项",
+            "properties": {
+                "stationName": {
+                    "type": "string",
+                    "description": "服务站名称"
+                },
+                "time": {
+                    "type": "string",
+                    "description": "时间"
+                },
+                "type": {
+                    "type": "number",
+                    "description": "类型 1,回款 2,超额退款"
+                },
+                "changeMoney": {
+                    "type": "number",
+                    "description": "变更金额"
+                },
+                "accountOverage": {
+                    "type": "number",
+                    "description": "账户余额"
+                },
+                "stationCode": {
+                    "type": "string",
+                    "description": "服务站编号"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "地区"
+                },
+                "invoiceNumber": {
+                    "type": "string",
+                    "description": "关联单据号"
+                }
+            }
+        },
+        "cityManagerTurnoverItem": {
+            "type": "object",
+            "description": "城市经理回款流水列表单项内容",
+            "properties": {
+                "traceNo": {
+                    "type": "string",
+                    "description": "凭证号"
+                },
+                "terId": {
+                    "type": "string",
+                    "description": "终端号"
+                },
+                "code": {
+                    "type": "string",
+                    "description": "服务站编号"
+                },
+                "refNo": {
+                    "type": "string",
+                    "description": "交易流水号"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "姓名"
+                },
+                "phone": {
+                    "type": "string",
+                    "description": "联系电话"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "职位 0大区经理, 1城市经理，2是业务员，3是代办员，4是合伙人"
+                },
+                "amount": {
+                    "type": "number",
+                    "description": "回款金额"
+                },
+                "createTime": {
+                    "type": "string",
+                    "description": "回款时间"
+                }
+            }
+        },
+        "cityManagerBillItem": {
+            "type": "object",
+            "description": "城市经理回款对账单列表单项内容",
+            "properties": {
+                "createTime": {
+                    "type": "string",
+                    "description": "账期"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "姓名"
+                },
+                "phone": {
+                    "type": "string",
+                    "description": "联系电话"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "职位 0大区经理, 1城市经理，2是业务员，3是代办员，4是合伙人"
+                },
+                "rechargeAmount": {
+                    "type": "string",
+                    "description": "账单金额"
+                },
+                "confirmAmount": {
+                    "type": "string",
+                    "description": "确认收款金额"
+                },
+                "backAmount": {
+                    "type": "string",
+                    "description": "回款额"
+                },
+                "remainAmount": {
+                    "type": "number",
+                    "description": "剩余应回"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "状态"
+                }
+            }
+        }
+    }
+}

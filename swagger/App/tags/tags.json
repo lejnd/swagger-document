@@ -1,0 +1,61 @@
+{
+    "swagger": "2.0",
+    "tags": [
+        {
+            "name": "ReplacPayment",
+            "description": "代回款相关接口"
+        },
+        {
+            "name": "WaitCollection",
+            "description": "待催收账款相关接口"
+        },
+        {
+            "name": "ReplacPaymentHistroy",
+            "description": "代回款记录"
+        },
+        {
+            "name": "stationBill",
+            "description": "服务站账单"
+        },
+        {
+            "name": "Common",
+            "description": "公共接口"
+        },
+        {
+            "name": "Farmer",
+            "description": "Farmer相关接口"
+        },
+        {
+            "name": "Agent",
+            "description": "Agent相关接口"
+        },
+        {
+            "name": "SupplyPlan",
+            "description": "我要补货"
+        },
+        {
+            "name": "ExclusiveSales",
+            "description": "包销相关接口"
+        },
+        {
+            "name": "Logistics",
+            "description": "物流相关接口"
+        },
+        {
+            "name": "Presell",
+            "description": "预售相关接口"
+        },
+        {
+            "name": "NewRequire",
+            "description": "新货申请相关接口"
+        },
+        {
+            "name": "Finance",
+            "description": "Finance相关接口"
+        },
+        {
+            "name": "Country",
+            "description": "一村一档相关接口"
+        }
+    ]
+}

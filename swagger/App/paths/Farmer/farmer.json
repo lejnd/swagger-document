@@ -1,0 +1,481 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/api/app/farmer/search":{
+            "post":{
+                "tags":[
+                    "Farmer"
+                ],
+                "summary":"查询农户是否开卡",
+                "description":"",
+                "parameters":[
+                    {
+                        "in":"body",
+                        "name":"body",
+                        "description":"请求参数",
+                        "required":true,
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "phone":{
+                                    "type":"string",
+                                    "description": "电话号码"
+                                },
+                                "userId":{
+                                    "type":"number",
+                                    "description": "用户ID"
+                                },
+                                "token":{
+                                    "type":"string",
+                                    "description": "用户token"
+                                },
+                                "version":{
+                                    "type":"string",
+                                    "description": "版本号"
+                                },
+                                "isReactNative":{
+                                    "type":"string",
+                                    "description": "true"
+                                },
+                                "farmerPhone":{
+                                    "type":"string",
+                                    "default": "15566666666"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"Api返回",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                    "code":{ "type":"integer","format":"int32" ,"default":0},
+                                    "msg":{ "type":"string","default":"ok" },
+                                    "data":{
+                                        "type":"object",
+                                        "properties":{
+                                            "goodsPlan":{ "type":"integer","format":"int32" ,"default":"是否添加过产品计划"},
+                                            "farmerId":{ "type":"integer","format":"int32" ,"default":0},
+                                            "farmerName":{ "type":"string","default":"张三" },
+                                            "address":{ "type":"string","default":"城北" },
+                                            "openTime":{ "type":"dateTime","default":"办卡时间" },
+                                            "chargeAmount":{"type":"number","default":"充值金额"},
+                                            "landowner":{"type":"integer","default":"大户：1，否：0"}
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                }
+            }
+        },
+        "/api/app/farmer/plan/search":{
+            "post":{
+                "tags":[
+                    "Farmer"
+                ],
+                "summary":"查询种植计划列表",
+                "description":"",
+                "parameters":[
+                    {
+                        "in":"body",
+                        "name":"body",
+                        "description":"请求参数",
+                        "required":true,
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "phone":{
+                                    "type":"string",
+                                    "description": "电话号码"
+                                },
+                                "userId":{
+                                    "type":"number",
+                                    "description": "用户ID"
+                                },
+                                "token":{
+                                    "type":"string",
+                                    "description": "用户token"
+                                },
+                                "version":{
+                                    "type":"string",
+                                    "description": "版本号"
+                                },
+                                "isReactNative":{
+                                    "type":"string",
+                                    "description": "true"
+                                },
+                                "paging":{
+                                    "type":"object",
+                                    "properties":{
+                                        "pageSize":{ "type":"integer","format":"int32" ,"default":"20" },
+                                        "pageIndex":{ "type":"integer","format":"int32" ,"default":"1" }
+                                    }
+                                },
+                                "condition":{
+                                   "type":"object",
+                                   "properties":{
+                                       "farmerId": { "type":"integer","format":"int32" ,"default":0},
+                                       "farmerPhone": { "type":"string","default":0},
+                                       "type":{ "type":"integer","format":"int32" ,"default":"未签约商品计划列表0" },
+                                       "planTime": { "type":"dateTime" ,"default":"计划年份"}
+                                   }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"Api返回",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                    "code":{ "type":"integer","format":"int32" ,"default":0},
+                                    "msg":{ "type":"string","default":"ok" },
+                                    "data":{
+                                        "type":"object",
+                                        "properties":{
+                                            "paging":{
+                                                "type":"object",
+                                                "properties":{
+                                                    "total": { "type":"integer","format":"int32" ,"default":0},
+                                                    "currentPage": { "type":"integer","format":"int32" ,"default":0},
+                                                    "pageSize": { "type":"integer","format":"int32" ,"default":0},
+                                                    "pageCount": { "type":"integer","format":"int32" ,"default":0},
+                                                    "pageIndex": { "type":"integer","format":"int32" ,"default":0}
+                                                }
+                                            },
+                                            "itemList":{
+                                                "type":"array",
+                                                "items":{
+                                                    "type":"object",
+                                                    "properties":{
+                                                        "farmerId": { "type":"integer","format":"int32" ,"default":0},
+                                                        "farmerName": { "type":"string","default":0},
+                                                        "farmerPhone": { "type":"integer","format":"int32" ,"default":0},
+                                                        "unit": { "type":"string" ,"default":"单位"},
+                                                        "goodsName": {"type":"string","default":"商品名称"},
+                                                        "plantQuantity": { "type":"integer","format":"int64" ,"default":"种植产量"},
+                                                        "preQuantity": { "type":"integer","format":"int64" ,"default":"预计产量"},
+                                                        "cropTime": { "type":"dateTime" ,"default":"收成时间"},
+                                                        "price": { "type":"number" ,"default":"去年同期价格"},
+                                                        "channel": {"type":"string","default":"去年销售渠道"},
+                                                        "intention": {"type":"string","default":"是否有意向"},
+                                                        "intentionQuantity": { "type":"integer","format":"int64" ,"default":"意向数据"},
+                                                        "exclusiveTime": { "type":"dateTime" ,"default":"签约时间"},
+                                                        "remark": {"type":"string","default":"备注"}
+                                                    }
+                                                }
+                                            },
+                                            "message": { "type":"integer","format":"int32" ,"default":"添加过商品计划：1，否：0"}
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                }
+            }
+        },
+        "/api/app/farmer/plan/add":{
+            "post":{
+                "tags":[
+                    "Farmer"
+                ],
+                "summary":"添加种植计划",
+                "description":"",
+                "parameters":[
+                    {
+                        "in":"body",
+                        "name":"body",
+                        "description":"请求参数",
+                        "required":true,
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "phone":{
+                                    "type":"string",
+                                    "description": "电话号码"
+                                },
+                                "userId":{
+                                    "type":"number",
+                                    "description": "用户ID"
+                                },
+                                "token":{
+                                    "type":"string",
+                                    "description": "用户token"
+                                },
+                                "version":{
+                                    "type":"string",
+                                    "description": "版本号"
+                                },
+                                "isReactNative":{
+                                    "type":"string",
+                                    "description": "true"
+                                },
+                                "plans":{
+                                    "type":"object",
+                                    "properties":{
+                                        "planTime": { "type":"dateTime" ,"default":"计划年份"},
+                                        "farmerId": { "type":"integer","format":"int32" ,"default":0},
+                                        "goodsId": { "type":"integer","format":"int32" ,"default":0},
+                                        "unit": { "type":"string" ,"default":"单位"},
+                                        "goodsName": {"type":"string","default":"商品名称"},
+                                        "plantQuantity": { "type":"integer","format":"int64" ,"default":"种植产量"},
+                                        "preQuantity": { "type":"integer","format":"int64" ,"default":"预计产量"},
+                                        "cropTime": { "type":"dateTime" ,"default":"收成时间"},
+                                        "price": { "type":"number" ,"default":"去年同期价格"},
+                                        "channel": {"type":"string","default":"去年销售渠道"},
+                                        "intention": {"type":"string","default":"是否有意向"},
+                                        "intentionQuantity": { "type":"integer","format":"int64" ,"default":"意向数据"},
+                                        "exclusiveTime": { "type":"dateTime" ,"default":"签约时间"},
+                                        "remark": {"type":"string","default":"备注"}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"Api返回",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                    "code": { "type":"integer","format":"int32" ,"default":0},
+                                    "msg":{ "type":"string","default":"ok" }
+                                }
+                            }
+                        }
+                }
+            }
+        },
+
+        "/api/app/farmer/intention/search":{
+            "post":{
+                "tags":[
+                    "Farmer"
+                ],
+                "summary":"查询意向信息列表",
+                "description":"",
+                "parameters":[
+                    {
+                        "in":"body",
+                        "name":"body",
+                        "description":"请求参数",
+                        "required":true,
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "phone":{
+                                    "type":"string",
+                                    "description": "电话号码"
+                                },
+                                "userId":{
+                                    "type":"number",
+                                    "description": "用户ID"
+                                },
+                                "token":{
+                                    "type":"string",
+                                    "description": "用户token"
+                                },
+                                "version":{
+                                    "type":"string",
+                                    "description": "版本号"
+                                },
+                                "isReactNative":{
+                                    "type":"string",
+                                    "description": "true"
+                                },
+                                "paging":{
+                                    "type":"object",
+                                    "properties":{
+                                        "pageSize":{ "type":"integer","format":"int32" ,"default":"20" },
+                                        "pageIndex":{ "type":"integer","format":"int32" ,"default":"1" }
+                                    }
+                                 }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"Api返回",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                    "code":{ "type":"integer","format":"int32" ,"default":0},
+                                    "msg":{ "type":"string","default":"ok" },
+                                    "data":{
+                                        "type":"object",
+                                        "properties":{
+                                            "paging":{
+                                                "type":"object",
+                                                "properties":{
+                                                    "total": { "type":"integer","format":"int32" ,"default":0},
+                                                    "currentPage": { "type":"integer","format":"int32" ,"default":0},
+                                                    "pageSize": { "type":"integer","format":"int32" ,"default":0},
+                                                    "pageCount": { "type":"integer","format":"int32" ,"default":0},
+                                                    "pageIndex": { "type":"integer","format":"int32" ,"default":0}
+                                                }
+                                            },
+                                            "itemList":{
+                                                "type":"array",
+                                                "items":{
+                                                    "type":"object",
+                                                    "properties":{
+                                                        "intention": { "type":"string" ,"default":"计划"}
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                }
+            }
+        },
+
+        "/api/app/farmer/intention/add":{
+            "post":{
+                "tags":[
+                    "Farmer"
+                ],
+                "summary":"添加意向信息",
+                "description":"",
+                "parameters":[
+                    {
+                        "in":"body",
+                        "name":"body",
+                        "description":"请求参数",
+                        "required":true,
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "phone":{
+                                    "type":"string",
+                                    "description": "电话号码"
+                                },
+                                "userId":{
+                                    "type":"number",
+                                    "description": "用户ID"
+                                },
+                                "token":{
+                                    "type":"string",
+                                    "description": "用户token"
+                                },
+                                "version":{
+                                    "type":"string",
+                                    "description": "版本号"
+                                },
+                                "isReactNative":{
+                                    "type":"string",
+                                    "description": "true"
+                                },
+                                "intentions":{
+                                    "type":"object",
+                                    "properties":{
+                                        "intention": { "type":"string" ,"default":"计划"},
+                                        "commodityList": {
+                                            "type":"array",
+                                            "items":{
+                                                "type":"object",
+                                                "properties":{
+                                                    "commodity": { "type":"string" ,"default":"商品名称"}
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"Api返回",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                    "code":{ "type":"integer","format":"int32" ,"default":0},
+                                    "msg":{ "type":"string","default":"ok" }
+                                }
+                            }
+                        }
+                }
+            }
+        },
+        "/app/farmer/plan/removeSub": {
+          "post": {
+            "tags": [
+              "Farmer"
+            ],
+            "summary": "删除计划中的商品",
+            "description": "",
+            "parameters": [
+              {
+                "in": "body",
+                "name": "body",
+                "description": "请求参数",
+                "required": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                      "phone":{
+                          "type":"string",
+                          "description": "电话号码"
+                      },
+                      "userId":{
+                          "type":"number",
+                          "description": "用户ID"
+                      },
+                      "token":{
+                          "type":"string",
+                          "description": "用户token"
+                      },
+                      "version":{
+                          "type":"string",
+                          "description": "版本号"
+                      },
+                      "isReactNative":{
+                          "type":"string",
+                          "description": "true"
+                      },
+                    "ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "integer",
+                        "format": "int64",
+                        "default": "明细ID"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Api返回",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "default": 0
+                    },
+                    "msg": {
+                      "type": "string",
+                      "default": "ok"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+    }
+}

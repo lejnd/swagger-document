@@ -1,0 +1,22 @@
+{
+  "definitions": {
+    "preSaleGoodsItem": {
+      "type": "object",
+      "description": "预售商品列表",
+      "properties": {
+        "goodsName": {
+          "type": "string",
+          "description": "商品名称"
+        },
+        "goodsNum": {
+          "type": "string",
+          "description": "商品数量"
+        },
+        "time": {
+          "type": "string",
+          "description": "日期"
+        }
+      }
+    }
+  }
+}

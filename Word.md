@@ -1,0 +1,34 @@
+# 单词约定
+
+- 用户: user
+- 供应: supply
+- 求购: demand
+- 发布: publish
+- 报价: quote
+- 国资自营: guozi-self
+- 后台用户: backstage user
+- 分类: category
+- 规格: specification
+- 资讯: news
+- 常见问题: FAQ
+- 省: province
+- 市: city
+- 区: district
+- 认证: certification
+- 价格播报: price report
+- 价格趋势: price trend
+- 足迹: trace
+- 定位: location
+- 区域: region
+- 审核: audit
+- 审核通过: approve, approval
+- 驳回: deny, denial
+- 收货地址: receive address
+- 发货地址: send address
+- 产地: origin address
+- 内容管理: content manage
+
+- 代办员 agent
+- 服务站/服务站名称 station
+- 身份证 idCard
+- 工资 wages

@@ -1,0 +1,278 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/sales/search": {
+            "post": {
+                "summary": "包销信息相关接口",
+                "tags": ["ExclusiveSales"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "#/definitions/Paging"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "region": {
+                                            "type": "object",
+                                            "properties": {
+                                                "cityCode": {
+                                                    "type": "string",
+                                                    "description": "市州code"
+                                                },
+                                                "districtCode": {
+                                                    "type": "string",
+                                                    "description": "区县code"
+                                                },
+                                                "townCode": {
+                                                    "type": "string",
+                                                    "description": "乡镇code"
+                                                },
+                                                "villageCode": {
+                                                    "type": "string",
+                                                    "description": "村code"
+                                                }
+                                            }
+                                        },
+                                        "station": {
+                                            "type": "string",
+                                            "description": "服务站名称"
+                                        },
+                                        "farmerName": {
+                                            "type": "string",
+                                            "description": "农户名称"
+                                        },
+                                        "stationCode": {
+                                            "type": "number",
+                                            "description": "站点编号"
+                                        },
+                                        "phone": {
+                                            "type": "string",
+                                            "description": "电话"
+                                        },
+                                        "saleTime": {
+                                            "type": "string",
+                                            "description": "收购时间从何时"
+                                        },
+                                        "saleTimeTo": {
+                                            "type": "string",
+                                            "description": "收购时间到何时"
+                                        },
+                                        "saleState": {
+                                            "type": "number",
+                                            "description": "收购状态，-1待收购，1已收购，0全部"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paging": {
+                                            "$ref": "#/definitions/ResponsePaging"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/salesItem"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/sales/state-handler": {
+            "post": {
+                "tags": ["ExclusiveSales"],
+                "summary":"状态改为“已收购”",
+                "description": "批量改为“已收购”",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "包销ID",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "saleIds": {
+                                    "type": "array",
+                                    "description": "包销ID数组，单个或多个",
+                                    "items": []
+                                },
+                                "saleState": {
+                                    "type": "number",
+                                    "description": "状态",
+                                    "items": 3
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回修改结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/sales/search-export":{
+            "post": {
+                "tags": ["ExclusiveSales"],
+                "summary":"包销订单批量导出接口",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "#/definitions/Paging"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "region": {
+                                            "type": "object",
+                                            "properties": {
+                                                "cityCode": {
+                                                    "type": "string",
+                                                    "description": "市州code"
+                                                },
+                                                "districtCode": {
+                                                    "type": "string",
+                                                    "description": "区县code"
+                                                },
+                                                "townCode": {
+                                                    "type": "string",
+                                                    "description": "乡镇code"
+                                                },
+                                                "villageCode": {
+                                                    "type": "string",
+                                                    "description": "村code"
+                                                }
+                                            }
+                                        },
+                                        "station": {
+                                            "type": "string",
+                                            "description": "服务站名称"
+                                        },
+                                        "farmerName": {
+                                            "type": "string",
+                                            "description": "农户名称"
+                                        },
+                                        "stationCode": {
+                                            "type": "number",
+                                            "description": "站点编号"
+                                        },
+                                        "phone": {
+                                            "type": "string",
+                                            "description": "电话"
+                                        },
+                                        "saleTime": {
+                                            "type": "string",
+                                            "description": "收购时间从何时"
+                                        },
+                                        "saleTimeTo": {
+                                            "type": "string",
+                                            "description": "收购时间到何时"
+                                        },
+                                        "saleState": {
+                                            "type": "number",
+                                            "description": "收购状态，-1待收购，1已收购，0全部"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "exportUrl": {
+                                            "type": "string",
+                                            "description": "导出链接"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

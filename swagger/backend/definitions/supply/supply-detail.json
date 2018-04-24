@@ -1,0 +1,46 @@
+{
+  "definitions": {
+    "supplyDetail": {
+      "type": "object",
+      "description": "补货单详情",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "编号"
+        },
+        "upc": {
+          "type": "string",
+          "description": "商品条码"
+        },
+        "productCode": {
+          "type": "string",
+          "description": "平台编号"
+        },
+        "name": {
+          "type": "string",
+          "description": "商品名称"
+        },
+        "spec": {
+          "type": "string",
+          "description": "规格"
+        },
+        "package": {
+          "type": "string",
+          "description": "包装量"
+        },
+        "unit": {
+          "type": "string",
+          "description": "单位"
+        },
+        "amount": {
+          "type": "string",
+          "description": "补货量"
+        },
+        "outAmount": {
+          "type": "string",
+          "description": "发货量"
+        }
+      }
+    }
+  }
+}

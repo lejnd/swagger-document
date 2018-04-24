@@ -1,0 +1,66 @@
+{
+  "definitions": {
+    "farmerItem": {
+      "type": "object",
+      "description": "农户列表",
+      "properties": {
+        "id": {
+          "type": "number",
+          "description": " FarmerID"
+        },
+        "cityName": {
+            "type": "string",
+            "description": "市／州 名"
+        },
+        "districtName": {
+            "type": "string",
+            "description": "区／县 名"
+        },
+        "townName": {
+            "type": "string",
+            "description": "乡／镇 名"
+        },
+        "villageName": {
+            "type": "string",
+            "description": "村名"
+        },
+        "farmerName": {
+          "type": "string",
+          "description": "农户姓名"
+        },
+        "idCard": {
+          "type": "string",
+          "description": "身份证号"
+        },
+        "cardNumber": {
+          "type": "string",
+          "description": "卡号"
+        },
+        "phone": {
+          "type": "string",
+          "description": "电话"
+        },
+        "station": {
+            "type": "string",
+            "description": "服务站名称"
+        },
+        "stationCode": {
+            "type": "string",
+            "description": "站点编号"
+        },
+        "agent_name": {
+            "type": "string",
+            "description": "代办员名称"
+        },
+        "planState": {
+          "type": "number",
+          "description": "计划状态：0-未建计划，1-已建计划，2-全部状态"
+        },
+        "activateCardDate": {
+            "type": "string",
+            "description": "办卡时间"
+        }
+      }
+    }
+  }
+}

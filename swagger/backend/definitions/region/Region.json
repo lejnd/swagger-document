@@ -1,0 +1,81 @@
+{
+    "definitions": {
+        "Region": {
+            "name": "region",
+            "description": "地区-省市县",
+            "type": "object",
+            "properties": {
+                "city": {
+                    "type": "object",
+                    "properties": {
+                        "code": {
+                            "type": "string",
+                            "description": "市／州 Id"
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "市／州 名"
+                        }
+                    }
+                },
+                "district": {
+                    "type": "object",
+                    "properties": {
+                        "code": {
+                            "type": "string",
+                            "description": "区／县 Id"
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "区／县 名"
+                        }
+                    }
+                },
+                "town": {
+                    "type": "object",
+                    "properties": {
+                        "code": {
+                            "type": "string",
+                            "description": "乡／镇 Id"
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "乡／镇 名"
+                        }
+                    }
+                },
+                "village": {
+                    "type": "object",
+                    "properties": {
+                        "code": {
+                            "type": "string",
+                            "description": "村Id"
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "村名"
+                        }
+                    }
+                }
+            },
+            "example": {
+                "city": {
+                    "code": "222",
+                    "name": "昆明市"
+                },
+                "district": {
+                    "code": "333",
+                    "name": "西山区"
+                },
+                "village": {
+                    "code": "444",
+                    "name": "村"
+                },
+                "town": {
+                    "code": "444",
+                    "name": "XX乡"
+                }
+            }
+        }
+    }
+}

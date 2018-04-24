@@ -1,0 +1,65 @@
+{
+    "definitions": {
+        "paymentsReconciliationItem": {
+            "type": "object",
+            "description": "缴费对账统计流水",
+            "properties": {
+                "region": {
+                    "$ref": "#/definitions/Region"
+                },
+                "flowId": {
+                    "type": "number",
+                    "description": "统计流水ID"
+                },
+                "agentId": {
+                    "type": "number",
+                    "description": "代办员工ID"
+                },
+                "station": {
+                    "type": "string",
+                    "description": "服务站名称"
+                },
+                "stationCode": {
+                    "type": "string",
+                    "description": "站点编号"
+                },
+                "stationAddress": {
+                    "type": "string",
+                    "description": "服务站地址"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "合作模式"
+                },
+                "agentName": {
+                    "type": "string",
+                    "description": "姓名"
+                },
+                "agentPhone": {
+                    "type": "string",
+                    "description": "联系电话"
+                },
+                "agentsCertificate": {
+                    "type": "string",
+                    "description": "身份证号"
+                },
+                "cardPhone": {
+                    "type": "string",
+                    "description": "卡号"
+                },
+                "useLimit": {
+                    "type": "number",
+                    "description": "使用额度"
+                },
+                "repaymentAmount": {
+                    "type": "number",
+                    "description": "还款金额"
+                },
+                "remainAmount": {
+                    "type": "number",
+                    "description": "剩余应还"
+                }
+            }
+        }
+    }
+}

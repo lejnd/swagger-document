@@ -1,0 +1,46 @@
+{
+    "definitions": {
+        "logisticsSubItem": {
+            "type": "object",
+            "description": "物流配送商品详情",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": " 物流子订单ID"
+                },
+                "goodsName": {
+                    "type": "string",
+                    "description": "商品名称"
+                },
+                "distributionNumber": {
+                    "type": "number",
+                    "description": "配送数量"
+                },
+                "receiveName": {
+                    "type": "string",
+                    "description": "接收人名字"
+                },
+                "receivePhone": {
+                    "type": "string",
+                    "description": "接收人电话"
+                },
+                "workstationName": {
+                    "type": "string",
+                    "description": "服务站名称"
+                },
+                "status": {
+                    "type": "number",
+                    "description": "配送订单状态（1：待收货2：已收货）"
+                },
+                "createUserName": {
+                    "type": "string",
+                    "description": "创建人"
+                },
+                "createTime": {
+                    "type": "string",
+                    "description": "创建时间"
+                }
+            }
+        }
+    }
+}

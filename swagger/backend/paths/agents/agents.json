@@ -1,0 +1,305 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/agents/search": {
+            "post": {
+                "summary": "代办员查询接口",
+                "tags": ["Agents"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "#/definitions/Paging"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "region": {
+                                            "type": "object",
+                                            "properties": {
+                                                "cityCode": {
+                                                    "type": "string",
+                                                    "description": "市州code"
+                                                },
+                                                "districtCode": {
+                                                    "type": "string",
+                                                    "description": "区县code"
+                                                },
+                                                "townCode": {
+                                                    "type": "string",
+                                                    "description": "乡镇code"
+                                                },
+                                                "villageCode": {
+                                                    "type": "string",
+                                                    "description": "村code"
+                                                }
+                                            }
+                                        },
+                                        "agentState": {
+                                            "type": "number",
+                                            "description": "员工状态，0离职，1在职"
+                                        },
+                                        "agentName": {
+                                            "type": "string",
+                                            "description": "代办员姓名"
+                                        },
+                                        "idCard": {
+                                            "type": "string",
+                                            "description": "身份证号"
+                                        },
+                                        "station": {
+                                            "type": "string",
+                                            "description": "服务站名称"
+                                        },
+                                        "entryTime": {
+                                            "type": "string",
+                                            "description": "入职开始日期"
+                                        },
+                                        "entryTimeTo": {
+                                            "type": "string",
+                                            "description": "入职时间到何时"
+                                        },
+                                        "bankName": {
+                                            "type": "string",
+                                            "description": "开户银行"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paging": {
+                                            "$ref": "#/definitions/ResponsePaging"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/agentItem"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/agents/{agentId}":{
+            "get":{
+                "tags": ["Agents"],
+                "summary":"获取代办员详情",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"代办员详情",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/agentDetail"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/agents/export":{
+            "post": {
+                "tags": ["Agents"],
+                "summary":"批量导出接口",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "region": {
+                                            "type": "object",
+                                            "properties": {
+                                                "cityCode": {
+                                                    "type": "string",
+                                                    "description": "市州code"
+                                                },
+                                                "districtCode": {
+                                                    "type": "string",
+                                                    "description": "区县code"
+                                                },
+                                                "townCode": {
+                                                    "type": "string",
+                                                    "description": "乡镇code"
+                                                },
+                                                "villageCode": {
+                                                    "type": "string",
+                                                    "description": "村code"
+                                                }
+                                            }
+                                        },
+                                        "agentState": {
+                                            "type": "number",
+                                            "description": "员工状态，0离职，1在职"
+                                        },
+                                        "agentName": {
+                                            "type": "string",
+                                            "description": "代办员姓名"
+                                        },
+                                        "idCard": {
+                                            "type": "string",
+                                            "description": "身份证号"
+                                        },
+                                        "station": {
+                                            "type": "string",
+                                            "description": "服务站名称"
+                                        },
+                                        "entryTime": {
+                                            "type": "string",
+                                            "description": "入职开始日期"
+                                        },
+                                        "entryTimeTo": {
+                                            "type": "string",
+                                            "description": "入职时间到何时"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "exportUrl": {
+                                            "type": "string",
+                                            "description": "导出链接"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/agents/disable-enable": {
+            "post": {
+                "tags": ["Agents"],
+                "summary":"修改状态",
+                "description": "修改状态",
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "代办员ID",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "saleIds": {
+                                    "type": "array",
+                                    "description": "代办员ID数组，单个或多个，禁用只能单个",
+                                    "items": {
+                                        "type": "number"
+                                    }
+                                },
+                                "status": {
+                                    "type": "number",
+                                    "description": "修改为该状态：-1禁用、50启用"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"返回修改结果",
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功，失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

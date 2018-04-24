@@ -1,0 +1,648 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/wages/search": {
+            "post": {
+                "summary": "工资查询接口",
+                "tags": ["Wages"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "#/definitions/Paging"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "approvalState": {
+                                            "type": "number",
+                                            "description": "工资审批状态，0未提交审批，1待审批，2审批通过，3审批失败"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paging": {
+                                            "$ref": "#/definitions/ResponsePaging"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/wagesItem"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/wages/get-agents-standard": {
+            "get": {
+                "summary": "获取代办员工资奖金标准",
+                "tags": ["Wages"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "baseCost": {
+                                                "type": "number",
+                                                "description": "代办费"
+                                            },
+                                            "bonus": {
+                                                "type": "number",
+                                                "description": "销售奖励"
+                                            },
+                                            "targetTurnover": {
+                                                "type": "number",
+                                                "description": "目标营业额"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/wages/set-agents-standard": {
+            "post": {
+                "summary": "设置代办员工资标准",
+                "tags": ["Wages"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "baseCost": {
+                                    "type": "number",
+                                    "description": "代办费(元)"
+                                },
+                                "bonus": {
+                                    "type": "number",
+                                    "description": "销售奖励(元)"
+                                },
+                                "targetTurnover": {
+                                    "type": "number",
+                                    "description": "目标营业额(元)"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "设置成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/wages/get-partner-standard": {
+            "get": {
+                "summary": "获取合伙人工资标准",
+                "tags": ["Wages"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "upper": {
+                                                "type": "number",
+                                                "description": "上限"
+                                            },
+                                            "floor": {
+                                                "type": "number",
+                                                "description": "下限"
+                                            },
+                                            "wages": {
+                                                "type": "number",
+                                                "description": "对应工资"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/wages/agents-base-search": {
+            "post": {
+                "summary": "代办员代办费明细查询接口",
+                "tags": ["Wages"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "#/definitions/Paging"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "accountsTime": {
+                                            "type": "string",
+                                            "description": "时间"
+                                        },
+                                        "stadtionId": {
+                                            "type": "number",
+                                            "description": "服务站编号"
+                                        },
+                                        "stadtionName": {
+                                            "type": "string",
+                                            "description": "服务站名称"
+                                        },
+                                        "agentsName": {
+                                            "type": "string",
+                                            "description": "代办员姓名"
+                                        },
+                                        "agentsTel": {
+                                            "type": "number",
+                                            "description": "代办员电话"
+                                        },
+                                        "agentsCertificate": {
+                                            "type": "number",
+                                            "description": "代办员身份号码"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paging": {
+                                            "$ref": "#/definitions/ResponsePaging"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/wagesBase"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/wages/agents-bonus-search": {
+            "post": {
+                "summary": "代办员奖金明细查询接口",
+                "tags": ["Wages"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "#/definitions/Paging"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "accountsTime": {
+                                            "type": "string",
+                                            "description": "时间"
+                                        },
+                                        "stadtionId": {
+                                            "type": "number",
+                                            "description": "服务站编号"
+                                        },
+                                        "stadtionName": {
+                                            "type": "string",
+                                            "description": "服务站名称"
+                                        },
+                                        "agentsName": {
+                                            "type": "string",
+                                            "description": "代办员姓名"
+                                        },
+                                        "agentsTel": {
+                                            "type": "number",
+                                            "description": "代办员电话"
+                                        },
+                                        "agentsCertificate": {
+                                            "type": "number",
+                                            "description": "代办员身份号码"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paging": {
+                                            "$ref": "#/definitions/ResponsePaging"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/wagesBonus"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/wages/agents-partner-search": {
+            "post": {
+                "summary": "代办员（合伙人）明细查询接口",
+                "tags": ["Wages"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "#/definitions/Paging"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "accountsTime": {
+                                            "type": "string",
+                                            "description": "时间"
+                                        },
+                                        "stadtionId": {
+                                            "type": "number",
+                                            "description": "服务站编号"
+                                        },
+                                        "stadtionName": {
+                                            "type": "string",
+                                            "description": "服务站名称"
+                                        },
+                                        "agentsName": {
+                                            "type": "string",
+                                            "description": "代办员姓名"
+                                        },
+                                        "agentsTel": {
+                                            "type": "number",
+                                            "description": "代办员电话"
+                                        },
+                                        "agentsCertificate": {
+                                            "type": "number",
+                                            "description": "代办员身份号码"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paging": {
+                                            "$ref": "#/definitions/ResponsePaging"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/wagesPartner"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/wages/checking": {
+            "post": {
+                "summary": "核算接口",
+                "tags": ["Wages"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "accountsTime": {
+                                    "type": "string",
+                                    "description": "结算时间 2017-04"
+                                },
+                                "checkType": {
+                                    "type": "number",
+                                    "description": "核算的类型 1代办员代办费 2代办员奖金 3合伙人代办费"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "msg": {
+                                            "type": "string",
+                                            "description": "成功信息"
+                                        },
+                                        "code": {
+                                            "type": "string",
+                                            "description": "成功编码 0",
+                                            "required": true
+                                        },
+                                        "data": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/wages/export": {
+            "get": {
+                "summary": "明细导出接口（直接下载Excel文件 包含条件下所有人员明细）",
+                "tags": ["Wages"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "accountsTime": {
+                                    "type": "string",
+                                    "description": "结算时间 2017-04"
+                                },
+                                "checkType": {
+                                    "type": "number",
+                                    "description": "核算的类型 1代办员代办费 2代办员奖金 3合伙人代办费"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功"
+                    }
+                }
+            }
+        },
+        "/wages/import-excel": {
+            "post": {
+                "summary": "上传 Excel 文件，获取考核系数，计算结果",
+                "tags": ["Wages"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "file": {
+                                    "type": "file",
+                                    "description": "Excel 文件"
+                                },
+                                "type": {
+                                    "type": "number",
+                                    "description": "导入的考核系数类型 1代办员代办费考核系数 2代办员奖金考核系数 3合伙人代办费考核系数"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "成功"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,328 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/logistics/search": {
+            "post": {
+                "summary": "配送信息查询接口",
+                "tags": ["Logistics"],
+                "parameters": [{
+                    "$ref": "#/definitions/Token"
+                }, {
+                    "in": "body",
+                    "name": "body",
+                    "description": "分页和查询条件",
+                    "required": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "paging": {
+                                "$ref": "#/definitions/Paging"
+                            },
+                            "condition": {
+                                "type": "object",
+                                "description": "查询条件",
+                                "properties": {
+                                    "region": {
+                                        "type": "object",
+                                        "properties": {
+                                            "cityCode": {
+                                                "type": "string",
+                                                "description": "市州code"
+                                            },
+                                            "districtCode": {
+                                                "type": "string",
+                                                "description": "区县code"
+                                            },
+                                            "townCode": {
+                                                "type": "string",
+                                                "description": "乡镇code"
+                                            },
+                                            "villageCode": {
+                                                "type": "string",
+                                                "description": "村code"
+                                            }
+                                        }
+                                    },
+                                    "workstationName": {
+                                        "type": "string",
+                                        "description": "服务站名称"
+                                    },
+                                    "workstationCode": {
+                                        "type": "string",
+                                        "description": "站点编号"
+                                    },
+                                    "status": {
+                                        "type": "number",
+                                        "description": "配送订单状态（1：未签收 2：已签收 0:全部）"
+                                    },
+                                    "sendTimeStart": {
+                                        "type": "string",
+                                        "description": "发货时间开始时间"
+                                    },
+                                    "sendTimeEnd": {
+                                        "type": "string",
+                                        "description": "发货时间结束时间"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paging": {
+                                            "$ref": "#/definitions/ResponsePaging"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/logisticsItem"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/logistics/{logisticsId}": {
+            "get": {
+                "summary": "物流订单详情",
+                "tags": ["Logistics"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "path",
+                        "name": "logisticsId",
+                        "required": true,
+                        "type": "integer",
+                        "description": "物流订单id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "商品物流结果",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "workstationName": {
+                                            "type": "string",
+                                            "description": "服务站名称"
+                                        },
+                                        "logisticsStore": {
+                                            "type": "string",
+                                            "description": "物流商"
+                                        },
+                                        "logisticsCode": {
+                                            "type": "string",
+                                            "description": "物流编号"
+                                        },
+                                        "receiveInfo": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/receiveInfoItem"
+                                            },
+                                            "description": "收货人信息"
+                                        },
+                                        "status": {
+                                            "type": "number",
+                                            "description": "配送订单状态（1：未签收 2：已签收）"
+                                        },
+                                        "sendTime": {
+                                            "type": "string",
+                                            "description": "发货时间"
+                                        },
+                                        "receiveTime": {
+                                            "type": "string",
+                                            "description": "收货时间"
+                                        },
+                                        "goodsInfo": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/goodsInfoItem"
+                                            },
+                                            "description": "商品信息"
+                                        },
+                                        "createUserName": {
+                                            "type": "string",
+                                            "description": "创建人"
+                                        },
+                                        "picList": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "description": "图片id"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/logistics/receive": {
+            "post": {
+                "summary": "物流订单确认收货接口",
+                "tags": ["Logistics"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "物流订单id数组",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "description": "物流订单id"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "修改结果",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/logistics/export": {
+            "post": {
+                "summary": "物流订单导出接口",
+                "tags": ["Logistics"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "导出参数",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "region": {
+                                    "type": "object",
+                                    "properties": {
+                                        "cityCode": {
+                                            "type": "string",
+                                            "description": "市州code"
+                                        },
+                                        "districtCode": {
+                                            "type": "string",
+                                            "description": "区县code"
+                                        },
+                                        "townCode": {
+                                            "type": "string",
+                                            "description": "乡镇code"
+                                        }
+                                    }
+                                },
+                                "workstationName": {
+                                    "type": "string",
+                                    "description": "服务站名称"
+                                },
+                                "workstationCode": {
+                                    "type": "string",
+                                    "description": "站点编号"
+                                },
+                                "status": {
+                                    "type": "number",
+                                    "description": "配送订单状态（1：未签收 2：已签收 0:全部）"
+                                },
+                                "sendTimeStart": {
+                                    "type": "string",
+                                    "description": "发货时间开始时间"
+                                },
+                                "sendTimeEnd": {
+                                    "type": "string",
+                                    "description": "发货时间结束时间"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "导出结果",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "exportUrl": {
+                                            "type": "string",
+                                            "description": "导出地址"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

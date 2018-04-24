@@ -1,0 +1,73 @@
+{
+    "definitions": {
+        "preSaleItem": {
+            "type": "object",
+            "description": "预售订单列表",
+            "properties": {
+                "region": {
+                    "$ref": "#/definitions/Region"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "预售订单ID"
+                },
+                "orderNumber": {
+                    "type": "string",
+                    "description": "订单编号"
+                },
+                "farmerName": {
+                    "type": "string",
+                    "description": "农户名字"
+                },
+                "farmerPhone": {
+                    "type": "string",
+                    "description": "农户电话"
+                },
+                "stationName": {
+                    "type": "string",
+                    "description": "服务站名称"
+                },
+                "stationCode": {
+                    "type": "string",
+                    "description": "站点编号"
+                },
+                "chargeAmount": {
+                    "type": "string",
+                    "description": "预付金额"
+                },
+                "preAmountNo": {
+                    "type": "string",
+                    "description": "预付凭证号"
+                },
+                "goodsName": {
+                    "type": "string",
+                    "description": "商品名称"
+                },
+                "needGoodsTotal": {
+                    "type": "number",
+                    "description": "要货总量"
+                },
+                "unit": {
+                    "type": "string",
+                    "description": "商品单位"
+                },
+                "isLarge": {
+                    "type": "boolean",
+                    "description": "是否大户"
+                },
+                "status": {
+                    "type": "number",
+                    "description": "预售订单状态 1、未完成；3、已完成；"
+                },
+                "createUserName": {
+                    "type": "string",
+                    "description": "创建人名字"
+                },
+                "createTime": {
+                    "type": "string",
+                    "description": "创建时间"
+                }
+            }
+        }
+    }
+}

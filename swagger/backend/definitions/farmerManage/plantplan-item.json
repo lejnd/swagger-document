@@ -1,0 +1,114 @@
+{
+  "definitions": {
+    "plantplanItem": {
+      "type": "object",
+      "description": "种植/养殖计划列表",
+      "properties": {
+        "id": {
+          "type": "number",
+          "description": " PlantingPlanID"
+        },
+        "cityName": {
+            "type": "string",
+            "description": "市／州 名"
+        },
+        "districtName": {
+            "type": "string",
+            "description": "区／县 名"
+        },
+        "townName": {
+            "type": "string",
+            "description": "乡／镇 名"
+        },
+        "villageName": {
+            "type": "string",
+            "description": "村名"
+        },
+        "farmerId": {
+          "type": "number",
+          "description": "农户Id"
+        },
+        "farmerName": {
+          "type": "string",
+          "description": "农户名称"
+        },
+        "phone": {
+          "type": "string",
+          "description": "电话"
+        },
+        "station": {
+            "type": "string",
+            "description": "服务站名称"
+        },
+        "stationCode": {
+            "type": "string",
+            "description": "站点编号"
+        },
+        "goodsName": {
+          "type": "string",
+          "description": "商品名称"
+        },
+        "unit": {
+          "type": "string",
+          "description": "商品单位"
+        },
+        "estimatedOutput": {
+          "type": "number",
+          "description": "今年预计产量"
+        },
+        "year": {
+          "type": "number",
+          "description": "计划年份"
+        },
+        "preSignDate": {
+          "type": "string",
+          "description": "预计签约时间"
+        },
+        "isIntention": {
+          "type": "number",
+          "description": "是否意向：0-否，1-是"
+        },
+        "intentionNumber": {
+          "type": "number",
+          "description": "意向数量"
+        },
+        "lastSaleChannel": {
+          "type": "string",
+          "description": "去年销售渠道"
+        },
+        "lastyearPrice": {
+          "type": "number",
+          "description": "去年同期收购价格"
+        },
+        "harvestTime": {
+          "type": "string",
+          "description": "收成时间"
+        },
+        "status": {
+            "type": "number",
+            "description": "签约状态：0-未签约，1-已签约，2-全部状态"
+        },
+        "createUserName": {
+          "type": "string",
+          "description": "创建人"
+        },
+        "createTime": {
+          "type": "string",
+          "description": "创建时间"
+        },
+        "plantArea": {
+          "type": "number",
+          "description": "种植养殖量"
+        },
+        "remark": {
+          "type": "string",
+          "description": "备注"
+        },
+        "unit": {
+            "type": "string",
+            "description": "商品单位"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,543 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/citymanager/flow/search": {
+            "post": {
+                "summary": "城市经理回款流水查询接口",
+                "tags": ["Turnovers"],
+                "parameters": [{
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "#/definitions/Paging"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "startTime": {
+                                            "type": "string",
+                                            "description": "开始时间"
+                                        },
+                                        "endTime": {
+                                            "type": "string",
+                                            "description": "结束时间"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "description": "姓名"
+                                        },
+                                        "phone": {
+                                            "type": "string",
+                                            "description": "联系电话"
+                                        },
+                                        "traceNo": {
+                                            "type": "string",
+                                            "description": "凭证号"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paging": {
+                                            "$ref": "#/definitions/ResponsePaging"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/cityManagerTurnoverItem"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/overage/change/search": {
+            "post": {
+                "summary": "余额变更查询接口",
+                "tags": ["Turnovers"],
+                "parameters": [{
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "#/definitions/Paging"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "stationCode": {
+                                            "type": "string",
+                                            "description": "服务站编号"
+                                        },
+                                        "stationName": {
+                                            "type": "string",
+                                            "description": "服务站名称"
+                                        },
+                                        "type": {
+                                            "type": "number",
+                                            "description": "类型 null,所有 1,回款 2,超额退款"
+                                        },
+                                        "region": {
+                                            "type": "object",
+                                            "properties": {
+                                                "cityCode": {
+                                                    "type": "string",
+                                                    "description": "市州code"
+                                                },
+                                                "districtCode": {
+                                                    "type": "string",
+                                                    "description": "区县code"
+                                                },
+                                                "townCode": {
+                                                    "type": "string",
+                                                    "description": "乡镇code"
+                                                },
+                                                "villageCode": {
+                                                    "type": "string",
+                                                    "description": "村code"
+                                                }
+                                            }
+                                        },
+                                        "invoiceNumber": {
+                                            "type": "string",
+                                            "description": "关联单据号"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paging": {
+                                            "$ref": "#/definitions/ResponsePaging"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/overageChangeItem"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/overage/change/export": {
+            "post": {
+                "summary": "余额变更导出接口",
+                "tags": ["Turnovers"],
+                "parameters": [{
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "导出",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "stationCode": {
+                                    "type": "string",
+                                    "description": "服务站编号"
+                                },
+                                "stationName": {
+                                    "type": "string",
+                                    "description": "服务站名称"
+                                },
+                                "type": {
+                                    "type": "number",
+                                    "description": "类型 null,所有 1,退货 2,回款 3,超额退款"
+                                },
+                                "region": {
+                                    "type": "object",
+                                    "properties": {
+                                        "cityCode": {
+                                            "type": "string",
+                                            "description": "市州code"
+                                        },
+                                        "districtCode": {
+                                            "type": "string",
+                                            "description": "区县code"
+                                        },
+                                        "townCode": {
+                                            "type": "string",
+                                            "description": "乡镇code"
+                                        },
+                                        "villageCode": {
+                                            "type": "string",
+                                            "description": "村code"
+                                        }
+                                    }
+                                },
+                                "invoiceNumber": {
+                                    "type": "string",
+                                    "description": "关联单据号"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "导出成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0"
+                                },
+                                "data": {
+                                    "type": "string",
+                                    "description": "导出路径"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/citymanager/flow/search-export": {
+            "post": {
+                "summary": "城市经理回款流水列表导出",
+                "tags": ["Turnovers"],
+                "parameters": [{
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "startTime": {
+                                    "type": "string",
+                                    "description": "开始时间"
+                                },
+                                "endTime": {
+                                    "type": "string",
+                                    "description": "结束时间"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "description": "姓名"
+                                },
+                                "phone": {
+                                    "type": "string",
+                                    "description": "联系电话"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "导出成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "string",
+                                    "description": "文件 key"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/citymanager/bill/search": {
+            "post": {
+                "summary": "城市经理回款对账单查询接口",
+                "tags": ["Turnovers"],
+                "parameters": [{
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "#/definitions/Paging"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "startTime": {
+                                            "type": "string",
+                                            "description": "开始时间"
+                                        },
+                                        "endTime": {
+                                            "type": "string",
+                                            "description": "结束时间"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "description": "姓名"
+                                        },
+                                        "phone": {
+                                            "type": "string",
+                                            "description": "电话"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paging": {
+                                            "$ref": "#/definitions/ResponsePaging"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/cityManagerBillItem"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/citymanager/bill/search-export": {
+            "post": {
+                "summary": "城市经理回款对账单列表导出",
+                "tags": ["Turnovers"],
+                "parameters": [{
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "startTime": {
+                                    "type": "string",
+                                    "description": "开始时间"
+                                },
+                                "endTime": {
+                                    "type": "string",
+                                    "description": "结束时间"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "description": "姓名"
+                                },
+                                "phone": {
+                                    "type": "string",
+                                    "description": "联系电话"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "导出成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "string",
+                                    "description": "文件 key"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/citymanager/statistic/count": {
+            "post": {
+                "summary": "城市经理回款对账单金额统计",
+                "tags": ["Turnovers"],
+                "parameters": [{
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "startTime": {
+                                    "type": "string",
+                                    "description": "开始时间"
+                                },
+                                "endTime": {
+                                    "type": "string",
+                                    "description": "结束时间"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "description": "姓名"
+                                },
+                                "phone": {
+                                    "type": "string",
+                                    "description": "联系电话"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "导出成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0"
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "arrearAmount": {
+                                            "type": "number",
+                                            "description": "欠款金额"
+                                        },
+                                        "backTotalAmount": {
+                                            "type": "number",
+                                            "description": "回款总金额"
+                                        },
+                                        "rechargeTotalAmount": {
+                                            "type": "number",
+                                            "description": "账单总金额"
+                                        },
+                                        "remainTotalAmount": {
+                                            "type": "number",
+                                            "description": "余额"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

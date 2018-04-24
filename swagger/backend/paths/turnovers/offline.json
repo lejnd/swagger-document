@@ -1,0 +1,311 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/turnovers/offline/search": {
+            "post": {
+                "summary": "销售额线下回款查询",
+                "tags": ["Turnovers"],
+                "parameters": [{
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "#/definitions/Paging"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "station": {
+                                            "type": "string",
+                                            "description": "服务站名称"
+                                        },
+                                        "stationCode": {
+                                            "type": "string",
+                                            "description": "服务站编号"
+                                        },
+                                        "status": {
+                                            "type": "number",
+                                            "description": "状态，-1全部，0未确认，3已确认"
+                                        },
+                                        "startTime": {
+                                            "type": "string",
+                                            "description": "账期从"
+                                        },
+                                        "endTime": {
+                                            "type": "string",
+                                            "description": "账期至"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paging": {
+                                            "$ref": "#/definitions/ResponsePaging"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "number",
+                                                        "description": "账单ID"
+                                                    },
+                                                    "createTime": {
+                                                        "type": "string",
+                                                        "description": "账期"
+                                                    },
+                                                    "station": {
+                                                        "type": "string",
+                                                        "description": "服务站名称"
+                                                    },
+                                                    "stationCode": {
+                                                        "type": "string",
+                                                        "description": "服务站编号"
+                                                    },
+                                                    "rechargeAmount": {
+                                                        "type": "string",
+                                                        "description": "账单金额"
+                                                    },
+                                                    "status": {
+                                                        "type": "number",
+                                                        "description": "状态，0未确认，3已确认"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/citymanager/offline/search": {
+            "post": {
+                "summary": "城市经理线下回款查询",
+                "tags": ["Turnovers"],
+                "parameters": [{
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "分页和查询条件",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "#/definitions/Paging"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "description": "姓名"
+                                        },
+                                        "phone": {
+                                            "type": "string",
+                                            "description": "电话"
+                                        },
+                                        "status": {
+                                            "type": "number",
+                                            "description": "状态，-1全部，0未确认，3已确认"
+                                        },
+                                        "startTime": {
+                                            "type": "string",
+                                            "description": "账期从"
+                                        },
+                                        "endTime": {
+                                            "type": "string",
+                                            "description": "账期至"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paging": {
+                                            "$ref": "#/definitions/ResponsePaging"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "number",
+                                                        "description": "单条账ID"
+                                                    },
+                                                    "createTime": {
+                                                        "type": "string",
+                                                        "description": "账期"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "description": "姓名"
+                                                    },
+                                                    "phone": {
+                                                        "type": "string",
+                                                        "description": "电话"
+                                                    },
+                                                    "rechargeAmount": {
+                                                        "type": "string",
+                                                        "description": "账单金额"
+                                                    },
+                                                    "status": {
+                                                        "type": "number",
+                                                        "description": "状态，0未确认，3已确认"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/turnovers/offline/deal": {
+            "post": {
+                "summary": "销售额线下回款确认",
+                "tags": ["Turnovers"],
+                "parameters": [{
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "要确认的账目ID",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "description": "单条账ID"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "操作成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/citymanager/offline/deal": {
+            "post": {
+                "summary": "城市经理线下回款确认",
+                "tags": ["Turnovers"],
+                "parameters": [{
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "要确认的账目ID",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "description": "单条账ID"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "操作成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,850 @@
+{
+  "swagger": "2.0",
+  "paths": {
+    "/presale/search": {
+      "post": {
+        "summary": "预售订单列表查询接口",
+        "tags": [
+          "PreSale"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/definitions/Token"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "分页和查询条件",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "paging": {
+                  "$ref": "#/definitions/Paging"
+                },
+                "condition": {
+                  "type": "object",
+                  "description": "查询条件",
+                  "properties": {
+                    "region": {
+                      "type": "object",
+                      "properties": {
+                        "cityCode": {
+                          "type": "string",
+                          "description": "市州code"
+                        },
+                        "districtCode": {
+                          "type": "string",
+                          "description": "区县code"
+                        },
+                        "townCode": {
+                          "type": "string",
+                          "description": "乡镇code"
+                        },
+                        "villageCode": {
+                          "type": "string",
+                          "description": "村code"
+                        }
+                      }
+                    },
+                    "farmerName": {
+                      "type": "string",
+                      "description": "农户姓名"
+                    },
+                    "goodsName": {
+                      "type": "string",
+                      "description": "商品名称"
+                    },
+                    "farmerPhone": {
+                      "type": "string",
+                      "description": "农户电话"
+                    },
+                    "status": {
+                      "type": "number",
+                      "description": "预售订单状态 1、未完成；3、已完成；"
+                    },
+                    "stationName": {
+                      "type": "string",
+                      "description": "服务站名称"
+                    },
+                    "stationCode": {
+                      "type": "string",
+                      "description": "服务站编码"
+                    },
+                    "createTime": {
+                      "type": "string",
+                      "description": "创建开始时间"
+                    },
+                    "createTimeTo": {
+                      "type": "string",
+                      "description": "创建结束时间"
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "预售订单号"
+                    },
+                    "orderNumber": {
+                      "type": "string",
+                      "description": "订单编号"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "查询成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "description": "成功信息"
+                },
+                "code": {
+                  "type": "string",
+                  "description": "成功编码 0",
+                  "required": true
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "paging": {
+                      "$ref": "#/definitions/ResponsePaging"
+                    },
+                    "itemList": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/preSaleItem"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/presale/batch/search": {
+      "post": {
+        "summary": "预售子订单列表查询接口",
+        "tags": [
+          "PreSale"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/definitions/Token"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "分页和查询条件",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "paging": {
+                  "$ref": "#/definitions/Paging"
+                },
+                "condition": {
+                  "type": "object",
+                  "description": "查询条件",
+                  "properties": {
+                    "region": {
+                      "type": "object",
+                      "properties": {
+                        "cityCode": {
+                          "type": "string",
+                          "description": "市州code"
+                        },
+                        "districtCode": {
+                          "type": "string",
+                          "description": "区县code"
+                        },
+                        "townCode": {
+                          "type": "string",
+                          "description": "乡镇code"
+                        },
+                        "villageCode": {
+                          "type": "string",
+                          "description": "村code"
+                        }
+                      }
+                    },
+                    "farmerName": {
+                      "type": "string",
+                      "description": "农户姓名"
+                    },
+                    "farmerPhone": {
+                      "type": "string",
+                      "description": "农户电话"
+                    },
+                    "goodsName": {
+                      "type": "string",
+                      "description": "商品名称"
+                    },
+                    "status": {
+                      "type": "number",
+                      "description": "预售子订单状态 1、待发货；3、已发货；5、已签收"
+                    },
+                    "stationName": {
+                      "type": "string",
+                      "description": "服务站名称"
+                    },
+                    "stationCode": {
+                      "type": "string",
+                      "description": "服务站编码"
+                    },
+                    "needGoodsTime": {
+                      "type": "string",
+                      "description": "要货开始时间"
+                    },
+                    "needGoodsTimeTo": {
+                      "type": "string",
+                      "description": "要货结束时间"
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "预售订单号"
+                    },
+                    "orderNumber": {
+                      "type": "string",
+                      "description": "订单编号"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "查询成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "description": "成功信息"
+                },
+                "code": {
+                  "type": "string",
+                  "description": "成功编码 0",
+                  "required": true
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "paging": {
+                      "$ref": "#/definitions/ResponsePaging"
+                    },
+                    "itemList": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/preSaleBatchItem"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/presale/batchEdit/{id}": {
+      "put": {
+        "tags": [
+          "PreSale"
+        ],
+        "summary": "修改子订单信息",
+        "description": "修改子订单信息",
+        "parameters": [
+          {
+            "$ref": "#/definitions/Token"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "needGoodsTime": {
+                  "type": "string",
+                  "description": "要货时间"
+                },
+                "needGoodsNumber": {
+                  "type": "number",
+                  "description": "要货数量"
+                },
+                "payAmount": {
+                  "type": "number",
+                  "description": "支付金额"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "返回修改结果",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "description": "成功，失败"
+                },
+                "code": {
+                  "type": "string",
+                  "description": "成功编码 0",
+                  "required": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/presale/batchEditStatus": {
+      "post": {
+        "tags": [
+          "PreSale"
+        ],
+        "summary": "批量修改子订单状态信息",
+        "description": "批量修改子订单状态信息",
+        "parameters": [
+          {
+            "$ref": "#/definitions/Token"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "idArr": {
+                  "type": "array",
+                  "description": "ID",
+                  "items": []
+                },
+                "status": {
+                  "type": "number",
+                  "description": "状态",
+                  "items": 2
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "返回修改结果",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "description": "成功，失败"
+                },
+                "code": {
+                  "type": "string",
+                  "description": "成功编码 0",
+                  "required": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/presale/batch/history": {
+      "post": {
+        "tags": [
+          "PreSale"
+        ],
+        "summary": "预售批次订单修改历史记录",
+        "description": "预售批次订单修改历史记录",
+        "parameters": [
+          {
+            "$ref": "#/definitions/Token"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "子公司ID",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "description": "批次订单id"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "查询成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "description": "成功信息"
+                },
+                "code": {
+                  "type": "string",
+                  "description": "成功编码 0",
+                  "required": true
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/batchHistoryItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/presale/{id}": {
+      "get": {
+        "tags": [
+          "PreSale"
+        ],
+        "summary": "获取预售订单详情接口",
+        "description": "获取预售订单详情接口",
+        "parameters": [
+          {
+            "$ref": "#/definitions/Token"
+          },
+          {
+            "in": "path",
+            "name": "Id",
+            "required": true,
+            "type": "integer",
+            "description": "订单Id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "返回查询结果",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "description": "成功，失败"
+                },
+                "code": {
+                  "type": "string",
+                  "description": "成功编码 0",
+                  "required": true
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/preSaleBatchOfId"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/presale/export": {
+      "post": {
+        "tags": [
+          "PreSale"
+        ],
+        "summary": "预售订单批量导出接口",
+        "parameters": [
+          {
+            "$ref": "#/definitions/Token"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "条 件",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "region": {
+                  "type": "object",
+                  "properties": {
+                    "cityCode": {
+                      "type": "string",
+                      "description": "市州code"
+                    },
+                    "districtCode": {
+                      "type": "string",
+                      "description": "区县code"
+                    },
+                    "townCode": {
+                      "type": "string",
+                      "description": "乡镇code"
+                    },
+                    "villageCode": {
+                      "type": "string",
+                      "description": "村code"
+                    }
+                  }
+                },
+                "farmerName": {
+                  "type": "string",
+                  "description": "农户姓名"
+                },
+                "farmerPhone": {
+                  "type": "string",
+                  "description": "农户电话"
+                },
+                "status": {
+                  "type": "number",
+                  "description": "预售订单状态 1、待配送；2、部分到货；3、已配送；4、已取消"
+                },
+                "stationName": {
+                  "type": "string",
+                  "description": "服务站名称"
+                },
+                "stationCode": {
+                  "type": "string",
+                  "description": "服务站编码"
+                },
+                "createTime": {
+                  "type": "string",
+                  "description": "创建开始时间"
+                },
+                "createTimeTo": {
+                  "type": "string",
+                  "description": "创建结束时间"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "返回结果",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "description": "成功信息"
+                },
+                "code": {
+                  "type": "string",
+                  "description": "成功编码 0",
+                  "required": true
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "exportUrl": {
+                      "type": "string",
+                      "description": "导出链接"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/presale/batch/export": {
+      "post": {
+        "tags": [
+          "PreSale"
+        ],
+        "summary": "预售子订单批量导出接口",
+        "parameters": [
+          {
+            "$ref": "#/definitions/Token"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "条件",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "region": {
+                  "type": "object",
+                  "properties": {
+                    "cityCode": {
+                      "type": "string",
+                      "description": "市州code"
+                    },
+                    "districtCode": {
+                      "type": "string",
+                      "description": "区县code"
+                    },
+                    "townCode": {
+                      "type": "string",
+                      "description": "乡镇code"
+                    },
+                    "villageCode": {
+                      "type": "string",
+                      "description": "村code"
+                    }
+                  }
+                },
+                "farmerName": {
+                  "type": "string",
+                  "description": "农户姓名"
+                },
+                "farmerPhone": {
+                  "type": "string",
+                  "description": "农户电话"
+                },
+                "status": {
+                  "type": "number",
+                  "description": "预售子订单状态 1、待配送；3、已配送"
+                },
+                "stationName": {
+                  "type": "string",
+                  "description": "服务站名称"
+                },
+                "stationCode": {
+                  "type": "string",
+                  "description": "服务站编码"
+                },
+                "createTime": {
+                  "type": "string",
+                  "description": "创建开始时间"
+                },
+                "createTimeTo": {
+                  "type": "string",
+                  "description": "创建结束时间"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "返回结果",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "description": "成功信息"
+                },
+                "code": {
+                  "type": "string",
+                  "description": "成功编码 0",
+                  "required": true
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "exportUrl": {
+                      "type": "string",
+                      "description": "导出链接"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/presale/goods/search": {
+      "post": {
+        "tags": [
+          "PreSale"
+        ],
+        "summary": "预售商品查询",
+        "parameters": [
+          {
+            "$ref": "#/definitions/Token"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "条件",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "condition": {
+                  "type": "object",
+                  "description": "查询条件",
+                  "properties": {
+                    "region": {
+                      "type": "object",
+                      "properties": {
+                        "cityCode": {
+                          "type": "string",
+                          "description": "市州code"
+                        },
+                        "districtCode": {
+                          "type": "string",
+                          "description": "区县code"
+                        },
+                        "townCode": {
+                          "type": "string",
+                          "description": "乡镇code"
+                        },
+                        "villageCode": {
+                          "type": "string",
+                          "description": "村code"
+                        }
+                      }
+                    },
+                    "startTime": {
+                      "type": "string",
+                      "description": "时间从"
+                    },
+                    "endTime": {
+                      "type": "string",
+                      "description": "至"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "返回结果",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "description": "成功信息"
+                },
+                "code": {
+                  "type": "string",
+                  "description": "成功编码 0",
+                  "required": true
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "paging": {
+                      "$ref": "#/definitions/ResponsePaging"
+                    },
+                    "itemList": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/preSaleGoodsItem"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/presale/goods/export": {
+      "post": {
+        "tags": [
+          "PreSale"
+        ],
+        "summary": "预售商品导出",
+        "parameters": [
+          {
+            "$ref": "#/definitions/Token"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "条件",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "condition": {
+                  "type": "object",
+                  "description": "导出条件",
+                  "properties": {
+                    "region": {
+                      "type": "object",
+                      "properties": {
+                        "cityCode": {
+                          "type": "string",
+                          "description": "市州code"
+                        },
+                        "districtCode": {
+                          "type": "string",
+                          "description": "区县code"
+                        },
+                        "townCode": {
+                          "type": "string",
+                          "description": "乡镇code"
+                        },
+                        "villageCode": {
+                          "type": "string",
+                          "description": "村code"
+                        }
+                      }
+                    },
+                    "startTime": {
+                      "type": "string",
+                      "description": "时间从"
+                    },
+                    "endTime": {
+                      "type": "string",
+                      "description": "至"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "返回结果",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "description": "成功信息"
+                },
+                "code": {
+                  "type": "string",
+                  "description": "成功编码 0",
+                  "required": true
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "exportUrl": {
+                      "type": "string",
+                      "description": "导出链接"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
