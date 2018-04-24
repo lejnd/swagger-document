@@ -1,0 +1,41 @@
+{
+    "type": "object",
+    "description": "行情资讯搜索条件",
+    "properties": {
+        "paging": {
+            "$ref": "../search/Paging.json"
+        },
+        "sort": {
+            "$ref": "../search/Sort.json"
+        },
+        "condition": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "资讯标题"
+                },
+                "publishStartTime": {
+                    "type": "integer",
+                    "description": "发布起始时间"
+                },
+                "publishEndTime": {
+                    "type": "integer",
+                    "description": "发布结束时间"
+                },
+                "auditStartTime": {
+                    "type": "integer",
+                    "description": "审核起始时间"
+                },
+                "auditEndTime": {
+                    "type": "integer",
+                    "description": "审核结束时间"
+                },
+                "dataState": {
+                    "type": "number",
+                    "description": "数据状态，0待审核，1已审核。默认传-1返回所有"
+                }
+            }
+        }
+    }
+}

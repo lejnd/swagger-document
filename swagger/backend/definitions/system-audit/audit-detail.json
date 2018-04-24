@@ -1,0 +1,30 @@
+{
+    "swagger": "2.0",
+    "definitions": {
+        "AuditDetail": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "id"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "审核意见"
+                },
+                "type": {
+                    "type": "integer",
+                    "description": "业务类型：0供应信息驳回，1求购信息驳回，2个人实名认证驳回，3市场价格播报驳回"
+                },
+                "enable": {
+                    "type": "boolean",
+                    "description": "false禁用true启用"
+                },
+                "createName": {
+                    "type": "string",
+                    "description": "创建人"
+                }
+            }
+        }
+    }
+}

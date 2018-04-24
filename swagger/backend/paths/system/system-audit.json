@@ -1,0 +1,299 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/sys-audit": {
+            "post": {
+                "tags": [
+                    "System-Audit"
+                ],
+                "summary": "新建审核意见模板",
+                "parameters": [
+                    {
+                        "$ref": "definitions/search/token.json"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions/AuditEdit"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "string",
+                                    "description": "审核意见模板Id"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/sys-audit/{id}": {
+            "get": {
+                "tags": [
+                    "System-Audit"
+                ],
+                "summary": "审核意见模板详情",
+                "parameters": [
+                    {
+                        "$ref": "definitions/search/token.json"
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string",
+                        "description": "审核意见模板ID"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/AuditDetail"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "System-Audit"
+                ],
+                "summary": "修改审核意见模板",
+                "parameters": [
+                    {
+                        "$ref": "definitions/search/token.json"
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string",
+                        "description": "审核意见模板ID"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions/AuditEdit"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "boolean",
+                                    "description": "是否成功"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/sys-audit/search": {
+            "post": {
+                "tags": [
+                    "System-Audit"
+                ],
+                "summary": "搜索审核意见模板",
+                "parameters": [
+                    {
+                        "$ref": "definitions/search/token.json"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "definitions/search/Paging.json"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "description": "审核意见"
+                                        },
+                                        "type": {
+                                            "type": "integer",
+                                            "description": "业务类型：空为全部，0供应信息驳回，1求购信息驳回，2个人实名认证驳回，3市场价格播报驳回"
+                                        },
+                                        "enable": {
+                                            "type": "boolean",
+                                            "description": "空为全部，false禁用true启用"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "搜索成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paging": {
+                                            "$ref": "definitions/search/ResponsePaging.json"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/AuditDetail"
+                                            }
+                                        }
+                                    }
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/sys-audit/batch/enable": {
+            "put": {
+                "tags": [
+                    "System-Audit"
+                ],
+                "summary": "批量启用&禁用意见模板",
+                "parameters": [
+                    {
+                        "$ref": "definitions/search/token.json"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "ids": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "description": "模板Id"
+                                    }
+                                },
+                                "enable": {
+                                    "type": "boolean",
+                                    "description": "false禁用true启用"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "boolean",
+                                    "description": "是否成功"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/sys-audit/type/{typeId}": {
+            "get": {
+                "tags": [
+                    "System-Audit"
+                ],
+                "summary": "分类下所有审核意见模板",
+                "parameters": [
+                    {
+                        "$ref": "definitions/search/token.json"
+                    },
+                    {
+                        "in": "path",
+                        "name": "typeId",
+                        "required": true,
+                        "type": "integer",
+                        "description": "业务类型：0供应信息驳回，1求购信息驳回，2个人实名认证驳回，3市场价格播报驳回"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/AuditDetail"
+                                    }
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

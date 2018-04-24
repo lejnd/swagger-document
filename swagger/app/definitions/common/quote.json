@@ -1,0 +1,28 @@
+{
+    "swagger": "2.0",
+    "definitions": {
+        "Quote": {
+            "type": "object",
+            "description": "报价",
+            "properties": {
+                "price": {
+                    "type": "number",
+                    "format": "double",
+                    "description": "报价价格"
+                },
+                "priceUnit": {
+                    "type": "string",
+                    "description": "单位"
+                },
+                "userName": {
+                    "type": "string",
+                    "description": "报价人名字"
+                },
+                "contactPhone": {
+                    "type": "string",
+                    "description": "联系电话   "
+                }
+            }
+        }
+    }
+}

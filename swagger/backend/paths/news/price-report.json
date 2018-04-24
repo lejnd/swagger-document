@@ -1,0 +1,365 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/price-reports/search": {
+            "post": {
+                "tags": [
+                    "PriceReport"
+                ],
+                "summary": "价格播报列表查询",
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "价格播报查询条件",
+                        "required": true,
+                        "schema": {
+                            "$ref": "definitions/news/price-query-condition.json"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "价格播报查询成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "Paging": {
+                                            "$ref": "definitions/search/ResponsePaging.json"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "definitions/news/price-item.json"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/price-reports/approval": {
+            "post": {
+                "tags": [
+                    "PriceReport"
+                ],
+                "summary": "审核价格播报",
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "type": "object",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "description": "价格播报 ID"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "审核成功，返回结果",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功：已审核；失败：[播报名称, ...] 审核失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功：0; 失败：1001",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/price-reports/reject": {
+            "post": {
+                "tags": [
+                    "PriceReport"
+                ],
+                "summary": "驳回价格播报",
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "type": "object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "rejectIds": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "integer",
+                                        "description": "价格播报 ID"
+                                    },
+                                    "description": "价格播报ID数组"
+                                },
+                                "reason": {
+                                    "type": "string",
+                                    "description": "驳回理由"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "审核成功，返回结果",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功：已审核；失败：[播报名称, ...] 审核失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功：0; 失败：1001",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/price-reports": {
+            "post": {
+                "tags": [
+                    "PriceReport"
+                ],
+                "summary": "新增价格播报",
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "新增的价格播报详情",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "category": {
+                                    "type": "string",
+                                    "description": "播报品类，新增和编辑时可获取品类接口"
+                                },
+                                "place": {
+                                    "type": "string",
+                                    "description": "产地"
+                                },
+                                "price": {
+                                    "type": "number",
+                                    "description": "价格（元／斤），0<价格<999999.99"
+                                },
+                                "source": {
+                                    "type": "string",
+                                    "description": "价格来源"
+                                },
+                                "linkMan": {
+                                    "type": "string",
+                                    "description": "联系人，新增和编辑时手动输入"
+                                },
+                                "linkCall": {
+                                    "type": "string",
+                                    "description": "联系电话，新增和编辑时手动输入，手机或座机"
+                                },
+                                "broadcastTime": {
+                                    "type": "integer",
+                                    "description": "播报时间，新增和编辑时的系统当前时间"
+                                },
+                                "broadcastMan": {
+                                    "type": "string",
+                                    "description": "播报人，新增和编辑时的当前登陆人名称"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "新增价格播报成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "integer",
+                                    "description": "价格播报 ID"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/price-reports/{reportId}": {
+            "get": {
+                "tags": [
+                    "PriceReport"
+                ],
+                "summary": "获取播报详情",
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "path",
+                        "name": "reportId",
+                        "required": true,
+                        "type": "integer",
+                        "description": "价格播报ID"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "获取价格播报详情成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "$ref": "definitions/news/price-item.json"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "PriceReport"
+                ],
+                "summary": "价格播报编辑",
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "path",
+                        "name": "reportId",
+                        "required": true,
+                        "type": "integer",
+                        "description": "价格播报ID"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "修改后的价格播报详情",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "category": {
+                                    "type": "string",
+                                    "description": "播报品类，新增和编辑时可获取品类接口"
+                                },
+                                "place": {
+                                    "type": "string",
+                                    "description": "产地"
+                                },
+                                "price": {
+                                    "type": "number",
+                                    "description": "价格（元／斤），0<价格<999999.99"
+                                },
+                                "source": {
+                                    "type": "string",
+                                    "description": "价格来源"
+                                },
+                                "linkMan": {
+                                    "type": "string",
+                                    "description": "联系人，新增和编辑时手动输入"
+                                },
+                                "linkCall": {
+                                    "type": "string",
+                                    "description": "联系电话，新增和编辑时手动输入，手机或座机"
+                                },
+                                "broadcastTime": {
+                                    "type": "integer",
+                                    "description": "播报时间，新增和编辑时的系统当前时间"
+                                },
+                                "broadcastMan": {
+                                    "type": "string",
+                                    "description": "播报人，新增和编辑时的当前登陆人名称"
+                                },
+                                "dataState": {
+                                    "type": "number",
+                                    "description": "数据状态，0待审核，1已审核"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "价格播报修改成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

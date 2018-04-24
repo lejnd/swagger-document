@@ -1,0 +1,18 @@
+{
+    "swagger": "2.0",
+    "definitions": {
+        "Paging": {
+            "type": "object",
+            "properties": {
+                "pageSize": {
+                    "type": "integer",
+                    "description": "每页显示条数"
+                },
+                "pageIndex": {
+                    "type": "integer",
+                    "description": "当前页码"
+                }
+            }
+        }
+    }
+}

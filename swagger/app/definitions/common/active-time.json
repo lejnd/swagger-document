@@ -1,0 +1,20 @@
+{
+    "swagger": "2.0",
+    "definitions": {
+        "ActiveTime": {
+            "type": "object",
+            "properties": {
+                "from": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "开始时间"
+                },
+                "to": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "结束时间"
+                }
+            }
+        }
+    }
+}

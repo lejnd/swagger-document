@@ -1,0 +1,15 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "B2B API接口文档 后台部分",
+        "description": "一些返回参数的注释请点开实例左边的模型查看, api服务器地址：10.66.1.119:8002/",
+        "contact": {
+            "name": "sujunxuan",
+            "url": "http://10.66.2.13/B2B/B2BDocument.git",
+            "email": "sujunxuan@gznb.com"
+        },
+        "version": "1.0.2"
+    },
+    "host": "10.66.1.119:8002",
+    "basePath": "/"
+}

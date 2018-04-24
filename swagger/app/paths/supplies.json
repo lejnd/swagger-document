@@ -1,0 +1,529 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/supplies": {
+            "post": {
+                "tags": ["Supplies"],
+                "summary": "发布供应",
+                "parameters": [{
+                    "$ref": "#/parameters/Token"
+                }, {
+                    "in": "body",
+                    "name": "body",
+                    "schema": {
+                        "$ref": "#/definitions/SupplyEdit"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "新增成功"
+                    }
+                }
+            }
+        },
+        "/supplies/my-count": {
+            "get": {
+                "tags": ["Supplies"],
+                "summary": "我的供应各状态的数量",
+                "parameters": [{
+                    "$ref": "#/parameters/Token"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "status": {
+                                                "type": "integer",
+                                                "description": "状态, -1: 全部, 0: 待审核, 1: 进行中, 2: 已结束, 3: 被驳回"
+                                            },
+                                            "count": {
+                                                "type": "integer",
+                                                "description": "数量"
+                                            }
+                                        }
+                                    }
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/supplies/local": {
+            "post": {
+                "tags": ["Supplies"],
+                "summary": "首页最新供应列表",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "type": "object",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                           "regionId": {
+                                "type": "integer",
+                                "description": "区域ID"
+                            },
+                            "categoryCode": {
+                                "type": "integer",
+                                "description": "分类Code"
+                            },
+                           "paging": {
+                                "$ref": "#/definitions/Paging"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "hotWords": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "description": "热门分类"
+                                            }
+                                        },
+                                        "list": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/SupplyListItem"
+                                            }
+                                        }
+                                    }
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/supplies/hall": {
+            "post": {
+                "tags": ["Supplies"],
+                "summary": "供应大厅列表",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "type": "object",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                           "regionId": {
+                                "type": "integer",
+                                "description": "区域ID"
+                            },
+                            "categoryCode": {
+                                "type": "integer",
+                                "description": "分类Code"
+                            },
+                           "paging": {
+                                "$ref": "#/definitions/Paging"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "hotWords": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "description": "热门分类"
+                                            }
+                                        },
+                                        "list": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/SupplyListItem"
+                                            }
+                                        }
+                                    }
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/supplies/self": {
+            "post": {
+                "tags": ["Supplies"],
+                "summary": "我的供应列表",
+                "parameters": [{
+                    "$ref": "#/parameters/Token"
+                }, {
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "type": "object",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                           "status": {
+                                "type": "integer",
+                                "description": "状态, -1: 全部, 0: 待审核, 1: 进行中, 2: 已结束, 3: 被驳回"
+                            },
+                            "regionId": {
+                                "type": "integer",
+                                "description": "区域ID"
+                            },
+                            "categoryCode": {
+                                "type": "integer",
+                                "description": "分类Code"
+                            },
+                            "paging": {
+                                "$ref": "#/definitions/Paging"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "hotWords": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "description": "热门分类"
+                                            }
+                                        },
+                                        "list": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/SupplyListItem"
+                                            }
+                                        }
+                                    }
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/supplies/company": {
+            "post": {
+                "tags": ["Supplies"],
+                "summary": "企业详情供应列表",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "type": "object",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "regionId": {
+                                "type": "integer",
+                                "description": "区域ID"
+                            },
+                            "categoryCode": {
+                                "type": "integer",
+                                "description": "分类Code"
+                            },
+                            "userId": {
+                                "type": "integer",
+                                "description": "企业ID"
+                            },
+                            "paging": {
+                                "$ref": "#/definitions/Paging"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "hotWords": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "description": "热门分类"
+                                            }
+                                        },
+                                        "list": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/SupplyListItem"
+                                            }
+                                        }
+                                    }
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/supplies/gzself": {
+            "post": {
+                "tags": ["Supplies"],
+                "summary": "国资自营供应列表",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "type": "object",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "regionId": {
+                                "type": "integer",
+                                "description": "区域ID"
+                            },
+                            "categoryCode": {
+                                "type": "integer",
+                                "description": "分类Code"
+                            },
+                            "paging": {
+                                "$ref": "#/definitions/Paging"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "hotWords": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "description": "热门分类"
+                                            }
+                                        },
+                                        "list": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/SupplyListItem"
+                                            }
+                                        }
+                                    }
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/supplies/search": {
+            "post": {
+                "tags": ["Supplies"],
+                "summary": "搜索供应信息",
+                "parameters": [{
+                    "$ref": "#/parameters/Token"
+                }, {
+                    "in": "body",
+                    "name": "name",
+                    "required": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "keywords": {
+                                "type": "string",
+                                "description": "关键词"
+                            },
+                            "regionId": {
+                                "type": "integer",
+                                "description": "区域ID"
+                            },
+                            "paging": {
+                                "$ref": "#/definitions/Paging"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "搜索成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "hotWords": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "description": "热门分类"
+                                            }
+                                        },
+                                        "list": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/SupplyListItem"
+                                            }
+                                        }
+                                    }
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/supplies/{id}": {
+            "get": {
+                "tags": ["Supplies"],
+                "summary": "供应详情",
+                "parameters": [{
+                    "$ref": "#/parameters/Token"
+                }, {
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "type": "integer",
+                    "description": "供应商品ID"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/SupplyDetails"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": ["Supplies"],
+                "summary": "修改供应详情",
+                "parameters": [{
+                    "$ref": "#/parameters/Token"
+                }, {
+                    "in": "path",
+                    "name": "id",
+                    "type": "integer",
+                    "required": true,
+                    "description": "id"
+                }, {
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/SupplyEdit"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "获取成功"
+                    }
+
+                }
+            }
+        },
+        "/supplies/{id}/end": {
+            "put": {
+                "tags": ["Supplies"],
+                "summary": "结束此次供应",
+                "parameters": [{
+                    "$ref": "#/parameters/Token"
+                }, {
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "type": "integer",
+                    "description": "供应ID"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "操作成功"
+                    }
+                }
+            }
+        }
+    }
+}

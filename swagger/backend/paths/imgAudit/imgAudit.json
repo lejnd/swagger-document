@@ -1,0 +1,183 @@
+{
+    "swagger": "2.0",
+    "paths":{
+        "/img-audit/search":{
+            "post":{
+                "summary": "图片审核查询接口",
+                "tags": ["imgAudit"],
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"                        
+                    },{
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "description": "如果对某个参数查询不敏感，将null传入则忽略对该字段搜索的查询判断",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "Paging": {
+                                    "$ref": "definitions/search/Paging.json"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "properties": {
+                                        "enterpriseName": {
+                                            "type": "string",
+                                            "description": "模糊匹配市场名称"
+                                        },
+                                        "imgType": {
+                                            "type": "number",
+                                            "description": "图片类别"
+                                        },
+                                        "state": {
+                                            "type": "number",
+                                            "description": "审核状态"
+                                        },
+                                        "sourceType": {
+                                            "type": "number",
+                                            "description": "来源"
+                                        },
+                                        "uploadTimeFrom": {
+                                            "type": "string",
+                                            "description": "上传起始时间（包括）"
+                                        },
+                                        "uploadTimeTo": {
+                                            "type": "string",
+                                            "description": "上传结束时间（不包括）"
+                                        },
+                                        "auditTimeFrom": {
+                                            "type": "string",
+                                            "description": "审核起始时间（包括）"
+                                        },
+                                        "auditTimeTo": {
+                                            "type": "string",
+                                            "description": "审核结束时间（不包括）"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses":{
+                    "200": {
+                        "description": "获取审核记录信息成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "Paging": {
+                                            "$ref": "definitions/search/ResponsePaging.json"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "definitions/imgAudit/img-audit-item.json"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/img-audit/{id}/approval":{
+            "post":{
+                "summary": "审批通过图片上传记录",
+                "tags": ["imgAudit"],
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"                        
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "integer",
+                        "description": "审核记录id"
+                    }
+                ],
+                "responses":{
+                    "200": {
+                        "description": "操作返回结果",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "boolean",
+                                    "description":"操作结果",
+                                    "required":true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "img-audit/{id}/refuse":{
+            "post":{
+                "summary": "审批拒绝图片上传记录",
+                "tags": ["imgAudit"],
+                "parameters":[
+                    {
+                        "$ref": "#/definitions/Token"                        
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "integer",
+                        "description": "审核记录id"
+                    }
+                ],
+                "responses":{
+                    "200": {
+                        "description": "操作返回结果",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "boolean",
+                                    "description":"操作结果",
+                                    "required":true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

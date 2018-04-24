@@ -1,0 +1,257 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/users/authorization/send-code": {
+            "post": {
+                "tags": ["Users"],
+                "summary": "请求发送验证码",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "phone": {
+                                "type": "string",
+                                "description": "手机号"
+                            },
+                            "operationType": {
+                                "type": "integer",
+                                "description": "操作类型, 0：重置密码，1：登录，2：注册，3：修改手机号"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "发送成功"
+                    }
+                }
+            }
+        },
+        "/users/authorization/sign-up": {
+            "post": {
+                "tags": ["Users"],
+                "summary": "注册",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "phone": {
+                                "type": "string",
+                                "description": "手机号"
+                            },
+                            "code": {
+                                "type": "string",
+                                "description": "验证码"
+                            },
+                            "password": {
+                                "type": "string",
+                                "description": "密码"
+                            },
+                            "invitationCode": {
+                                "type": "string",
+                                "description": "邀请码（非必填）"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "注册成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "sessionId": {
+                                            "type": "string",
+                                            "description": "session标识"
+                                        },
+                                        "userId": {
+                                            "type": "string",
+                                            "description": "用户ID"
+                                        },
+                                        "phone": {
+                                            "type": "string",
+                                            "description": "手机号"
+                                        }
+                                    }
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/authorization/sign-in": {
+            "post": {
+                "tags": ["Users"],
+                "summary": "登录",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "phone": {
+                                "type": "string",
+                                "description": "手机号"
+                            },
+                            "code": {
+                                "type": "string",
+                                "description": "验证码"
+                            },
+                            "password": {
+                                "type": "string",
+                                "description": "密码"
+                            },
+                            "type": {
+                                "type": "integer",
+                                "description": "登录类型 0:密码登录, 1:验证码登录"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "登录成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "sessionId": {
+                                            "type": "string",
+                                            "description": "session标识"
+                                        },
+                                        "userId": {
+                                            "type": "string",
+                                            "description": "用户ID"
+                                        },
+                                        "phone": {
+                                            "type": "string",
+                                            "description": "手机号"
+                                        }
+                                    }
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/authorization/sign-out": {
+            "post": {
+                "tags": ["Users"],
+                "summary": "退出登录",
+                "parameters": [{
+                    "$ref": "#/parameters/Token"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "退出成功"
+                    }
+                }
+            }
+        },
+        "/users/authorization/password": {
+            "put": {
+                "tags": ["Users"],
+                "summary": "找回密码（重置密码）",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "phone": {
+                                "type": "string",
+                                "description": "手机号"
+                            },
+                            "code": {
+                                "type": "string",
+                                "description": "验证码"
+                            },
+                            "password": {
+                                "type": "string",
+                                "description": "新密码"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "重置成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "sessionId": {
+                                            "type": "string",
+                                            "description": "session标识"
+                                        }
+                                    }
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/authorization/mobile": {
+            "put": {
+                "tags": ["Users"],
+                "summary": "修改手机号码",
+                "parameters": [{
+                    "$ref": "#/parameters/Token"
+                }, {
+                    "in": "body",
+                    "name": "phone",
+                    "required": true,
+                    "type": "string",
+                    "description": "新电话号码"
+                }, {
+                    "in": "body",
+                    "name": "code",
+                    "required": true,
+                    "type": "string",
+                    "description": "验证码"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "修改成功"
+                    }
+                }
+            }
+        }
+    }
+}

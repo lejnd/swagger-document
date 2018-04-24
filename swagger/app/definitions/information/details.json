@@ -1,0 +1,22 @@
+{
+    "swagger": "2.0",
+    "definitions": {
+        "InformationDetails": {
+            "type": "object",
+            "properties": {
+                "images": {
+                    "$ref": "#/definitions/Images",
+                    "description": "资讯图片"
+                },
+                "resourceTitle": {
+                    "type": "string",
+                    "description": "资讯标题"
+                },
+                "resourceContent": {
+                    "type": "string",
+                    "description": "资讯内容"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,61 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/system/contact-phone": {
+            "get": {
+                "tags": ["System"],
+                "summary": "获取客服电话",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "string",
+                                    "description": "客服电话"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/system/faqs": {
+            "get": {
+                "tags": ["System"],
+                "summary": "获取常见问题列表",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Faq"
+                                    }
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

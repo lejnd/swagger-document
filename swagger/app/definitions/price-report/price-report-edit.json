@@ -1,0 +1,34 @@
+{
+    "swagger": "2.0",
+    "definitions": {
+        "PriceReportEdit": {
+            "type": "object",
+            "properties": {
+                "marketId": {
+                    "type": "string",
+                    "description": "市场ID"
+                },
+                "categoryId": {
+                    "type": "integer",
+                    "description": "分类ID"
+                },
+                "originRegion": {
+                    "$ref": "#/definitions/RegionEdit",
+                    "description": "产地区域"
+                },
+                "contact": {
+                    "type": "string",
+                    "description": "联系人"
+                },
+                "contactPhone": {
+                    "type": "string",
+                    "description": "联系电话"
+                },
+                "price": {
+                    "type": "number",
+                    "description": "市场价格"
+                }
+            }
+        }
+    }
+}

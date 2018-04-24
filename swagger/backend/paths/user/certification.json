@@ -1,0 +1,296 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/users/certifications/search": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "实名认证信息查询",
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "description": "查询条件",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "definitions/search/Paging.json"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "companyName": {
+                                            "type": "string",
+                                            "description": "企业名称"
+                                        },
+                                        "cellphone": {
+                                            "type": "string",
+                                            "description": "手机号"
+                                        },
+                                        "identityId": {
+                                            "type": "integer",
+                                            "description": "企业身份Id"
+                                        },
+                                        "auditState": {
+                                            "type": "integer",
+                                            "description": "认证状态：0：待审核，1：审核通过，2：已驳回"
+                                        },
+                                        "certificationType": {
+                                            "type": "integer",
+                                            "description": "认证类型： 0：个人实名认证， 1：企业认证"
+                                        },
+                                        "startTime": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "description": "提交时间-起始"
+                                        },
+                                        "endTime": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "description": "提交时间-结束"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "description": "查询结果",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "definitions/search/ResponsePaging.json"
+                                },
+                                "itemList": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "certificationId": {
+                                                "type": "integer",
+                                                "description": "认证ID"
+                                            },
+                                            "userId": {
+                                                "type": "integer",
+                                                "description": "企业编号"
+                                            },
+                                            "companyName": {
+                                                "type": "string",
+                                                "description": "企业名称"
+                                            },
+                                            "cellphone": {
+                                                "type": "string",
+                                                "description": "手机号"
+                                            },
+                                            "identityIds": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "integer",
+                                                    "description": "企业身份Id"
+                                                }
+                                            },
+                                            "realName": {
+                                                "type": "string",
+                                                "description": "真实姓名"
+                                            },
+                                            "idLicenceNo": {
+                                                "type": "string",
+                                                "description": "身份证号或营业执照号"
+                                            },
+                                            "region": {
+                                                "type": "object",
+                                                "description": "所在地区",
+                                                "schema": {
+                                                    "$ref": "#/definitions/Region"
+                                                }
+                                            },
+                                            "submitTime": {
+                                                "type": "string",
+                                                "format": "date",
+                                                "description": "提交时间"
+                                            },
+                                            "auditState": {
+                                                "type": "integer",
+                                                "description": "认证状态：0：待审核，1：审核通过，2：已驳回"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{userId}/certifications/{certificationId}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "认证详情",
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "path",
+                        "name": "userId",
+                        "required": true,
+                        "type": "integer",
+                        "description": "企业Id"
+                    },
+                    {
+                        "in": "path",
+                        "name": "certificationId",
+                        "required": true,
+                        "type": "integer",
+                        "description": "认证Id"
+                    }
+                ],
+                "responses": {
+                    "200:": {
+                        "description": "获取认证详情成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "certificationId": {
+                                    "type": "integer",
+                                    "description": "认证ID"
+                                },
+                                "userId": {
+                                    "type": "integer",
+                                    "description": "企业编号"
+                                },
+                                "companyName": {
+                                    "type": "string",
+                                    "description": "企业名称"
+                                },
+                                "cellphone": {
+                                    "type": "string",
+                                    "description": "手机号"
+                                },
+                                "identityIds": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "integer",
+                                        "description": "企业身份Id"
+                                    }
+                                },
+                                "realName": {
+                                    "type": "string",
+                                    "description": "真实姓名"
+                                },
+                                "idLicenceNo": {
+                                    "type": "string",
+                                    "description": "身份证号或营业执照号"
+                                },
+                                "auditState": {
+                                    "type": "integer",
+                                    "description": "认证状态：0：待审核，1：审核通过，2：已驳回"
+                                },
+                                "idLicenceImg": {
+                                    "type": "array",
+                                    "description": "认证所上传的图片URL",
+                                    "items": {
+                                        "type": "string",
+                                        "description": "图片URL"
+                                    }
+                                },
+                                "certificationType": {
+                                    "type": "integer",
+                                    "description": "认证类型： 0：个人实名认证， 1：企业认证"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/certifications/approvals": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "批量审批通过实名认证信息",
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "description": "认证Id列表",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "certificationIdList": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "integer",
+                                        "description": "认证Id"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "操作成功"
+                    }
+                }
+            }
+        },
+        "/users/certifications/{certificationId}/denial": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "驳回实名认证信息",
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "path",
+                        "name": "certificationId",
+                        "required": true,
+                        "type": "integer",
+                        "description": "认证Id"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "reason": {
+                                    "type": "string",
+                                    "description": "驳回理由，不超过二十字"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "操作成功"
+                    }
+                }
+            }
+        }
+    }
+}

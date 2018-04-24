@@ -1,0 +1,22 @@
+{
+    "swagger": "2.0",
+    "definitions": {
+        "Faq": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "ID"
+                },
+                "question": {
+                    "type": "string",
+                    "description": "标题"
+                },
+                "answer": {
+                    "type": "string",
+                    "description": "内容"
+                }
+            }
+        }
+    }
+}

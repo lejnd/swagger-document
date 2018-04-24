@@ -1,0 +1,25 @@
+{
+  "name": "B2B-Document",
+  "version": "1.0.0",
+  "description": "国资新农 API 描述文档项目",
+  "main": "index.js",
+  "dependencies": {
+    "chokidar": "^1.6.1",
+    "express": "^4.14.1",
+    "http-server": "^0.9.0",
+    "jsdom": "^9.11.0",
+    "opn": "^4.0.2",
+    "shelljs": "^0.7.4",
+    "swagger": "^0.7.5",
+    "swagger-server": "^1.0.0-alpha.18",
+    "swagger-ui": "^2.2.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "view": "node build/generate.js",
+    "ci-run": "node build/generate.js",
+    "mock": "swagger project start"
+  },
+  "author": "",
+  "license": "ISC"
+}

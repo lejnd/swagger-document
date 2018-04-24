@@ -1,0 +1,146 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/home/banner": {
+            "get": {
+                "tags": ["Home"],
+                "summary": "首页轮播图",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "integer",
+                                                "description": "类型, 0: 供应详情, 1: 求购详情"
+                                            },
+                                            "id": {
+                                                "type": "integer",
+                                                "description": "对应类型的详情ID"
+                                            },
+                                            "image": {
+                                                "type": "string",
+                                                "description": "图片路径"
+                                            }
+                                        }
+                                    }
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/home/mostfocus": {
+            "get": {
+                "tags": ["Home"],
+                "summary": "首页最关注列表",
+                "parameters": [{
+                    "$ref": "#/parameters/Token"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "integer",
+                                                "description": "类型, 0: 足迹, 1: 好店, 2: 热门"
+                                            },
+                                            "items": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "integer",
+                                                            "description": "ID"
+                                                        },
+                                                        "name": {
+                                                            "type": "string",
+                                                            "description": "名字"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/home/companies": {
+            "get": {
+                "tags": ["Home"],
+                "summary": "首页名企推荐",
+                "parameters": [{
+                    "$ref": "#/parameters/Token"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "description": "id"
+                                            },
+                                            "logo": {
+                                                "type": "string",
+                                                "description": "名企Logo"
+                                            },
+                                            "name": {
+                                                "type": "string",
+                                                "description": "企业名字"
+                                            }
+                                        }
+                                    }
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

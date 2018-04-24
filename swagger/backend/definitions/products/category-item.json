@@ -1,0 +1,33 @@
+{
+    "type": "object",
+    "description": "单个类品条目",
+    "properties": {
+        "id": {
+            "type": "number",
+            "description": "类别ID"
+        },
+        "name": {
+            "type": "string",
+            "description": "类别名称"
+        },
+        "levelNum": {
+            "type": "number",
+            "description": "层级，从0开始"
+        },
+        "sortNum": {
+            "type": "number",
+            "description": "排序号，用于同级别展示顺序，越小越在前，若重复则做插入处理"
+        },
+        "parentId": {
+            "type": "number",
+            "description": "父id，-1表示顶级分类"
+        },
+        "children": {
+            "type": "array",
+            "description": "树的子类目",
+            "items": {
+                "$ref": "category-item.json"
+            }
+        }
+    }
+}

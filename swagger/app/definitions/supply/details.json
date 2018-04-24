@@ -1,0 +1,177 @@
+{
+    "swagger": "2.0",
+    "definitions": {
+        "SupplyDetails": {
+            "type": "object",
+            "properties": {
+                "images": {
+                    "$ref": "#/definitions/Images",
+                    "description": "Banner图片"
+                },
+                "id": {
+                    "type": "integer",
+                    "description": "ID"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "名称"
+                },
+                "isGuoziSelf": {
+                    "type": "boolean",
+                    "description": "是否是国资自营"
+                },
+                "categories": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Category"
+                    }
+                },
+                "isReady": {
+                    "type": "boolean",
+                    "description": "true: 有现货，false: 即将上市"
+                },
+                "specifications": {
+                    "type": "array",
+                    "description": "规格",
+                    "items": {
+                        "$ref": "#/definitions/SpecificationDetails"
+                    }
+                },
+                "price": {
+                    "type": "number",
+                    "format": "double",
+                    "description": "价格"
+                },
+                "amount": {
+                    "type": "integer",
+                    "description": "库存"
+                },
+                "activeTime": {
+                    "$ref": "#/definitions/ActiveTime",
+                    "description": "有效时间"
+                },
+                "priceUnit": {
+                    "type": "string",
+                    "description": "价格单位"
+                },
+                "originRegion": {
+                    "$ref": "#/definitions/RegionDetails",
+                    "description": "产地"
+                },
+                "sendRegion": {
+                    "$ref": "#/definitions/RegionDetails",
+                    "description": "发货地区"
+                },
+                "status": {
+                    "type": "integer",
+                    "description": "状态, -1: 全部, 0: 待审核, 1: 进行中, 2: 已结束, 3: 被驳回"
+                },
+                "contact": {
+                    "type": "object",
+                    "description": "联系方式",
+                    "properties": {
+                        "userId": {
+                            "type": "integer",
+                            "description": "用户ID"
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "名称"
+                        },
+                        "phone": {
+                            "type": "string",
+                            "description": "联系电话"
+                        }
+                    }
+                },
+                "updateTime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "更新时间"
+                },
+                 "UnitId": {
+                    "type": "integer",
+                   
+                    "description": "单位_键"
+                },
+                "UnitName": {
+                    "type": "string",
+                  
+                    "description": "单位_值"
+                },
+                "ValidStart": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "开始有效期"
+                },
+                "ValidEnd": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "结束有效期"
+                },
+                "ValidDays": {
+                    "type": "integer",
+                 
+                    "description": "有效期天数"
+                },
+                 "PublishDate": {
+                    "type": "string",
+                   "format": "date-time",
+                    "description": "发布时间"
+                },
+                  "enterprise": {
+                    "type": "object",
+                    "description": "企业信息",
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "description": "企业名称"
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "名称"
+                        },
+                        "code": {
+                            "type": "string",
+                            "description": "企业编号"
+                        },
+                         "provinceid": {
+                            "type": "string",
+                            "description": "所在省份id"
+                        },
+                          "cityid": {
+                            "type": "string",
+                            "description": "所在城市id"
+                        },
+                          "areaid": {
+                            "type": "string",
+                            "description": "所在区域id"
+                        },
+                           "iscertification": {
+                            "type": "integer",
+                            "description": "是否实名认证，1是0否"
+                        },
+                           "isenterprisecertification": {
+                            "type": "integer",
+                            "description": "是否企业实名认证，1是0否"
+                        },
+                           "lastddress": {
+                            "type": "string",
+                            "description": "所在区域id"
+                        },
+                           "description": {
+                            "type": "string",
+                            "description": "描述"
+                        }
+                        ,
+                           "imgurl": {
+                            "type": "string",
+                            "description": "上传的单图url"
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "swagger": "2.0",
+    "definitions": {
+        "Images": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "description": "图片路径"
+            }
+        }
+    }
+}

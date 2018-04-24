@@ -1,0 +1,63 @@
+{
+    "swagger": "2.0",
+    "definitions": {
+        "DemandListItem": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "ID"
+                },
+                "number": {
+                    "type": "integer",
+                    "description": "编号"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "名称"
+                },
+                "isGuoziSelf": {
+                    "type": "boolean",
+                    "description": "是否是国资自营"
+                },
+                "specifications": {
+                    "type": "array",
+                    "description": "规格",
+                    "items": {
+                        "$ref": "#/definitions/SpecificationDetails"
+                    }
+                },
+                "originRegion": {
+                    "$ref": "#/definitions/RegionDetails",
+                    "description": "产地"
+                },
+                "receiveRegion": {
+                    "$ref": "#/definitions/RegionDetails",
+                    "description": "收货地区"
+                },
+                "quotesCount": {
+                    "type": "integer",
+                    "description": "报价条数"
+                },
+                "updateTime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "更新时间"
+                },
+                "status": {
+                    "type": "integer",
+                    "description": "状态, -1: 全部, 0: 待审核, 1: 进行中, 2: 已结束, 3: 被驳回"
+                },
+                "unit": {
+                    "$ref": "#/definitions/Unit",
+                    "description": "单位对象"
+                },
+                "publishdate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "发布时间"
+                }
+            }
+        }
+    }
+}

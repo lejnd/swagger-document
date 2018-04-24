@@ -1,0 +1,59 @@
+{
+    "title": "Region",
+    "type": "object",
+    "properties": {
+        "province": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "省Id"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "省名"
+                }
+            }
+        },
+        "city": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "市Id"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "市名"
+                }
+            }
+        },
+        "district": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "区／县Id"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "区／县名"
+                }
+            }
+        }
+    },
+    "example": {
+        "province": {
+            "id": 111,
+            "name": "云南省"
+        },
+        "city": {
+            "id": 222,
+            "name": "昆明市"
+        },
+        "district": {
+            "id": 333,
+            "name": "西山区"
+        }
+    }
+}

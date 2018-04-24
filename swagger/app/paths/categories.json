@@ -1,0 +1,189 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/categories/search": {
+            "post": {
+                "tags": ["Categories"],
+                "summary": "搜索分类",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "keywords": {
+                                "type": "string",
+                                "description": "关键词"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Category"
+                                    }
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/categories/hot": {
+            "post": {
+                "tags": ["Categories"],
+                "summary": "获取热门分类",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "integer",
+                                "description": "类型, 0: 全部, 1: 供应, 2: 求购, 3: 国资供应, 4: 国资求购"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Category"
+                                    }
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/categories/{id}": {
+            "get": {
+                "tags": ["Categories"],
+                "summary": "获取子分类",
+                "parameters": [{
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "type": "integer",
+                    "description": "分类ID"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Category"
+                                    }
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/categories/{id}/specifications": {
+            "get": {
+                "tags": ["Categories"],
+                "summary": "规格列表",
+                "parameters": [{
+                    "in": "path",
+                    "name": "type",
+                    "type": "integer",
+                    "required": true,
+                    "description": "分类ID"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "isRequired": {
+                                                "type": "integer",
+                                                "description": "是否是必选项"
+                                            },
+                                            "id": {
+                                                "type": "integer",
+                                                "description": "id"
+                                            },
+                                            "name": {
+                                                "type": "string",
+                                                "description": "规格名字，例如: 株高"
+                                            },
+                                            "values": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "integer",
+                                                            "value": "规格值ID"
+                                                        },
+                                                        "name": {
+                                                            "type": "string",
+                                                            "value": "规格值，例如: 10~15厘米"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

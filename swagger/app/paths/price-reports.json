@@ -1,0 +1,432 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/price-reports": {
+            "get": {
+                "tags": ["PriceReports"],
+                "summary": "获取我播报的价格",
+                "parameters": [{
+                    "$ref": "#/parameters/Token"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "date": {
+                                                "type": "string",
+                                                "format": "date",
+                                                "description": "日期"
+                                            },
+                                            "list": {
+                                                "type": "array",
+                                                "items": {
+                                                    "$ref": "#/definitions/PriceReportDetails"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["PriceReports"],
+                "summary": "播报价格",
+                "parameters": [{
+                    "$ref": "#/parameters/Token"
+                }, {
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/PriceReportEdit"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "播报报价成功"
+                    }
+                }
+            }
+        },
+        "/price-reports/{id}": {
+            "get": {
+                "tags": ["PriceReports"],
+                "summary": "获取播报详情",
+                "parameters": [{
+                    "$ref": "#/parameters/Token"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "$ref": "#/definitions/PriceReportDetails"
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": ["PriceReports"],
+                "summary": "纠正播报价格",
+                "parameters": [{
+                    "$ref": "#/parameters/Token"
+                }, {
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "type": "integer",
+                    "description": "价格播报ID"
+                }, {
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/PriceReportEdit"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "纠正成功"
+                    }
+                }
+            }
+        },
+        "/price-reports/charts": {
+            "post": {
+                "tags": ["PriceReports"],
+                "summary": "价格走势图表数据",
+                "parameters": [{
+                    "$ref": "#/parameters/Token"
+                }, {
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "type": "object",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "region": {
+                                "$ref": "#/definitions/RegionEdit"
+                            },
+                            "categoryId": {
+                                "type": "integer",
+                                "description": "分类ID"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "description": "id"
+                                            },
+                                            "date": {
+                                                "type": "string",
+                                                "format": "date",
+                                                "description": "日期"
+                                            },
+                                            "value": {
+                                                "type": "number",
+                                                "description": "数据值"
+                                            }
+                                        }
+                                    }
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/price-reports/regions": {
+            "post": {
+                "tags": ["PriceReports"],
+                "summary": "价格走势产地行情",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "type": "object",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "region": {
+                                "$ref": "#/definitions/RegionEdit"
+                            },
+                            "categoryId": {
+                                "type": "integer",
+                                "description": "分类ID, 可不传, 不传时需返回足迹中的分类"
+                            },
+                            "sort": {
+                                "type": "integer",
+                                "description": "排序条件, 0: 综合排序, 1: 距离最近, 2: 价格最低"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "region": {
+                                                "$ref": "#/definitions/RegionDetails"
+                                            },
+                                            "data": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "category": {
+                                                            "$ref": "#/definitions/Category"
+                                                        },
+                                                        "price": {
+                                                            "type": "number",
+                                                            "description": "价格"
+                                                        },
+                                                        "priceUnit": {
+                                                            "type": "单位",
+                                                            "description": "价格单位"
+                                                        },
+                                                        "trend": {
+                                                            "type": "integer",
+                                                            "description": "跌涨, -1: 跌, 0: 持平, 1: 涨"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/price-reports/home": {
+            "post": {
+                "tags": ["PriceReports"],
+                "summary": "价格走势入口",
+                "parameters": [{
+                    "$ref": "#/parameters/Token"
+                }, {
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "type": "object",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "currentRegion": {
+                                "$ref": "#/definitions/RegionEdit"
+                            },
+                            "categories": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "region": {
+                                                "$ref": "#/definitions/RegionDetails"
+                                            },
+                                            "data": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "category": {
+                                                            "$ref": "#/definitions/Category"
+                                                        },
+                                                        "price": {
+                                                            "type": "number",
+                                                            "description": "价格"
+                                                        },
+                                                        "priceUnit": {
+                                                            "type": "单位",
+                                                            "description": "价格单位"
+                                                        },
+                                                        "trend": {
+                                                            "type": "integer",
+                                                            "description": "跌涨, -1: 跌, 0: 持平, 1: 涨"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/price-reports/markets": {
+            "post": {
+                "tags": ["PriceReports"],
+                "summary": "价格走势市场行情",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "required": true,
+                    "type": "object",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "currentRegion": {
+                                "$ref": "#/definitions/RegionEdit"
+                            },
+                            "region": {
+                                "$ref": "#/definitions/RegionEdit"
+                            },
+                            "sort": {
+                                "type": "integer",
+                                "description": "排序条件, 0: 综合排序, 1: 距离最近, 2: 价格最低"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "region": {
+                                                "$ref": "#/definitions/RegionDetails"
+                                            },
+                                            "marketsData": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "market": {
+                                                            "$ref": "#/definitions/Market"
+                                                        },
+                                                        "data": {
+                                                            "type": "array",
+                                                            "items": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                    "category": {
+                                                                        "$ref": "#/definitions/Category"
+                                                                    },
+                                                                    "price": {
+                                                                        "type": "number",
+                                                                        "description": "价格"
+                                                                    },
+                                                                    "priceUnit": {
+                                                                        "type": "单位",
+                                                                        "description": "价格单位"
+                                                                    },
+                                                                    "trend": {
+                                                                        "type": "integer",
+                                                                        "description": "跌涨, -1: 跌, 0: 持平, 1: 涨"
+                                                                    },
+                                                                    "contactPhone": {
+                                                                        "type": "string",
+                                                                        "description": "联系电话"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

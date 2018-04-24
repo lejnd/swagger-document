@@ -1,0 +1,18 @@
+{
+    "swagger": "2.0",
+    "definitions": {
+        "City": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "城市ID"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "城市名"
+                }
+            }
+        }
+    }
+}

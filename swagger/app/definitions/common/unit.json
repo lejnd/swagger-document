@@ -1,0 +1,19 @@
+{
+    "swagger": "2.0",
+    "definitions": {
+        "Unit": {
+            "type": "object",
+            "description": "单位对象",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "单位id"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "单位"
+                }
+            }
+        }
+    }
+}

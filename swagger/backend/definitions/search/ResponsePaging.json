@@ -1,0 +1,23 @@
+{
+    "title": "Paging",
+    "type": "object",
+    "properties": {
+        "total": {
+            "type": "integer",
+            "description": "总数据条数"
+        },
+        "pageSize": {
+            "type": "integer",
+            "description": "每页显示数据的条数"
+        },
+        "pageIndex": {
+            "type": "integer",
+            "description": "当前页码，从1开始"
+        }
+    },
+    "example": {
+        "total": 1000,
+        "pageSize": 1,
+        "pageIndex": 10
+    }
+}

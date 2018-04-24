@@ -1,0 +1,344 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/questions/search": {
+            "post": {
+                "tags": [
+                    "Guide"
+                ],
+                "summary": "查询所有问题",
+                "parameters": [
+                    {
+                        "$ref": "definitions/search/token.json"
+                    },
+                    {
+                        "in": "body",
+                        "name": "query",
+                        "required": true,
+                        "description": "查询条件",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "definitions/search/Paging.json"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "question": {
+                                            "type": "string",
+                                            "description": "查询内容"
+                                        },
+                                        "publishStartTime": {
+                                            "type": "string",
+                                            "description": "发布时间起始范围 yyyy-MM-dd HH:mm:ss"
+                                        },
+                                        "publishEndTime": {
+                                            "type": "string",
+                                            "description": "发布时间结束范围 yyyy-MM-dd HH:mm:ss"
+                                        },
+                                        "auditStartTime": {
+                                            "type": "string",
+                                            "description": "审核时间起始范围 yyyy-MM-dd HH:mm:ss"
+                                        },
+                                        "auditEndTime": {
+                                            "type": "string",
+                                            "description": "审核时间结束范围 yyyy-MM-dd HH:mm:ss"
+                                        },
+                                        "auditState": {
+                                            "type": "integer",
+                                            "description": "状态：0待审核，1已审核，传-1表示所有"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "返回符合搜索条件的所有问题",
+                        "schema": {
+                            "type": "object",
+                            "description": "获取结果",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "paging": {
+                                            "$ref": "definitions/search/ResponsePaging.json"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "number",
+                                                        "description": "问题ID"
+                                                    },
+                                                    "question": {
+                                                        "type": "string",
+                                                        "description": "问题描述"
+                                                    },
+                                                    "publishTime": {
+                                                        "type": "string",
+                                                        "description": "发布时间"
+                                                    },
+                                                    "auditTime": {
+                                                        "type": "string",
+                                                        "description": "审核时间"
+                                                    },
+                                                    "auditState": {
+                                                        "type": "number",
+                                                        "description": "审核状态：0待审核，1已审核，传-1表示所有"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/questions/batch/deletion": {
+            "post": {
+                "tags": [
+                    "Guide"
+                ],
+                "summary": "删除问题",
+                "description": "审核通过的不可以删除",
+                "parameters": [
+                    {
+                        "$ref": "definitions/search/token.json"
+                    },
+                    {
+                        "in": "body",
+                        "name": "delete",
+                        "type": "object",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "description": "问题 ID"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功：删除成功"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功：0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/questions/batch/approval": {
+            "post": {
+                "tags": [
+                    "Guide"
+                ],
+                "summary": "审核问题",
+                "parameters": [
+                    {
+                        "$ref": "definitions/search/token.json"
+                    },
+                    {
+                        "in": "body",
+                        "name": "approve",
+                        "type": "object",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "description": "问题 ID"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功：审核成功"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功：0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/questions/{questionId}": {
+            "get": {
+                "tags": [
+                    "Guide"
+                ],
+                "summary": "获取问题详情",
+                "parameters": [
+                    {
+                        "$ref": "definitions/search/token.json"
+                    },
+                    {
+                        "in": "path",
+                        "type":"integer",
+                        "format":"int64",
+                        "required": true,
+                        "name": "questionId",
+                        "description": "问题 id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功：获取成功"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功：0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "$ref": "definitions/guide/question.json"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Guide"
+                ],
+                "summary": "更新问题",
+                "parameters": [
+                    {
+                        "$ref": "definitions/search/token.json"
+                    },
+                    {
+                        "in": "path",
+                        "type":"integer",
+                        "format":"int64",
+                        "required": true,
+                        "name": "questionId",
+                        "description": "问题 id"
+                    },
+                    {
+                        "in": "body",
+                        "name": "data",
+                        "type": "object",
+                        "required": true,
+                        "schema": {
+                            "type":"object",
+                            "properties":{
+                                "question":{
+                                    "type":"string",
+                                    "description":"问题"
+                                },
+                                "answer":{
+                                    "type":"string",
+                                    "description":"回答"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功：更新成功"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功：0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/questions": {
+            "post": {
+                "tags": [
+                    "Guide"
+                ],
+                "summary": "新建问题",
+                "parameters": [
+                    {
+                        "$ref": "definitions/search/token.json"
+                    },
+                    {
+                        "in": "body",
+                        "name": "data",
+                        "type": "object",
+                        "schema": {
+                            "$ref": "definitions/guide/question-edit.json"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功：新建成功"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功：0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

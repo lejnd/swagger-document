@@ -1,0 +1,19 @@
+{
+    "swagger": "2.0",
+    "definitions": {
+        "Region": {
+            "provinceId": {
+                "type": "int",
+                "description": "省Id"
+            },
+            "cityId": {
+                "type": "int",
+                "description": "市Id"
+            },
+            "districtId": {
+                "type": "int",
+                "description": "区Id"
+            }
+        }
+    }
+}

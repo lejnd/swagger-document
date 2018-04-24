@@ -1,0 +1,40 @@
+{
+    "swagger": "2.0",
+    "tags": [{
+        "name": "Common",
+        "description": "公共接口"
+    }, {
+        "name": "Users",
+        "description": "用户相关接口"
+    }, {
+        "name": "Categories",
+        "description": "分类相关接口"
+    }, {
+        "name": "Markets",
+        "description": "市场相关接口"
+    }, {
+        "name": "Demands",
+        "description": "求购相关接口"
+    }, {
+        "name": "Supplies",
+        "description": "供应相关接口"
+    }, {
+        "name": "Quotes",
+        "description": "报价相关接口"
+    }, {
+        "name": "PriceReports",
+        "description": "价格播报相关接口"
+    }, {
+        "name": "News",
+        "description": "资讯相关接口"
+    }, {
+        "name": "Location",
+        "description": "定位相关接口"
+    }, {
+        "name": "System",
+        "description": "系统相关接口"
+    }, {
+        "name": "Home",
+        "description": "首页相关接口"
+    }]
+}

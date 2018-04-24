@@ -1,0 +1,42 @@
+{
+    "type": "object",
+    "description": "banner详情",
+    "properties": {
+        "id": {
+            "type": "integer",
+            "description": "banner的ID"
+        },
+        "title": {
+            "type": "string",
+            "description": "banner名称"
+        },
+        "moduleType": {
+            "type": "number",
+            "description": "版块类型，1首页banner，2行情走势banner"
+        },
+        "sortNum": {
+            "type": "number",
+            "description": "在该板块内的序号"
+        },
+        "imgUrl": {
+            "type": "string",
+            "description": "图片URL"
+        },
+        "pageType": {
+            "type": "number",
+            "description": "内页类型，0无内页，1地址跳转"
+        },
+        "dataState": {
+            "type": "number",
+            "description": "数据状态，0有效，1无效，2删除"
+        },
+        "linkType": {
+            "type": "number",
+            "description": "内页类型为地址跳转时的跳转类型，0供应详情，1求购详情"
+        },
+        "linkId": {
+            "type": "integer",
+            "description": "跳转的供求详情的ID"
+        }
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "type": "object",
+    "description": "单个热门分类条目",
+    "properties": {
+        "id": {
+            "type": "number",
+            "description": "热门分类 ID"
+        },
+        "title": {
+            "type": "string",
+            "description": "分类名称，分类树获取"
+        },
+        "categoryId": {
+            "type": "number",
+            "description": "分类ID，分类树获取"
+        },
+        "hotType": {
+            "type": "number",
+            "description": "供求类型，0供应，1求购"
+        },
+        "sortNum": {
+            "type": "number",
+            "description": "排序号"
+        },
+        "dataState": {
+            "type": "number",
+            "description": "数据状态，0有效，1无效"
+        }
+    }
+}

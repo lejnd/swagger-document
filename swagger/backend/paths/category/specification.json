@@ -1,0 +1,241 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/categories/specifications/search": {
+            "post": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "查询所有规格",
+                "parameters": [
+                    {
+                        "$ref": "definitions/search/token.json"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "description": "查询条件，传类别ID是为了获取该类别下未关联的规格列表",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "definitions/search/Paging.json"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "name": {
+                                            "description": "规格名称",
+                                            "type": "string"
+                                        },
+                                        "categoryId": {
+                                            "type": "number",
+                                            "description": "类别ID，未关联，默认为-1取出所有规格"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "返回符合搜索条件的所有规格",
+                        "schema": {
+                            "type": "object",
+                            "description": "获取结果",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "pagination": {
+                                            "$ref": "definitions/search/ResponsePaging.json"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "definitions/products/standard.json"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/categories/specifications/{specificationId}": {
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "获取规格详情",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "name": "specificationId",
+                        "description": "规格 id"
+                    },
+                    {
+                        "$ref": "definitions/search/token.json"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功：获取成功"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功：0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "$ref": "definitions/products/standard.json"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "删除规格",
+                "description": "引用的规格不能被删除",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "name": "specificationId",
+                        "description": "规格 id"
+                    },
+                    {
+                        "$ref": "definitions/search/token.json"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功：删除成功"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功：0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "更新规格",
+                "parameters": [
+                    {
+                        "$ref": "definitions/search/token.json"
+                    },
+                    {
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "name": "specificationId",
+                        "description": "规格 id"
+                    },
+                    {
+                        "in": "body",
+                        "name": "data",
+                        "type": "object",
+                        "schema": {
+                            "$ref": "definitions/products/standard-edit.json"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功：更新成功"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功：0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/categories/specifications": {
+            "post": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "新建规格",
+                "parameters": [
+                    {
+                        "$ref": "definitions/search/token.json"
+                    },
+                    {
+                        "in": "body",
+                        "name": "data",
+                        "type": "object",
+                        "schema": {
+                            "$ref": "definitions/products/standard-edit.json"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功：新建成功"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功：0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

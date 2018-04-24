@@ -1,0 +1,213 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/sys-unit/{id}": {
+            "get": {
+                "tags": [
+                    "Sysunit"
+                ],
+                "summary": "查询单位",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "required": true,
+                        "type": "string",
+                        "description": "单位ID"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "Id": {
+                                        "type": "integer",
+                                        "description": "编号"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "description": "名称"
+                                    },
+                                    "displayname": {
+                                        "type": "string",
+                                        "description": "显示名称"
+                                    },
+                                    "enable": {
+                                        "type": "integer",
+                                        "description": "数据状态，0无效、1有效"
+                                    },
+                                    "issystem": {
+                                        "type": "integer",
+                                        "description": "0不允许改查 1允许改查"
+                                    },
+                                    "rate": {
+                                        "type": "string",
+                                        "description": "换算比例"
+                                    }
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/sys-unit/sysunitgetlist": {
+            "post": {
+                "tags": [
+                    "Sysunit"
+                ],
+                "summary": "查询单位所有信息",
+                "description": "",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "query",
+                        "required": true,
+                        "description": "查询条件",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "definitions/search/Paging.json"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "description": "名称"
+                                        },
+                                        "type": {
+                                            "type": "integer",
+                                            "description": "类型，0无效、1有效 、2全部"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "返回符合搜索条件的所有信息",
+                        "schema": {
+                            "type": "object",
+                            "description": "获取结果",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "获取成功"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "pagination": {
+                                            "$ref": "definitions/search/ResponsePaging.json"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "Id": {
+                                                        "type": "integer",
+                                                        "description": "编号"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "description": "名称"
+                                                    },
+                                                    "displayname": {
+                                                        "type": "string",
+                                                        "description": "显示名称"
+                                                    },
+                                                    "enable": {
+                                                        "type": "integer",
+                                                        "description": "数据状态，0无效、1有效"
+                                                    },
+                                                    "issystem": {
+                                                        "type": "integer",
+                                                        "description": "0不允许改查 1允许改查"
+                                                    },
+                                                    "rate": {
+                                                        "type": "string",
+                                                        "description": "换算比例"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/sys-unit/insert": {
+            "post": {
+                "tags": [
+                    "Sysunit"
+                ],
+                "summary": "添加单位配置",
+                "parameters": [
+                  {
+                        "$ref": "definitions/search/token.json"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",                   
+                        "schema": {
+                            "$ref": "#/definitions/systemunitAddEdit"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "添加成功"
+                    }
+                }
+            }
+        },
+        "/sys-unit/update": {
+            "put": {
+                "tags": [
+                    "Sysunit"
+                ],
+                "summary": "更新单位配置",
+                "parameters": [
+                     {
+                        "$ref": "definitions/search/token.json"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                   
+                        "schema": {
+                            "$ref": "#/definitions/systemunitAddEdit"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "更新成功"
+                    }
+                }
+            }
+        }
+    }
+}

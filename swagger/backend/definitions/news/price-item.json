@@ -1,0 +1,58 @@
+{
+    "type": "object",
+    "description": "价格播报单条资讯",
+    "properties": {
+        "id": {
+            "type": "integer",
+            "description": "价格播报ID"
+        },
+        "category": {
+            "type": "string",
+            "description": "播报品类，新增和编辑时可获取品类接口"
+        },
+        "place": {
+            "type": "string",
+            "description": "产地"
+        },
+        "price": {
+            "type": "number",
+            "description": "价格（元／斤），0<价格<999999.99"
+        },
+        "source": {
+            "type": "string",
+            "description": "价格来源"
+        },
+        "linkMan": {
+            "type": "string",
+            "description": "联系人，新增和编辑时手动输入"
+        },
+        "linkCall": {
+            "type": "string",
+            "description": "联系电话，新增和编辑时手动输入，手机或座机"
+        },
+        "broadcastTime": {
+            "type": "integer",
+            "description": "播报时间，新增和编辑时的系统当前时间"
+        },
+        "broadcastMan": {
+            "type": "string",
+            "description": "播报人，新增和编辑时的当前登陆人名称"
+        },
+        "auditTime": {
+            "type": "integer",
+            "description": "审核时间"
+        },
+        "auditMan": {
+            "type": "string",
+            "description": "审核人，审核时当前登陆人名称"
+        },
+        "dataState": {
+            "type": "number",
+            "description": "数据状态，0待审核，1已审核"
+        },
+        "auditMark": {
+            "type": "string",
+            "description": "驳回理由"
+        }
+    }
+}

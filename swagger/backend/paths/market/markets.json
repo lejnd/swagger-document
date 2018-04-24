@@ -1,0 +1,291 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/markets/search": {
+            "post": {
+                "tags": ["Market"],
+                "summary": "获取市场列表",
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "description": "默认按照创建时间降序排序",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "Paging": {
+                                    "$ref": "definitions/search/Paging.json"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "properties": {
+                                        "marketName": {
+                                            "type": "string",
+                                            "description": "模糊匹配市场名称"
+                                        },
+                                        "dataState": {
+                                            "type": "number",
+                                            "description": "精准匹配数据状态，0有效，1无效，默认传-1取出所有"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "获取市场列表成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "properties": {
+                                        "Paging": {
+                                            "$ref": "definitions/search/ResponsePaging.json"
+                                        },
+                                        "itemList": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "definitions/market/market-item.json"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/markets": {
+            "post": {
+                "tags": ["Market"],
+                "summary": "新增市场",
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "definitions/market/market-add-edit.json"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "新增成功，在列表页返回结果",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "type": "integer",
+                                    "description": "市场 ID"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/markets/enabled": {
+            "post": {
+                "tags": ["Market"],
+                "summary": "批量启用",
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "starter",
+                        "type": "object",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "description": "市场 ID"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "启动成功，返回结果",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功：已启动；失败：[市场名称, ...] 启动失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功：0; 失败：1001",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/markets/disabled": {
+            "post": {
+                "tags": ["Market"],
+                "summary": "批量禁用",
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "closer",
+                        "type": "object",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "description": "市场 ID"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "禁用成功，返回结果",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功：已禁用；失败：[市场名称, ...] 禁用失败"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功：0; 失败：1001",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/markets/{marketId}": {
+            "get": {
+                "tags": ["Market"],
+                "summary": "获取市场详情",
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "path",
+                        "name": "marketId",
+                        "required": true,
+                        "type": "integer",
+                        "description": "marketId ID"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "获取市场详情成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                },
+                                "data": {
+                                    "$ref": "definitions/market/market-detail.json"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": ["Market"],
+                "summary": "编辑市场",
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "path",
+                        "name": "marketId",
+                        "required": true,
+                        "type": "integer",
+                        "description": "市场 ID"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "编辑后的市场",
+                        "required": true,
+                        "schema": {
+                            "$ref": "definitions/market/market-add-edit.json"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "修改成功，在列表页返回修改结果",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "msg": {
+                                    "type": "string",
+                                    "description": "成功信息"
+                                },
+                                "code": {
+                                    "type": "string",
+                                    "description": "成功编码 0",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

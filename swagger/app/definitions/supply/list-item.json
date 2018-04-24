@@ -1,0 +1,99 @@
+{
+    "swagger": "2.0",
+    "definitions": {
+        "SupplyListItem": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "ID"
+                },
+                "number": {
+                    "type": "integer",
+                    "description": "编号"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "名称"
+                },
+                "isGuoziSelf": {
+                    "type": "boolean",
+                    "description": "是否是国资自营"
+                },
+                "isReady": {
+                    "type": "boolean",
+                    "description": "true: 有现货，false: 即将上市"
+                },
+                "image": {
+                    "type": "string",
+                    "description": "图片"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "描述"
+                },
+                "price": {
+                    "type": "number",
+                    "format": "double",
+                    "description": "价格"
+                },
+                "specifications": {
+                    "type": "array",
+                    "description": "规格",
+                    "items": {
+                        "$ref": "#/definitions/SpecificationDetails"
+                    }
+                },
+                "priceUnit": {
+                    "type": "string",
+                    "description": "价格单位"
+                },
+                "amount": {
+                    "type": "integer",
+                    "description": "库存"
+                },
+                "status": {
+                    "type": "integer",
+                    "description": "状态, -1: 全部, 0: 待审核, 1: 进行中, 2: 已结束, 3: 被驳回"
+                },
+                "updateTime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "更新时间"
+                },
+                "unitid": {
+                    "type": "integer",
+                   
+                    "description": "单位_键"
+                },
+                "unitname": {
+                    "type": "string",
+                  
+                    "description": "单位_值"
+                },
+                "validstart": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "开始有效期"
+                },
+                "validend": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "结束有效期"
+                },
+                "validdays": {
+                    "type": "integer",
+                 
+                    "description": "有效期天数"
+                },
+                 "publishdate": {
+                    "type": "string",
+                   "format": "date-time",
+                    "description": "发布时间"
+                }
+
+
+            }
+        }
+    }
+}

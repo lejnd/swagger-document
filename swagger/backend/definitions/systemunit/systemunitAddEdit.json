@@ -1,0 +1,20 @@
+{
+    "swagger": "2.0",
+    "definitions": {
+        "systemunitAddEdit": {
+            "type": "object",
+            "properties": {
+              
+                "name": {
+                    "type": "string",
+                    "description": "单位名称"
+                },
+               
+                "rate": {
+                    "type": "string",
+                    "description": "换算比例" 
+                }
+            }
+        }
+    }
+}

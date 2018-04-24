@@ -1,0 +1,78 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/users/trace/synchronize": {
+            "post": {
+                "tags": ["Users"],
+                "summary": "足记同步",
+                "parameters": [{
+                        "$ref": "#/parameters/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "cateIds",
+                        "type": "object",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer",
+                                "description": "品类Id"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "同步成功"
+                    }
+                }
+            }
+        },
+        "/users/trace/query": {
+            "post": {
+                "tags": ["Users"],
+                "summary": "获取足记",
+                "parameters": [{
+                    "$ref": "#/parameters/Token"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string",
+                                                "description": "品类Id"
+                                            },
+                                            "name": {
+                                                "type": "string",
+                                                "description": "品类名称"
+                                            },
+                                            "categoryQueryCode": {
+                                                "type": "string",
+                                                "description": "品类查询编码"
+                                            }
+                                        }
+                                    }
+                                },
+                                "code": {
+                                    "type": "integer"
+                                },
+                                "msg": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

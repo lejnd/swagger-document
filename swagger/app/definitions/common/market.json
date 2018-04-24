@@ -1,0 +1,18 @@
+{
+    "swagger": "2.0",
+    "definitions": {
+        "Market": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "市场ID"
+                },
+                "name": {
+                    "type": "integer",
+                    "description": "市场名"
+                }
+            }
+        }
+    }
+}

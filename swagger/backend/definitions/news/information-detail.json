@@ -1,0 +1,35 @@
+{
+    "title": "infoDetail",
+    "type": "object",
+    "description": "资讯编辑或新增详情",
+    "properties": {
+        "id": {
+            "type": "integer",
+            "description": "资讯ID"
+        },
+        "name": {
+            "type": "string",
+            "description": "资讯标题"
+        },
+        "source": {
+            "type": "string",
+            "description": "资讯来源"
+        },
+        "dataState": {
+            "type": "number",
+            "description": "数据状态，0待审核，1已审核。新增时默认为待审核，APP上不显示"
+        },
+        "content": {
+            "type": "string",
+            "description": "正文, 保留'\n'"
+        },
+        "imgUrls": {
+            "type": "array",
+            "description": "图片文件信息",
+            "items": {
+                "type": "string",
+                "description": "图片URL"
+            }
+        }
+    }
+}

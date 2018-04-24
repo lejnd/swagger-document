@@ -1,0 +1,281 @@
+{
+    "swagger": "2.0",
+    "paths": {
+        "/users": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "代注册",
+                "parameters": [{
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "companyName": {
+                                    "type": "string",
+                                    "description": "企业名称"
+                                },
+                                "cellphone": {
+                                    "type": "string",
+                                    "description": "手机号"
+                                },
+                                "password": {
+                                    "type": "string",
+                                    "description": "密码"
+                                },
+                                "isInnerUser": {
+                                    "type": "boolean",
+                                    "description": "是内部用户"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "代注册成功"
+                    },
+                    "1002": {
+                        "description": "手机号已被注册"
+                    }
+                }
+            }
+        },
+        "/users/{userId}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "获取企业信息",
+                "parameters": [{
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "path",
+                        "name": "userId",
+                        "required": true,
+                        "type": "integer",
+                        "description": "企业Id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "获取成功",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "companyName": {
+                                    "type": "string",
+                                    "description": "企业名称"
+                                },
+                                "cellphone": {
+                                    "type": "string",
+                                    "description": "手机号"
+                                },
+                                "identityIds": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "integer",
+                                        "description": "企业身份Id"
+                                    }
+                                },
+                                "isCertificated": {
+                                    "type": "boolean",
+                                    "description": "是否实名"
+                                },
+                                "region": {
+                                    "$ref": "definitions/region/Region.json"
+                                },
+                                "mainProducts": {
+                                    "type": "string",
+                                    "description": "主营产品"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "描述"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "用户不存在"
+                    }
+                }
+            }
+        },
+        "/users/states": {
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "启用禁用用户",
+                "parameters": [{
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "description": "企业信息",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "userId": {
+                                        "type": "integer",
+                                        "description": "企业编号"
+                                    },
+                                    "active": {
+                                        "type": "boolean",
+                                        "description": "是否启用"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "修改成功"
+                    }
+                }
+            }
+        },
+        "/users/search": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "查询企业信息",
+                "parameters": [{
+                        "$ref": "#/definitions/Token"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "description": "查询条件",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "definitions/search/Paging.json"
+                                },
+                                "condition": {
+                                    "type": "object",
+                                    "description": "查询条件",
+                                    "properties": {
+                                        "companyName": {
+                                            "type": "string",
+                                            "description": "企业名称"
+                                        },
+                                        "cellphone": {
+                                            "type": "string",
+                                            "description": "手机号"
+                                        },
+                                        "identityId": {
+                                            "type": "integer",
+                                            "description": "企业身份Id"
+                                        },
+                                        "state": {
+                                            "type": "integer",
+                                            "description": "状态：0：无效，1：有效， "
+                                        },
+                                        "isCertificated": {
+                                            "type": "boolean",
+                                            "description": "是否实名"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "查询成功",
+                        "schema": {
+                            "type": "object",
+                            "description": "查询结果",
+                            "properties": {
+                                "paging": {
+                                    "$ref": "definitions/search/ResponsePaging.json"
+                                },
+                                "itemList": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "userId": {
+                                                "type": "integer",
+                                                "description": "用户Id"
+                                            },
+                                            "enterpriseId":{
+                                                "type":"integer",
+                                                "description":"企业Id"
+                                            },
+                                            "companyCode": {
+                                                "type": "integer",
+                                                "description": "企业编号"
+                                            },
+                                            "companyName": {
+                                                "type": "string",
+                                                "description": "企业名称"
+                                            },
+                                            "cellphone": {
+                                                "type": "string",
+                                                "description": "手机号"
+                                            },
+                                            "identities": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "integer",
+                                                            "description": "id"
+                                                        },
+                                                        "name": {
+                                                            "type": "string",
+                                                            "description": "角色名字"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "isCertificated": {
+                                                "type": "boolean",
+                                                "description": "是否实名"
+                                            },
+                                            "mainProducts": {
+                                                "type": "string",
+                                                "description": "主营产品"
+                                            },
+                                            "region": {
+                                                "$ref": "definitions/region/Region.json"
+                                            },
+                                            "state": {
+                                                "type": "integer",
+                                                "description": "状态：0：无效，1：有效"
+                                            },
+                                            "recommendCode": {
+                                                "type": "string",
+                                                "description": "推荐码"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

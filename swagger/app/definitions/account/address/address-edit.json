@@ -1,0 +1,30 @@
+{
+    "swagger": "2.0",
+    "definitions": {
+        "AddressEdit": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "收件人"
+                },
+                "mobile": {
+                    "type": "string",
+                    "description": "手机号"
+                },
+                "region": {
+                    "$ref": "#/definitions/RegionEdit",
+                    "description": "区域"
+                },
+                "addressDetails": {
+                    "type": "string",
+                    "description": "详细收货地址"
+                },
+                "isDefault": {
+                    "type": "boolean",
+                    "description": "是否默认"
+                }
+            }
+        }
+    }
+}
